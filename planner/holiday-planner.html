@@ -827,7 +827,7 @@ function renderAll(year, auLeave, cnLeave, auList, cnList) {
 
 // ===== Holiday Data Update Modal =====
 const STORAGE_KEY = 'holiday-planner-overrides';
-function loadOverrides() { try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch(e){return {};} }
+function loadOverrides() { try{const r=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');return(r&&typeof r==='object'&&!Array.isArray(r))?r:{};}catch(e){return {};} }
 function saveOverrides(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
 
 const _originalGetHolidays = getHolidays;
