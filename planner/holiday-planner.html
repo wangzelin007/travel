@@ -89,6 +89,7 @@
   .tag-good { background: #e3f2fd; color: #1565c0; }
   .tag-ok { background: #fff3e0; color: #e65100; }
   .note { font-size: 0.85em; color: #777; margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; }
+  .holiday-ref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .leave-detail { font-size: 0.85em; color: #555; margin-top: 12px; padding: 10px; background: #f8f9fa; border-radius: 6px; border-left: 3px solid var(--window-color); }
   .leave-detail-content { margin-top: 6px; line-height: 1.8; }
   .modal-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;display:flex;align-items:center;justify-content:center; }
@@ -112,6 +113,7 @@
     .bar-row { font-size: 0.8em; }
     .leave-table th, .leave-table td { padding: 6px 8px; font-size: 0.82em; }
     .container { padding: 12px; }
+    .holiday-ref-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -779,7 +781,7 @@ function renderAll(year, auLeave, cnLeave, auList, cnList) {
 
   // --- Holiday reference ---
   html += `<div class="section"><h2>📖 假期参考</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="holiday-ref-grid">
       <div><h3 style="margin-bottom:8px">🇦🇺 澳洲公众假期 (NSW)</h3>
         <table class="leave-table"><tr><th>日期</th><th>假期</th></tr>`;
   auList.forEach(h => { html+=`<tr><td>${formatDateShort(h.date)}</td><td>${h.name}</td></tr>`; });
