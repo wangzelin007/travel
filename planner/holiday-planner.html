@@ -789,7 +789,10 @@ function renderAll(year, auLeave, cnLeave, auList, cnList) {
   html += `</table></div>
       <div><h3 style="margin-bottom:8px">🇨🇳 中国法定假期</h3>
         <table class="leave-table"><tr><th>假期</th><th>放假</th><th>补班</th></tr>`;
-  cnList.forEach(h => { html+=`<tr><td>${h.name}</td><td>${h.offDays.length}天<br><span style="font-size:0.8em;color:#999">${formatDateShort(h.offDays[0])}—${formatDateShort(h.offDays[h.offDays.length-1])}</span></td><td>${h.workDays.length?h.workDays.map(formatDateShort).join(', '):'—'}</td></tr>`; });
+  cnList.forEach(h => {
+    if (!h.offDays || !h.offDays.length) return;
+    html+=`<tr><td>${h.name}</td><td>${h.offDays.length}天<br><span style="font-size:0.8em;color:#999">${formatDateShort(h.offDays[0])}—${formatDateShort(h.offDays[h.offDays.length-1])}</span></td><td>${h.workDays&&h.workDays.length?h.workDays.map(formatDateShort).join(', '):'—'}</td></tr>`;
+  });
   html += `</table></div></div>
     <div class="note">⚠️ 中国假期日期每年由国务院公布，本工具使用近似日期，请以官方通知为准。澳洲假期以 NSW 为准。</div>
   </div>`;
