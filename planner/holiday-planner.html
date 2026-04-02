@@ -154,6 +154,10 @@
       <label>✈️ 最少凑天数</label>
       <input type="number" id="minDays" value="7" min="0" max="30">
     </div>
+    <div class="control-group">
+      <label>🇨🇳 单窗口最多请假</label>
+      <input type="number" id="cnMaxLeavePerWindow" value="4" min="0" max="20">
+    </div>
     <div class="control-group" style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;">
       <button class="btn btn-primary" onclick="generate()">🔄 匹配假期</button>
       <button class="btn btn-warn" onclick="openUpdateModal()">📡 更新数据</button>
@@ -595,13 +599,16 @@ function generate() {
   const cnLeave = readNum('cnLeave', 10);
   const bridgeRange = readNum('bridgeRange', 7);
   const minDays = readNum('minDays', 0);
+  const cnMaxPerWin = readNum('cnMaxLeavePerWindow', 4);
 
   const sets = buildSets(year);
   _genAuList = sets.auList; _genCnList = sets.cnList;
   _auOff = sets.auOff; _cnOff = sets.cnOff; _cnWork = sets.cnWork;
   _genYear = year;
-  const allWin = findWindows(year, bridgeRange, _auOff, _cnOff, _cnWork);
-  _allWindows = minDays > 0 ? allWin.filter(w => w.totalDays >= minDays) : allWin;
+  let allWin = findWindows(year, bridgeRange, _auOff, _cnOff, _cnWork);
+  if (minDays > 0) allWin = allWin.filter(w => w.totalDays >= minDays);
+  if (cnMaxPerWin >= 0) allWin = allWin.filter(w => w.cnLeaveNeeded <= cnMaxPerWin);
+  _allWindows = allWin;
   _selectedWindows = new Set(_allWindows.map((_,i) => i));
 
   renderAll(year, auLeave, cnLeave, _genAuList, _genCnList);
