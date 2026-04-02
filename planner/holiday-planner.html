@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗓️ 双城假期匹配器 | Holiday Sync Planner</title>
+<style>
+  :root {
+    --au-color: #00843D; --au-light: #e8f5e9; --au-dot: #2e7d32;
+    --cn-color: #DE2910; --cn-light: #ffebee; --cn-dot: #c62828;
+    --both-color: #1565C0; --both-light: #e3f2fd;
+    --window-color: #F57F17; --window-light: #FFF8E1;
+    --work-color: #6A1B9A; --work-light: #f3e5f5;
+    --we-bg: #f3f3f3;
+    --bg: #f5f5f5; --card: #fff; --text: #333; --border: #e0e0e0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, var(--au-color), var(--cn-color)); color: white; border-radius: 12px; margin-bottom: 24px; }
+  header h1 { font-size: 1.8em; margin-bottom: 8px; }
+  header p { opacity: 0.9; font-size: 0.95em; }
+  .controls { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; background: var(--card); padding: 20px; border-radius: 12px; border: 1px solid var(--border); }
+  .control-group { flex: 1; min-width: 160px; }
+  .control-group label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9em; }
+  .control-group select, .control-group input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95em; background: white; }
+  .btn { padding: 10px 24px; border: none; border-radius: 8px; font-size: 0.95em; cursor: pointer; font-weight: 600; transition: all 0.2s; }
+  .btn-primary { background: var(--both-color); color: white; }
+  .btn-primary:hover { background: #0d47a1; }
+  .btn-secondary { background: #f5f5f5; color: #333; border: 1px solid var(--border); }
+  .btn-secondary:hover { background: #e0e0e0; }
+  .btn-warn { background: #ff9800; color: white; }
+  .btn-warn:hover { background: #f57c00; }
+  .section { background: var(--card); border-radius: 12px; border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
+  .section h2 { font-size: 1.3em; margin-bottom: 16px; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.85em; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+
+  /* Calendar with dual dots */
+  .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+  .month-card { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .month-header { padding: 10px; text-align: center; font-weight: 600; background: #f8f9fa; border-bottom: 1px solid var(--border); }
+  .month-body { padding: 8px; }
+  .weekday-row { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 0.75em; font-weight: 600; color: #888; margin-bottom: 4px; }
+  .day-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center; }
+  .day-cell {
+    min-height: 38px; border-radius: 4px; cursor: default; display: flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    position: relative; font-size: 0.82em; padding: 2px 1px;
+  }
+  .day-cell.empty { background: transparent; }
+  .day-cell.we { background: var(--we-bg); }
+  .day-cell.window-day { outline: 2px solid var(--window-color); outline-offset: -1px; background: var(--window-light); }
+  .day-cell.cnwork { background: var(--work-light); }
+  .day-cell[title] { cursor: help; }
+  .day-num { font-size: 1em; line-height: 1.2; }
+  .day-num.we-text { color: #999; }
+  .day-dots { display: flex; gap: 3px; margin-top: 1px; height: 6px; align-items: center; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; }
+  .dot-au { background: var(--au-dot); }
+  .dot-cn { background: var(--cn-dot); }
+  .dot-work { background: var(--work-color); width: 6px; height: 6px; border-radius: 1px; /* square for workday */ }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .summary-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .summary-card .number { font-size: 2em; font-weight: 700; }
+  .summary-card .label { font-size: 0.85em; color: #777; margin-top: 4px; }
+  .window-card { border: 2px solid var(--window-color); border-radius: 10px; padding: 20px; background: var(--window-light); cursor: pointer; transition: all 0.2s; user-select: none; }
+  .window-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .window-card.selected { border-color: var(--both-color); background: var(--both-light); }
+  .window-card.deselected { border-color: var(--border); background: #fafafa; opacity: 0.55; }
+  .window-card .select-badge { float: right; font-size: 1.2em; }
+  .window-card h3 { margin-bottom: 8px; color: var(--window-color); }
+  .window-cards { display: flex; flex-direction: column; gap: 16px; }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin: 6px 0; font-size: 0.85em; }
+  .bar { height: 20px; border-radius: 4px; min-width: 2px; }
+  .leave-table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 12px; }
+  .leave-table th, .leave-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  .leave-table th { background: #f8f9fa; font-weight: 600; }
+  .leave-table tr:last-child td { font-weight: 700; }
+  .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.78em; font-weight: 600; }
+  .tag-best { background: #c8e6c9; color: #2e7d32; }
+  .tag-good { background: #e3f2fd; color: #1565c0; }
+  .tag-ok { background: #fff3e0; color: #e65100; }
+  .note { font-size: 0.85em; color: #777; margin-top: 12px; padding: 12px; background: #f8f9fa; border-radius: 8px; }
+  .modal-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:100;display:flex;align-items:center;justify-content:center; }
+  .modal { background:white;border-radius:12px;padding:28px;max-width:700px;width:90%;max-height:80vh;overflow-y:auto; }
+  .modal h2 { margin-bottom:16px; }
+  .modal textarea { width:100%;height:200px;font-family:monospace;font-size:0.85em;padding:12px;border:1px solid var(--border);border-radius:8px;resize:vertical; }
+  .modal .btn-row { display:flex;gap:12px;margin-top:16px;justify-content:flex-end; }
+  @media print { body { background: white; } .controls, .btn { display: none; } .section { break-inside: avoid; } }
+  @media (max-width: 600px) { .calendar-grid { grid-template-columns: 1fr; } .controls { flex-direction: column; } }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🗓️ 双城假期匹配器</h1>
+    <p>找出 Sydney 🇦🇺 和 China 🇨🇳 可以凑到一起的假期窗口</p>
+  </header>
+
+  <div class="controls">
+    <div class="control-group">
+      <label>📅 年份</label>
+      <select id="yearSelect"></select>
+    </div>
+    <div class="control-group">
+      <label>🇦🇺 澳洲方昵称</label>
+      <input type="text" id="auName" value="澳洲方" placeholder="例：小王">
+    </div>
+    <div class="control-group">
+      <label>🇦🇺 年假天数</label>
+      <input type="number" id="auLeave" value="20" min="0" max="40">
+    </div>
+    <div class="control-group">
+      <label>🇨🇳 国内方昵称</label>
+      <input type="text" id="cnName" value="国内方" placeholder="例：小李">
+    </div>
+    <div class="control-group">
+      <label>🇨🇳 年假天数</label>
+      <input type="number" id="cnLeave" value="10" min="0" max="30">
+    </div>
+    <div class="control-group">
+      <label>🔍 桥接范围</label>
+      <select id="bridgeRange">
+        <option value="5">±5天</option>
+        <option value="7" selected>±7天</option>
+        <option value="10">±10天</option>
+      </select>
+    </div>
+    <div class="control-group" style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="generate()">🔄 匹配假期</button>
+      <button class="btn btn-warn" onclick="openUpdateModal()">📡 更新数据</button>
+    </div>
+  </div>
+
+  <div id="output"></div>
+</div>
+
+<script>
+// ===== Date Utilities =====
+function fmt(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function addDays(s, n) { const d = new Date(s+'T00:00:00'); d.setDate(d.getDate()+n); return fmt(d); }
+function toDate(s) { return new Date(s+'T00:00:00'); }
+function daysBetween(a, b) { return Math.round((toDate(b)-toDate(a))/86400000); }
+function dateRange(start, count) { const r=[]; for(let i=0;i<count;i++) r.push(addDays(start,i)); return r; }
+function isWeekend(s) { const d=toDate(s).getDay(); return d===0||d===6; }
+function dayOfWeek(s) { return toDate(s).getDay(); }
+function formatDateShort(s) {
+  const d=toDate(s);
+  const m=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return `${d.getDate()} ${m[d.getMonth()]}`;
+}
+
+// ===== Easter (Anonymous Gregorian) =====
+function easterSunday(year) {
+  const a=year%19, b=Math.floor(year/100), c=year%100;
+  const d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25);
+  const g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30;
+  const i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7;
+  const m=Math.floor((a+11*h+22*l)/451);
+  const month=Math.floor((h+l-7*m+114)/31), day=((h+l-7*m+114)%31)+1;
+  return `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+}
+function nthWeekday(year, month, dow, n) {
+  let count=0;
+  for(let d=1;d<=31;d++){
+    const dt=new Date(year,month-1,d);
+    if(dt.getMonth()!==month-1) break;
+    if(dt.getDay()===dow){count++; if(count===n) return fmt(dt);}
+  }
+}
+
+// Substitute day: if date falls on Sat→Mon, Sun→Mon
+function substituteDay(dateStr) {
+  const dow = dayOfWeek(dateStr);
+  if (dow === 6) return addDays(dateStr, 2); // Sat → Mon
+  if (dow === 0) return addDays(dateStr, 1); // Sun → Mon
+  return dateStr;
+}
+
+// ===== Holiday Date Lookups =====
+function chineseNewYear(y) {
+  const m={2025:'2025-01-29',2026:'2026-02-17',2027:'2027-02-06',2028:'2028-01-26',2029:'2029-02-13',2030:'2030-02-03'};
+  return m[y]||`${y}-02-01`;
+}
+function duanwu(y) {
+  const m={2025:'2025-05-31',2026:'2026-06-19',2027:'2027-06-09',2028:'2028-05-28',2029:'2029-06-16',2030:'2030-06-05'};
+  return m[y]||`${y}-06-10`;
+}
+function midAutumn(y) {
+  const m={2025:'2025-10-06',2026:'2026-09-25',2027:'2027-09-15',2028:'2028-10-03',2029:'2029-09-22',2030:'2030-09-12'};
+  return m[y]||`${y}-09-15`;
+}
+function qingming(y) {
+  // Qingming: usually Apr 4, but Apr 5 in some years
+  const m={2025:'2025-04-04',2026:'2026-04-05',2027:'2027-04-05',2028:'2028-04-04',2029:'2029-04-04',2030:'2030-04-05'};
+  return m[y]||`${y}-04-05`;
+}
+
+// Year-specific makeup workdays (调休补班) — must be updated from official announcements
+function springFestivalWork(y) {
+  const m={2025:['2025-01-26','2025-02-08'],2026:['2026-02-15','2026-02-27']};
+  return m[y] || [addDays(chineseNewYear(y),-2), addDays(chineseNewYear(y),8)];
+}
+function laborDayWork(y) {
+  const m={2025:['2025-04-27'],2026:['2026-04-26','2026-05-09']};
+  return m[y] || [];
+}
+function nationalDayWork(y) {
+  const m={2025:['2025-09-28','2025-10-11'],2026:['2026-10-10']};
+  return m[y] || [`${y}-09-28`,`${y}-10-11`];
+}
+
+function getHolidays(year) {
+  const es = easterSunday(year);
+
+  // AU holidays (NSW) — with proper substitute day logic
+  const auRaw = [
+    `${year}-01-01`, // New Year
+    `${year}-01-26`, // Australia Day (will substitute if weekend)
+    addDays(es,-2),  // Good Friday
+    addDays(es,-1),  // Easter Saturday
+    addDays(es,1),   // Easter Monday
+    `${year}-04-25`, // Anzac Day
+    nthWeekday(year,6,1,2), // King's Birthday (2nd Mon June NSW)
+    `${year}-12-25`, // Christmas
+    `${year}-12-26`, // Boxing Day
+  ];
+
+  const auNames = {
+    [`${year}-01-01`]: "New Year's Day 元旦",
+    [`${year}-01-26`]: "Australia Day 澳洲国庆",
+    [addDays(es,-2)]: "Good Friday 耶稣受难日",
+    [addDays(es,-1)]: "Easter Saturday 复活节周六",
+    [addDays(es,1)]: "Easter Monday 复活节周一",
+    [`${year}-04-25`]: "Anzac Day 澳新军团日",
+    [nthWeekday(year,6,1,2)]: "King's Birthday 国王生日",
+    [`${year}-12-25`]: "Christmas Day 圣诞节",
+    [`${year}-12-26`]: "Boxing Day 节礼日",
+  };
+
+  // Apply substitute logic for fixed-date holidays
+  const fixedDates = [`${year}-01-01`,`${year}-01-26`,`${year}-04-25`,`${year}-12-25`,`${year}-12-26`];
+  const auList = [];
+  const addedDates = new Set();
+
+  auRaw.forEach(d => {
+    if (!d) return;
+    const name = auNames[d] || d;
+    const actual = fixedDates.includes(d) ? substituteDay(d) : d;
+    if (!addedDates.has(actual)) {
+      auList.push({ date: actual, name: name + (actual !== d ? ` (调休至${formatDateShort(actual)})` : '') });
+      addedDates.add(actual);
+    }
+    // Christmas/Boxing special: if both fall on weekend, might need Tue too
+    if (d === `${year}-12-25` && dayOfWeek(d) === 6) {
+      // Christmas Sat → Mon, Boxing Sun → Tue
+      const tue = addDays(d, 3);
+      if (!addedDates.has(tue)) { auList.push({ date: tue, name: "Boxing Day 节礼日 (调休)" }); addedDates.add(tue); }
+    }
+    if (d === `${year}-12-25` && dayOfWeek(d) === 0) {
+      // Christmas Sun → Mon, Boxing Mon → Tue
+      const tue = addDays(d, 2);
+      if (!addedDates.has(tue)) { auList.push({ date: tue, name: "Boxing Day 节礼日 (调休)" }); addedDates.add(tue); }
+    }
+  });
+
+  // CN holidays
+  const ma = midAutumn(year);
+  const qm = qingming(year);
+  // Only merge when Mid-Autumn falls within National Day range (Oct 1-7)
+  const maNearNational = ma >= `${year}-10-01` && ma <= `${year}-10-07`;
+
+  // Golden Week: Oct 1 to max(Oct 7, ma+2) — union of 7-day ND and 3-day MA
+  const goldenWeekEnd = maNearNational
+    ? (addDays(ma, 2) > `${year}-10-07` ? addDays(ma, 2) : `${year}-10-07`)
+    : `${year}-10-07`;
+  const goldenWeekDays = daysBetween(`${year}-10-01`, goldenWeekEnd) + 1;
+
+  const cnList = [
+    { name:"元旦 New Year", offDays:[`${year}-01-01`], workDays:[] },
+    { name:"春节 Spring Festival", offDays: dateRange(addDays(chineseNewYear(year),-1),8), workDays: springFestivalWork(year) },
+    { name:"清明 Qingming", offDays: dateRange(qm,3), workDays:[] },
+    { name:"劳动节 Labor Day", offDays: dateRange(`${year}-05-01`,5), workDays: laborDayWork(year) },
+    { name:"端午 Dragon Boat", offDays: dateRange(duanwu(year),3), workDays:[] },
+    ...( maNearNational ? [] : [{ name:"中秋 Mid-Autumn", offDays: dateRange(ma,3), workDays:[] }]),
+    { name: maNearNational ? "中秋+国庆 Golden Week" : "国庆 National Day",
+      offDays: dateRange(`${year}-10-01`, goldenWeekDays),
+      workDays: nationalDayWork(year) },
+  ];
+
+  return { auList, cnList };
+}
+
+// ===== Build lookup maps =====
+function buildSets(year) {
+  const { auList, cnList } = getHolidays(year);
+  const auOff = new Map(), cnOff = new Map(), cnWork = new Map();
+  auList.forEach(h => auOff.set(h.date, h.name));
+  cnList.forEach(h => {
+    h.offDays.forEach(d => cnOff.set(d, h.name));
+    h.workDays.forEach(d => cnWork.set(d, h.name+' 补班'));
+  });
+  return { auList, cnList, auOff, cnOff, cnWork };
+}
+
+// ===== Core: find matching windows =====
+function findWindows(year, bridgeRange, auOff, cnOff, cnWork) {
+  // Build free-day clusters (holiday + adjacent weekends)
+  function getClusters(offMap, checkWorkdays) {
+    const allDates = [...offMap.keys()].sort();
+    if (!allDates.length) return [];
+    const clusters = [];
+    let cur = { start: allDates[0], end: allDates[0], name: offMap.get(allDates[0]), dates: new Set([allDates[0]]) };
+
+    for (let i = 1; i < allDates.length; i++) {
+      const d = allDates[i];
+      const gap = daysBetween(cur.end, d);
+      if (gap <= 3) {
+        // Add intermediate days between cur.end and d
+        for (let g = 1; g < gap; g++) cur.dates.add(addDays(cur.end, g));
+        cur.end = d; cur.dates.add(d);
+        const n = offMap.get(d);
+        if (!cur.name.includes(n)) cur.name += ' + ' + n;
+      } else {
+        clusters.push(cur);
+        cur = { start: d, end: d, name: offMap.get(d), dates: new Set([d]) };
+      }
+    }
+    clusters.push(cur);
+
+    // Expand to include adjacent weekends
+    // Only CN clusters should stop at CN makeup workdays; AU weekends are unaffected
+    clusters.forEach(c => {
+      let s = c.start;
+      while (isWeekend(addDays(s,-1)) && (!checkWorkdays || !cnWork.has(addDays(s,-1)))) { s = addDays(s,-1); c.dates.add(s); }
+      c.start = s;
+      let e = c.end;
+      while (isWeekend(addDays(e,1)) && (!checkWorkdays || !cnWork.has(addDays(e,1)))) { e = addDays(e,1); c.dates.add(e); }
+      c.end = e;
+    });
+    return clusters;
+  }
+
+  const auClusters = getClusters(auOff, false);  // AU: no cnWork check
+  const cnClusters = getClusters(cnOff, true);    // CN: respect makeup workdays
+  const rawWindows = [];
+
+  // Strategy 1: paired clusters (overlapping or nearby)
+  auClusters.forEach(ac => {
+    cnClusters.forEach(cc => {
+      const overlaps = ac.start <= cc.end && cc.start <= ac.end;
+      const gap = overlaps ? 0 : Math.min(
+        Math.abs(daysBetween(ac.end, cc.start)),
+        Math.abs(daysBetween(cc.end, ac.start))
+      );
+
+      if (overlaps || gap <= bridgeRange) {
+        const winStart = ac.start < cc.start ? ac.start : cc.start;
+        const winEnd = ac.end > cc.end ? ac.end : cc.end;
+        const totalDays = daysBetween(winStart, winEnd) + 1;
+
+        let auFree=0, cnFree=0, auLeave=0, cnLeave=0;
+        for (let i=0; i<totalDays; i++) {
+          const d = addDays(winStart, i);
+          const auF = isWeekend(d) || auOff.has(d);
+          const cnF = (isWeekend(d) && !cnWork.has(d)) || (cnOff.has(d) && !cnWork.has(d));
+          if(auF) auFree++; else auLeave++;
+          if(cnF) cnFree++; else cnLeave++;
+        }
+
+        rawWindows.push({
+          auHoliday: ac.name, cnHoliday: cc.name,
+          start: winStart, end: winEnd, totalDays,
+          auFreeDays: auFree, cnFreeDays: cnFree,
+          auLeaveNeeded: auLeave, cnLeaveNeeded: cnLeave,
+          overlaps, gap,
+          score: (auFree + cnFree) / (auLeave + cnLeave + 1) * totalDays,
+        });
+      }
+    });
+  });
+
+  // Strategy 2: ANY standalone cluster from either side (no size threshold!)
+  function addStandalone(clusters, side) {
+    clusters.forEach(c => {
+      const dominated = rawWindows.some(w => w.start <= c.end && c.start <= w.end);
+      if (dominated) return;
+      const totalDays = daysBetween(c.start, c.end) + 1;
+      let homeLeave = 0, otherLeave = 0;
+      for (let i=0; i<totalDays; i++) {
+        const d = addDays(c.start, i);
+        if (side === 'au') {
+          if (!isWeekend(d) && !auOff.has(d)) homeLeave++;
+          if ((!isWeekend(d) || cnWork.has(d)) && (!cnOff.has(d) || cnWork.has(d))) otherLeave++;
+        } else {
+          if ((!isWeekend(d) || cnWork.has(d)) && (!cnOff.has(d) || cnWork.has(d))) homeLeave++;
+          if (!isWeekend(d) && !auOff.has(d)) otherLeave++;
+        }
+      }
+      rawWindows.push({
+        auHoliday: side==='au' ? c.name : '—',
+        cnHoliday: side==='cn' ? c.name : '—',
+        start: c.start, end: c.end, totalDays,
+        auFreeDays: side==='au' ? totalDays - homeLeave : totalDays - otherLeave,
+        cnFreeDays: side==='cn' ? totalDays - homeLeave : totalDays - otherLeave,
+        auLeaveNeeded: side==='au' ? homeLeave : otherLeave,
+        cnLeaveNeeded: side==='cn' ? homeLeave : otherLeave,
+        overlaps: false, gap: -1,
+        score: totalDays / (homeLeave + otherLeave + 1),
+      });
+    });
+  }
+  addStandalone(cnClusters, 'cn');
+  addStandalone(auClusters, 'au');
+
+  // Deduplicate overlapping windows, keep higher score
+  rawWindows.sort((a,b) => b.score - a.score);
+  const deduped = [];
+  rawWindows.forEach(w => {
+    const overlapsKept = deduped.some(k => k.start <= w.end && w.start <= k.end);
+    if (!overlapsKept) deduped.push(w);
+  });
+  deduped.sort((a,b) => a.start.localeCompare(b.start));
+
+  // Smart merge: merge windows that are close enough to bridge with leave
+  // If gap between two windows <= bridgeRange, merge into one long window
+  const merged = [];
+  for (let i = 0; i < deduped.length; i++) {
+    let cur = { ...deduped[i] };
+    while (i + 1 < deduped.length) {
+      const next = deduped[i + 1];
+      const gap = daysBetween(cur.end, next.start) - 1; // actual intermediate days
+      if (gap <= bridgeRange) {
+        // Merge: extend cur to cover next
+        const newEnd = next.end > cur.end ? next.end : cur.end;
+        const newStart = cur.start;
+        const totalDays = daysBetween(newStart, newEnd) + 1;
+
+        let auFree=0, cnFree=0, auLeave=0, cnLeave=0;
+        for (let j=0; j<totalDays; j++) {
+          const d = addDays(newStart, j);
+          const af = isWeekend(d) || auOff.has(d);
+          const cf = (isWeekend(d) && !cnWork.has(d)) || (cnOff.has(d) && !cnWork.has(d));
+          if(af) auFree++; else auLeave++;
+          if(cf) cnFree++; else cnLeave++;
+        }
+
+        // Merge holiday names
+        let auH = cur.auHoliday, cnH = cur.cnHoliday;
+        if (next.auHoliday !== '—' && !auH.includes(next.auHoliday)) {
+          auH = auH === '—' ? next.auHoliday : auH + ' + ' + next.auHoliday;
+        }
+        if (next.cnHoliday !== '—' && !cnH.includes(next.cnHoliday)) {
+          cnH = cnH === '—' ? next.cnHoliday : cnH + ' + ' + next.cnHoliday;
+        }
+
+        cur = {
+          auHoliday: auH, cnHoliday: cnH,
+          start: newStart, end: newEnd, totalDays,
+          auFreeDays: auFree, cnFreeDays: cnFree,
+          auLeaveNeeded: auLeave, cnLeaveNeeded: cnLeave,
+          overlaps: true, gap: 0,
+          score: (auFree + cnFree) / (auLeave + cnLeave + 1) * totalDays,
+        };
+        i++;
+      } else {
+        break;
+      }
+    }
+    merged.push(cur);
+  }
+
+  // Cross-year: extend last window if it's near Christmas to include New Year
+  if (merged.length > 0) {
+    const last = merged[merged.length - 1];
+    if (last.start >= `${year}-12-20` && last.end < `${year+1}-01-03`) {
+      last.end = `${year+1}-01-02`;
+      last.totalDays = daysBetween(last.start, last.end) + 1;
+      let auF=0,cnF=0,auL=0,cnL=0;
+      for(let i=0;i<last.totalDays;i++){
+        const d=addDays(last.start,i);
+        const af=isWeekend(d)||auOff.has(d)||(d===`${year+1}-01-01`);
+        const cf=(isWeekend(d)&&!cnWork.has(d))||(cnOff.has(d)&&!cnWork.has(d))||(d===`${year+1}-01-01`);
+        if(af)auF++;else auL++;
+        if(cf)cnF++;else cnL++;
+      }
+      last.auFreeDays=auF; last.cnFreeDays=cnF;
+      last.auLeaveNeeded=auL; last.cnLeaveNeeded=cnL;
+      if (!last.cnHoliday.includes('元旦')) {
+        last.cnHoliday = last.cnHoliday === '—' ? '元旦 New Year' : last.cnHoliday + ' + 元旦';
+      }
+    }
+  }
+
+  return merged;
+}
+
+// ===== Render =====
+// Store state for filtering
+let _allWindows = [];
+let _selectedWindows = new Set();
+let _auOff, _cnOff, _cnWork;
+let _genYear, _genAuList, _genCnList; // cached from last generate()
+
+function generate() {
+  const year = parseInt(document.getElementById('yearSelect').value);
+  const auLeave = parseInt(document.getElementById('auLeave').value);
+  const cnLeave = parseInt(document.getElementById('cnLeave').value);
+  const bridgeRange = parseInt(document.getElementById('bridgeRange').value);
+
+  const sets = buildSets(year);
+  _genAuList = sets.auList; _genCnList = sets.cnList;
+  _auOff = sets.auOff; _cnOff = sets.cnOff; _cnWork = sets.cnWork;
+  _genYear = year;
+  _allWindows = findWindows(year, bridgeRange, _auOff, _cnOff, _cnWork);
+  _selectedWindows = new Set(_allWindows.map((_,i) => i));
+
+  renderAll(year, auLeave, cnLeave, _genAuList, _genCnList);
+}
+
+function toggleWindow(idx) {
+  if (_selectedWindows.has(idx)) _selectedWindows.delete(idx);
+  else _selectedWindows.add(idx);
+  const auLeave = parseInt(document.getElementById('auLeave').value);
+  const cnLeave = parseInt(document.getElementById('cnLeave').value);
+  renderAll(_genYear, auLeave, cnLeave, _genAuList, _genCnList);
+}
+
+function renderAll(year, auLeave, cnLeave, auList, cnList) {
+  const auN = document.getElementById('auName')?.value || '澳洲方';
+  const cnN = document.getElementById('cnName')?.value || '国内方';
+
+  const selected = _allWindows.filter((_,i) => _selectedWindows.has(i));
+
+  const windowDates = new Set();
+  selected.forEach(w => { for(let i=0;i<=daysBetween(w.start,w.end);i++) windowDates.add(addDays(w.start,i)); });
+
+  let html = '';
+
+  // --- Summary (based on selected windows) ---
+  const totalAuLeave = selected.reduce((s,w) => s+w.auLeaveNeeded, 0);
+  const totalCnLeave = selected.reduce((s,w) => s+w.cnLeaveNeeded, 0);
+  const totalDays = selected.reduce((s,w) => s+w.totalDays, 0);
+
+  html += `<div class="section"><h2>📊 匹配结果 — ${year}</h2>
+    <div class="summary-grid">
+      <div class="summary-card"><div class="number" style="color:var(--both-color)">${selected.length}<span style="font-size:0.4em;color:#999">/${_allWindows.length}</span></div><div class="label">已选假期窗口</div></div>
+      <div class="summary-card"><div class="number" style="color:var(--window-color)">${totalDays}</div><div class="label">总可凑天数</div></div>
+      <div class="summary-card"><div class="number" style="color:${totalAuLeave > auLeave ? '#c62828' : '#2e7d32'}">${totalAuLeave} / ${auLeave}</div><div class="label">🇦🇺 ${auN} 需请假</div></div>
+      <div class="summary-card"><div class="number" style="color:${totalCnLeave > cnLeave ? '#c62828' : '#2e7d32'}">${totalCnLeave} / ${cnLeave}</div><div class="label">🇨🇳 ${cnN} 需请假</div></div>
+    </div>
+  </div>`;
+
+  // --- Window Cards (click to toggle) ---
+  html += `<div class="section"><h2>🎯 假期匹配窗口</h2>
+    <p style="font-size:0.9em;color:#666;margin-bottom:16px">👆 点击窗口卡片 选中/取消，已选窗口计入请假预算。</p>
+    <div class="window-cards">`;
+
+  _allWindows.forEach((w, i) => {
+    const isSel = _selectedWindows.has(i);
+    const totalLeave = w.auLeaveNeeded + w.cnLeaveNeeded;
+    const rating = totalLeave === 0 ? ['🏆 完美', 'tag-best'] :
+                   totalLeave <= 5 ? ['👍 不错', 'tag-good'] : ['📝 可行', 'tag-ok'];
+    const matchType = w.overlaps ? '✅ 双方假期重叠' :
+                      w.gap > 0 ? `📏 间隔${w.gap}天可桥接` :
+                      w.gap === 0 && !w.overlaps ? '✅ 假期相邻' :
+                      w.auHoliday === '—' ? '🇨🇳 国内假期' :
+                      w.cnHoliday === '—' ? '🇦🇺 澳洲假期' : '📅 假期窗口';
+
+    html += `<div class="window-card ${isSel ? 'selected' : 'deselected'}" onclick="toggleWindow(${i})">
+      <span class="select-badge">${isSel ? '✅' : '⬜'}</span>
+      <h3>窗口 ${i+1}：${formatDateShort(w.start)} — ${formatDateShort(w.end)}
+        <span class="tag ${rating[1]}">${rating[0]}</span></h3>
+      <div style="font-size:0.9em;color:#555;margin-bottom:10px">共 <strong>${w.totalDays} 天</strong> ｜ ${matchType}</div>
+      <div class="bar-row">
+        <span style="width:70px">🇦🇺 ${auN}</span>
+        <div class="bar" style="width:${w.auFreeDays*24}px;background:var(--au-color);opacity:0.7"></div>
+        <span>假期 ${w.auFreeDays}天</span>
+        ${w.auLeaveNeeded ? `<div class="bar" style="width:${w.auLeaveNeeded*24}px;background:#ff9800"></div><span>请假 ${w.auLeaveNeeded}天</span>` : ''}
+      </div>
+      <div class="bar-row">
+        <span style="width:70px">🇨🇳 ${cnN}</span>
+        <div class="bar" style="width:${w.cnFreeDays*24}px;background:var(--cn-color);opacity:0.7"></div>
+        <span>假期 ${w.cnFreeDays}天</span>
+        ${w.cnLeaveNeeded ? `<div class="bar" style="width:${w.cnLeaveNeeded*24}px;background:#ff9800"></div><span>请假 ${w.cnLeaveNeeded}天</span>` : ''}
+      </div>
+      <div style="font-size:0.85em;color:#666;margin-top:8px">
+        ${w.auHoliday !== '—' ? `🇦🇺 ${w.auHoliday}` : ''}
+        ${w.auHoliday !== '—' && w.cnHoliday !== '—' ? ' ＋ ' : ''}
+        ${w.cnHoliday !== '—' ? `🇨🇳 ${w.cnHoliday}` : ''}
+      </div>
+    </div>`;
+  });
+  html += `</div></div>`;
+
+  // --- Leave Budget (only selected) ---
+  html += `<div class="section"><h2>📋 请假预算表</h2>
+    <table class="leave-table">
+      <tr><th>#</th><th>日期</th><th>天数</th><th>🇦🇺 ${auN} 请假</th><th>🇨🇳 ${cnN} 请假</th><th>假期来源</th></tr>`;
+  let sA=0,sC=0,sD=0,rowNum=0;
+  _allWindows.forEach((w,i) => {
+    if (!_selectedWindows.has(i)) return;
+    rowNum++;
+    sA+=w.auLeaveNeeded; sC+=w.cnLeaveNeeded; sD+=w.totalDays;
+    html += `<tr><td>${rowNum}</td>
+      <td>${formatDateShort(w.start)} — ${formatDateShort(w.end)}</td>
+      <td>${w.totalDays}</td>
+      <td>${w.auLeaveNeeded||'✅ 0'}</td>
+      <td>${w.cnLeaveNeeded||'✅ 0'}</td>
+      <td style="font-size:0.85em">${[w.auHoliday,w.cnHoliday].filter(x=>x!=='—').join(' + ')}</td></tr>`;
+  });
+  html += `<tr><td></td><td>合计</td><td>${sD}</td><td style="color:${sA>auLeave?'#c62828':'#2e7d32'}">${sA} / ${auLeave}</td><td style="color:${sC>cnLeave?'#c62828':'#2e7d32'}">${sC} / ${cnLeave}</td><td></td></tr></table>
+    <div class="note"><strong>💡 余量：</strong>🇦🇺 ${auN} 还剩 <strong style="color:${auLeave-sA<0?'#c62828':'#2e7d32'}">${auLeave-sA}</strong> 天年假，🇨🇳 ${cnN} 还剩 <strong style="color:${cnLeave-sC<0?'#c62828':'#2e7d32'}">${cnLeave-sC}</strong> 天，可追加到任意窗口延长见面时间。</div>
+  </div>`;
+
+  // --- Calendar with dual dot markers ---
+  html += `<div class="section"><h2>📅 年度日历</h2>
+    <div class="legend">
+      <div class="legend-item"><span class="dot dot-au"></span> 🇦🇺 澳洲假期</div>
+      <div class="legend-item"><span class="dot dot-cn"></span> 🇨🇳 中国假期</div>
+      <div class="legend-item"><span style="width:6px;height:6px;background:var(--work-color);border-radius:1px;display:inline-block"></span> 🇨🇳 补班</div>
+      <div class="legend-item"><span style="display:inline-block;width:14px;height:14px;background:var(--we-bg);border:1px solid #ccc;border-radius:3px"></span> 周末</div>
+      <div class="legend-item"><span style="display:inline-block;width:14px;height:14px;background:var(--window-light);border:2px solid var(--window-color);border-radius:3px"></span> 匹配窗口</div>
+    </div>
+    <div class="calendar-grid">`;
+
+  const mns = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+  for (let m=0;m<12;m++) {
+    const fd = new Date(year,m,1).getDay();
+    const dim = new Date(year,m+1,0).getDate();
+    html += `<div class="month-card"><div class="month-header">${mns[m]} ${year}</div><div class="month-body">
+      <div class="weekday-row"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+      <div class="day-grid">`;
+    for (let i=0;i<fd;i++) html += '<div class="day-cell empty"></div>';
+    for (let d=1;d<=dim;d++) {
+      const ds = `${year}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const isAU = _auOff.has(ds);
+      const isCN = _cnOff.has(ds);
+      const isCNW = _cnWork.has(ds);
+      const isWin = windowDates.has(ds);
+      const isWE = isWeekend(ds);
+
+      let cls = 'day-cell';
+      if (isWE) cls += ' we';
+      if (isWin) cls += ' window-day';
+      if (isCNW) cls += ' cnwork';
+
+      let title = '';
+      const tips = [];
+      if (isAU) tips.push('🇦🇺 ' + _auOff.get(ds));
+      if (isCN) tips.push('🇨🇳 ' + _cnOff.get(ds));
+      if (isCNW) tips.push('⚠️ ' + _cnWork.get(ds));
+      if (isWE) tips.push('周末');
+      title = tips.join(' | ');
+
+      // Dots
+      let dots = '';
+      if (isAU) dots += '<span class="dot dot-au"></span>';
+      if (isCN) dots += '<span class="dot dot-cn"></span>';
+      if (isCNW) dots += '<span class="dot dot-work"></span>';
+
+      html += `<div class="${cls}" ${title ? `title="${title}"` : ''}>
+        <span class="day-num${isWE && !isAU && !isCN ? ' we-text' : ''}">${d}</span>
+        <div class="day-dots">${dots}</div>
+      </div>`;
+    }
+    html += '</div></div></div>';
+  }
+  html += '</div></div>';
+
+  // --- Holiday reference ---
+  html += `<div class="section"><h2>📖 假期参考</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div><h3 style="margin-bottom:8px">🇦🇺 澳洲公众假期 (NSW)</h3>
+        <table class="leave-table"><tr><th>日期</th><th>假期</th></tr>`;
+  auList.forEach(h => { html+=`<tr><td>${formatDateShort(h.date)}</td><td>${h.name}</td></tr>`; });
+  html += `</table></div>
+      <div><h3 style="margin-bottom:8px">🇨🇳 中国法定假期</h3>
+        <table class="leave-table"><tr><th>假期</th><th>放假</th><th>补班</th></tr>`;
+  cnList.forEach(h => { html+=`<tr><td>${h.name}</td><td>${h.offDays.length}天<br><span style="font-size:0.8em;color:#999">${formatDateShort(h.offDays[0])}—${formatDateShort(h.offDays[h.offDays.length-1])}</span></td><td>${h.workDays.length?h.workDays.map(formatDateShort).join(', '):'—'}</td></tr>`; });
+  html += `</table></div></div>
+    <div class="note">⚠️ 中国假期日期每年由国务院公布，本工具使用近似日期，请以官方通知为准。澳洲假期以 NSW 为准。</div>
+  </div>`;
+
+  document.getElementById('output').innerHTML = html;
+}
+
+// ===== Holiday Data Update Modal =====
+const STORAGE_KEY = 'holiday-planner-overrides';
+function loadOverrides() { try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');}catch(e){return {};} }
+function saveOverrides(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+const _originalGetHolidays = getHolidays;
+getHolidays = function(year) {
+  const base = _originalGetHolidays(year);
+  const overrides = loadOverrides();
+  const yearData = overrides[year];
+  if (!yearData) return base;
+  if (yearData.cn && yearData.cn.length) {
+    base.cnList = yearData.cn.map(h => ({ name:h.name, offDays:h.offDays||[], workDays:h.workDays||[] }));
+  }
+  if (yearData.au && yearData.au.length) {
+    base.auList = yearData.au.map(h => ({ date:h.date, name:h.name }));
+  }
+  return base;
+};
+
+// ----- Init (must be AFTER override installation) -----
+(function(){
+  const sel = document.getElementById('yearSelect');
+  const cy = new Date().getFullYear();
+  for (let y=cy;y<=cy+3;y++) {
+    const o = document.createElement('option');
+    o.value=y; o.textContent=y; if(y===cy) o.selected=true;
+    sel.appendChild(o);
+  }
+  generate();
+})();
+
+function openUpdateModal() {
+  const year = parseInt(document.getElementById('yearSelect').value);
+  const overrides = loadOverrides();
+  const existing = overrides[year];
+  const { auList, cnList } = _originalGetHolidays(year);
+  const currentData = {
+    cn: cnList.map(h => ({ name:h.name, offDays:h.offDays, workDays:h.workDays })),
+    au: auList.map(h => ({ date:h.date, name:h.name })),
+  };
+  const displayData = existing || currentData;
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.onclick = e => { if(e.target===overlay) overlay.remove(); };
+  overlay.innerHTML = `
+    <div class="modal">
+      <h2>📡 更新 ${year} 年假期数据</h2>
+      <p style="font-size:0.9em;color:#666;margin-bottom:12px">
+        编辑 JSON 更新假期日期。<br>
+        <strong>🇨🇳</strong> <a href="https://www.gov.cn" target="_blank">国务院通知</a> ｜
+        <strong>🇦🇺</strong> <a href="https://www.nsw.gov.au/about-nsw/public-holidays" target="_blank">NSW Holidays</a>
+        <br><br>
+        <button class="btn btn-secondary" onclick="fetchCNHolidays(${year})" style="font-size:0.8em">🔍 搜索中国假期</button>
+        <button class="btn btn-secondary" onclick="fetchAUHolidays(${year})" style="font-size:0.8em;margin-left:8px">🔍 搜索澳洲假期</button>
+      </p>
+      <div id="fetchStatus" style="font-size:0.85em;color:#1565c0;margin-bottom:8px"></div>
+      <textarea id="holidayJson">${JSON.stringify(displayData, null, 2)}</textarea>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="resetHolidayData(${year})">🗑️ 恢复默认</button>
+        <button class="btn btn-secondary" onclick="this.closest('.modal-overlay').remove()">取消</button>
+        <button class="btn btn-primary" onclick="applyHolidayData(${year})">✅ 应用</button>
+      </div>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
+function applyHolidayData(year) {
+  const textarea = document.getElementById('holidayJson');
+  try {
+    const data = JSON.parse(textarea.value);
+    if (!data.cn||!data.au) throw new Error('需要 "cn" 和 "au" 字段');
+    const overrides = loadOverrides();
+    overrides[year] = data;
+    saveOverrides(overrides);
+    document.querySelector('.modal-overlay').remove();
+    generate();
+    showToast(`✅ ${year} 年假期已更新`);
+  } catch(e) { alert('❌ JSON 错误：'+e.message); }
+}
+
+function resetHolidayData(year) {
+  const overrides = loadOverrides();
+  delete overrides[year];
+  saveOverrides(overrides);
+  document.querySelector('.modal-overlay').remove();
+  generate();
+  showToast(`🗑️ ${year} 年已恢复默认`);
+}
+
+function fetchCNHolidays(year) {
+  document.getElementById('fetchStatus').innerHTML = `提示：在新窗口搜索 "${year}年放假安排"，将日期更新到 JSON`;
+  window.open(`https://www.google.com/search?q=${year}年+国务院+放假安排`, '_blank');
+}
+function fetchAUHolidays(year) {
+  document.getElementById('fetchStatus').innerHTML = '提示：在新窗口确认官方日期后更新 JSON';
+  window.open('https://www.nsw.gov.au/about-nsw/public-holidays', '_blank');
+}
+
+function showToast(msg) {
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;top:20px;right:20px;background:#333;color:white;padding:12px 20px;border-radius:8px;z-index:200;font-size:0.95em;transition:opacity 0.3s';
+  t.textContent=msg; document.body.appendChild(t);
+  setTimeout(()=>{t.style.opacity='0';setTimeout(()=>t.remove(),300);},3000);
+}
+</script>
+</body>
+</html>

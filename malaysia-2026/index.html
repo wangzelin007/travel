@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>马来西亚亲子游 2026.03.03-08</title>
+  <style>
+/* === CSS Variables === */
+:root {
+  --blue: #667eea;
+  --green: #43e97b;
+  --red: #f5576c;
+  --orange: #ea580c;
+  --purple: #a855f7;
+  --gray: #64748b;
+  --bg: #f5f7fa;
+  --card: #fff;
+  --border: #e2e8f0;
+  --text: #333;
+  --text2: #666;
+  --text3: #999;
+  --radius: 12px;
+}
+
+/* === Base === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg); color: var(--text); line-height: 1.7;
+  max-width: 800px; margin: 0 auto; padding: 12px;
+}
+
+/* === Header === */
+.trip-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff; padding: 32px 20px; border-radius: var(--radius);
+  margin-bottom: 20px; text-align: center;
+}
+.trip-header h1 { font-size: 1.8em; margin-bottom: 8px; }
+.trip-header .trip-meta { opacity: .9; font-size: .95em; }
+
+/* === Day Navigation (sticky) === */
+.day-nav {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  position: sticky; top: 0; background: var(--bg); padding: 8px 0;
+  z-index: 100; margin-bottom: 16px;
+}
+.day-nav a {
+  display: inline-block; padding: 6px 12px; background: var(--card);
+  border: 1px solid var(--border); border-radius: 20px;
+  text-decoration: none; color: var(--text); font-size: .8em; font-weight: 600;
+}
+.day-nav a:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+.nav-pdf { background: var(--orange) !important; color: #fff !important; border-color: var(--orange) !important; font-weight: 700; }
+
+/* === Overview Section === */
+.overview { background: var(--card); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+.info-card { background: #f8f9fa; border-radius: 8px; padding: 12px; }
+.info-card h3 { font-size: .85em; color: var(--text3); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+.info-card p { font-size: .95em; font-weight: 600; }
+
+/* === Day Section === */
+.day-section {
+  background: var(--card); border-radius: var(--radius); margin-bottom: 20px;
+  overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.day-header { padding: 20px 24px; color: #fff; font-size: 1.2em; font-weight: 700; }
+.day-body { padding: 20px 24px; }
+
+/* --- Per-day gradient colors --- */
+.day-1 .day-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.day-2 .day-header { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.day-3 .day-header { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.day-4 .day-header { background: linear-gradient(135deg, #fa709a, #fee140); }
+.day-5 .day-header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.day-6 .day-header { background: linear-gradient(135deg, #ffecd2, #fcb69f); color: #333; }
+.day-7 .day-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+.day-8 .day-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+
+/* === Route Visual (text route summary) === */
+.route-visual {
+  background: #f5f7fa; border-radius: 10px; padding: 14px 18px;
+  margin: 12px 0; font-size: .88em; text-align: center; color: #555; font-weight: 500;
+}
+.route-visual .arrow { color: var(--blue); margin: 0 6px; }
+
+/* === SVG Route Map === */
+.route-map {
+  background: #f8fafc; border-radius: var(--radius); padding: 16px;
+  margin: 14px 0; border: 1px solid var(--border);
+}
+.route-map h5 { font-size: .92em; font-weight: 700; color: #475569; margin-bottom: 10px; text-align: center; }
+.route-map svg { width: 100%; height: auto; display: block; }
+.map-legend { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 10px; font-size: .78em; color: var(--gray); }
+.map-legend span { display: inline-flex; align-items: center; gap: 4px; }
+.map-legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.map-legend .dot-attraction { background: #22c55e; }
+.map-legend .dot-restaurant { background: #ef4444; }
+.map-legend .dot-hotel { background: var(--purple); }
+.map-legend .dot-transport { background: #3b82f6; }
+
+/* === Timeline === */
+.timeline-item {
+  position: relative; padding-left: 28px; margin-bottom: 18px;
+  border-left: 2px solid #e0e0e0;
+}
+.timeline-item:last-child { border-left: 2px solid transparent; }
+.timeline-item::before {
+  content: ''; position: absolute; left: -7px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--blue); border: 2px solid #fff; box-shadow: 0 0 0 2px var(--blue);
+}
+/* Timeline dot colors by type */
+.timeline-item.spot::before { background: #22c55e; box-shadow: 0 0 0 2px #22c55e; }
+.timeline-item.food::before { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+.timeline-item.hotel::before { background: var(--purple); box-shadow: 0 0 0 2px var(--purple); }
+.timeline-item.shop::before { background: var(--orange); box-shadow: 0 0 0 2px var(--orange); }
+
+/* Timeline content */
+.time-badge {
+  display: inline-block; background: #f0f0f0; color: #555;
+  font-size: .8em; padding: 2px 8px; border-radius: 4px; font-weight: 600; margin-bottom: 4px;
+}
+.timeline-item h4 { font-size: 1em; margin-bottom: 4px; color: var(--text); }
+.timeline-item p, .timeline-item ul { font-size: .9em; color: var(--text2); }
+.timeline-item ul { padding-left: 18px; }
+.timeline-item li { margin-bottom: 2px; }
+.timeline-distance { font-size: .8em; color: var(--text3); margin-top: 2px; }
+
+/* === GPS Link === */
+.gps-link {
+  display: inline-block; font-size: .78em; color: #4facfe; text-decoration: none;
+  margin-left: 4px; background: #f0f8ff; padding: 1px 6px; border-radius: 3px;
+}
+.gps-link:hover { background: #dceeff; }
+
+/* === Badges === */
+.badge {
+  display: inline-block; font-size: .72em; padding: 2px 6px;
+  border-radius: 3px; font-weight: 600; margin-left: 4px; color: #fff;
+}
+.badge-free { background: #dcfce7; color: #16a34a; }
+.badge-indoor { background: #dbeafe; color: #2563eb; }
+.badge-kids { background: #fef3c7; color: #d97706; }
+.badge-outdoor { background: #d1fae5; color: #059669; }
+.badge-flight { background: #7c3aed; }
+.badge-hotel { background: var(--orange); }
+.badge-tour { background: #16a34a; }
+.badge-shop { background: #db2777; }
+
+/* === Restaurant Box === */
+.restaurant-box {
+  background: #fff8f0; border-left: 3px solid var(--red);
+  padding: 12px 16px; margin: 8px 0; border-radius: 0 8px 8px 0;
+}
+.restaurant-box h5 { font-size: .9em; color: var(--red); margin-bottom: 6px; }
+.restaurant-item { margin-bottom: 8px; font-size: .88em; }
+.restaurant-item strong { color: var(--text); }
+.restaurant-item .price { color: #e67e22; font-weight: 600; }
+.restaurant-item .addr { color: var(--text3); font-size: .85em; }
+
+/* === Tip Box === */
+.tip-box {
+  background: #f0fdf4; border-left: 3px solid var(--green);
+  padding: 10px 14px; margin: 10px 0; border-radius: 0 8px 8px 0;
+  font-size: .88em; color: #555;
+}
+
+/* === Cost Table (per day) === */
+.cost-table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .88em; }
+.cost-table th { background: #f5f7fa; text-align: left; padding: 8px 12px; border-bottom: 2px solid #e0e0e0; font-weight: 600; }
+.cost-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+
+/* === Section Title === */
+.section-title {
+  font-size: 1.1em; font-weight: 700; color: var(--text);
+  margin: 18px 0 10px; padding-bottom: 6px;
+  border-bottom: 2px solid var(--blue); display: inline-block;
+}
+
+/* === Shopping Section === */
+.shopping-section {
+  background: var(--card); border-radius: var(--radius); margin-bottom: 20px;
+  overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.shopping-header {
+  background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+  padding: 20px 24px; color: #fff; font-size: 1.2em; font-weight: 700;
+}
+.shopping-body { padding: 20px 24px; }
+.price-compare { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: .85em; }
+.price-compare th { background: #fdf2f8; text-align: left; padding: 8px 10px; border-bottom: 2px solid #e0e0e0; font-weight: 600; color: #764ba2; }
+.price-compare td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; }
+.price-compare .save { color: #16a34a; font-weight: 700; }
+
+/* === Checklist Section === */
+.checklist-section {
+  background: var(--card); border-radius: var(--radius); margin-bottom: 20px;
+  overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+.checklist-header {
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  padding: 20px 24px; color: #333; font-size: 1.2em; font-weight: 700;
+}
+.checklist-body { padding: 20px 24px; }
+.checklist-body ul { list-style: none; padding: 0; }
+.checklist-body li { padding: 6px 0; border-bottom: 1px solid #f5f5f5; font-size: .9em; }
+.checklist-body li::before { content: '☐ '; color: var(--text3); }
+
+/* === Overview Tables === */
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: .85em; }
+th { background: var(--blue); color: #fff; padding: 6px 8px; text-align: left; }
+td { padding: 6px 8px; border-bottom: 1px solid var(--border); }
+tr:nth-child(even) { background: #f8f9fa; }
+
+/* === Footer === */
+footer { text-align: center; padding: 24px; font-size: .82em; color: var(--text3); }
+
+/* === Responsive === */
+@media (max-width: 600px) {
+  body { padding: 8px; }
+  .trip-header { padding: 24px 16px; }
+  .trip-header h1 { font-size: 1.4em; }
+  .info-grid { grid-template-columns: 1fr; }
+  .day-body, .shopping-body, .checklist-body { padding: 16px; }
+  .day-nav a { padding: 4px 10px; font-size: .75em; }
+}
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="trip-header">
+  <h1>马来西亚亲子游</h1>
+  <div class="trip-meta">2026.03.03 - 03.08 | 6天5晚 | 7人（夫妻+3岁宝宝+双方父母）</div>
+  <div class="trip-meta">吉隆坡（2晚）→ 亚庇（3晚）</div>
+</div>
+
+<!-- Navigation -->
+<nav class="day-nav">
+  <a href="#overview">概览</a>
+  <a href="#day1">D1</a>
+  <a href="#day2">D2</a>
+  <a href="#day3">D3</a>
+  <a href="#day4">D4</a>
+  <a href="#day5">D5</a>
+  <a href="#day6">D6</a>
+  <a href="#shopping">购物</a>
+  <a href="#checklist">清单</a>
+  <a href="trip.pdf" class="nav-pdf" target="_blank">PDF</a>
+</nav>
+
+  <!-- ============ OVERVIEW SECTION ============ -->
+  <section class="overview" id="overview">
+    <h2 style="font-size:1.2em;margin-bottom:12px">行程概览</h2>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>去程航班</h3>
+        <p>AirAsia X D7333<br>3/3 06:00 PVG → 11:55 KUL(KLIA2)<br>A330-300</p>
+      </div>
+      <div class="info-card">
+        <h3>转机航班</h3>
+        <p>AirAsia AK5140<br>3/5 11:40 KUL(KLIA2) → 14:15 BKI<br>A321neo</p>
+      </div>
+      <div class="info-card">
+        <h3>回程航班</h3>
+        <p>AirAsia AK1516<br>3/8 21:55 BKI → 02:20+1 PVG T2<br>A320</p>
+      </div>
+      <div class="info-card">
+        <h3>酒店 · 吉隆坡</h3>
+        <p>KLCC PLATINUM2 时尚公寓<br>3/3-3/5（2晚）<br><a href="https://www.google.com/maps/dir/?api=1&origin=2.7456,101.7072&destination=3.1570,101.7115&travelmode=driving" target="_blank">📍 导航</a></p>
+      </div>
+      <div class="info-card">
+        <h3>酒店 · 亚庇</h3>
+        <p>香格里拉丹绒亚路度假酒店<br>3/5-3/8（3晚）<br><a href="https://www.google.com/maps/dir/?api=1&origin=5.9372,116.0510&destination=5.9530,116.0460&travelmode=driving" target="_blank">📍 导航</a></p>
+      </div>
+      <div class="info-card">
+        <h3>天气 &amp; 货币</h3>
+        <p>吉隆坡 27-34°C / 亚庇 26-32°C<br>无时差 (UTC+8)<br>1 RM ≈ 1.6 CNY</p>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px;font-size:1em">已预定项目</h3>
+    <table>
+      <tr><th>日期</th><th>项目</th><th>备注</th></tr>
+      <tr><td>3/3</td><td><span class="badge badge-transport">交通</span> 携程送机</td><td>02:30AM 出发前往浦东机场</td></tr>
+      <tr><td>3/4</td><td><span class="badge badge-tour">跟团</span> 布城+马六甲一日游</td><td>08:30AM 出发，含景点门票</td></tr>
+      <tr><td>3/6</td><td><span class="badge badge-tour">跟团</span> 跳岛游（马穆迪岛+沙比岛）</td><td>10:00AM 前 DBKK JETTY 码头集合</td></tr>
+      <tr><td>3/7</td><td><span class="badge badge-tour">跟团</span> 海龟苑红树林旅程</td><td>1PM 酒店接，10PM 返回</td></tr>
+      <tr><td>3/8</td><td><span class="badge badge-transport">交通</span> 携程接机</td><td>浦东 T2</td></tr>
+    </table>
+
+    <h3 style="margin-top:16px;font-size:1em">机场交通</h3>
+    <div class="tip-box">
+      <strong>KLIA2 → KLCC 公寓</strong>
+      <ul>
+        <li><strong>KLIA Ekspres 机场快线</strong>: KLIA2 → KL Sentral（约33分钟）</li>
+        <li>成人单程 RM 55（网上购票9折 RM 49.5），6岁以下免费</li>
+        <li>7人费用：5张成人 RM 275（网上 RM 247.5）</li>
+        <li>KL Sentral → KLCC：换乘 Kelana Jaya Line LRT（2站，约5分钟，RM 1.60/人）</li>
+        <li>或直接 Grab 打车，7人需2辆车或1辆大车</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top:16px;font-size:1em">必备 APP</h3>
+    <div class="info-grid">
+      <div class="info-card"><h3>Grab</h3><p>马来西亚版滴滴<br>打车 + 外卖</p></div>
+      <div class="info-card"><h3>Google Maps</h3><p>海外导航首选</p></div>
+      <div class="info-card"><h3>AirAsia</h3><p>值机、航班动态</p></div>
+      <div class="info-card"><h3>KLIA Ekspres</h3><p>机场快线购票</p></div>
+    </div>
+
+    <h3 style="margin-top:16px;font-size:1em">货币与支付</h3>
+    <div class="tip-box">
+      <ul>
+        <li>货币：马来西亚林吉特 (RM/MYR)</li>
+        <li>汇率：1 RM ≈ 1.6 CNY</li>
+        <li>大商场支持支付宝/微信，小店和街边用现金</li>
+        <li>建议出发前换 RM 2,000-3,000 现金（约 CNY 3,200-4,800）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== Day 1 ==================== -->
+  <section class="day-section day-1" id="day1">
+    <div class="day-header">Day 1 — 3月3日 (周二) 出发 & 抵达吉隆坡</div>
+    <div class="day-body">
+
+      <!-- Route Visual -->
+      <div class="route-visual">
+        家 <span class="arrow">—[送机]→</span> 浦东机场T2 <span class="arrow">—✈ D7333→</span> KLIA2 <span class="arrow">—[快线]→</span> KL Sentral <span class="arrow">—[LRT]→</span> KLCC公寓 <span class="arrow">→</span> 周边逛逛+晚餐
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-item">
+        <span class="time-badge">02:30</span>
+        <h4>携程送机出发</h4>
+        <p>已预定携程送机，凌晨2:30从家出发，预计约1小时到达浦东机场T2。</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&destination=31.1443,121.8083&travelmode=driving" target="_blank">GPS 31.1443, 121.8083（浦东机场T2）</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">03:30</span>
+        <h4>到达浦东机场T2</h4>
+        <p>AirAsia X 航班，在T2出发。国际值机柜台通常提前3小时开放。</p>
+        <ul>
+          <li>亚航无免费餐食，过安检后买早餐和水</li>
+          <li><strong>行李注意</strong>：确认已购买托运行李额度，亚航手提限7kg</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">06:00</span>
+        <h4>航班起飞 D7333 ✈</h4>
+        <p>上海浦东 PVG → 吉隆坡 KLIA2，飞行约5小时55分钟，A330-300</p>
+        <ul>
+          <li>机上无免费餐食，可付费购买或自带零食</li>
+          <li>无时差，到达当地时间11:55</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">11:55</span>
+        <h4>抵达 KLIA2</h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&destination=2.7456,101.7099&travelmode=transit" target="_blank">GPS 2.7456, 101.7099</a></p>
+        <ul>
+          <li>填写 <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank">MDAC 电子入境卡</a>（提前在线填写）</li>
+          <li>入境流程：护照检查 → 取行李</li>
+          <li>7人建议走人工通道，带小朋友和老人</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">~12:30</span>
+        <h4>KLIA Ekspres 前往市区</h4>
+        <p>KLIA2 → KL Sentral（约33分钟，直达无停站）</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=2.7456,101.7099&destination=3.1342,101.6866&travelmode=transit" target="_blank">GPS 导航: KLIA2 → KL Sentral</a></p>
+        <ul>
+          <li>票价：成人 RM 55/人（网上买9折 RM 49.5），6岁以下免费</li>
+          <li>7人费用：约 RM 275-330（6张成人票 + 小朋友免费）</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">~13:10</span>
+        <h4>KL Sentral 换乘 LRT</h4>
+        <p>Kelana Jaya Line (KJL) LRT: KL Sentral → KLCC（2站，约5分钟）</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1342,101.6866&destination=3.1579,101.7135&travelmode=transit" target="_blank">GPS 导航: KL Sentral → KLCC站</a></p>
+        <p>票价：RM 1.60/人</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">~13:30</span>
+        <h4>入住 KLCC PLATINUM2 时尚公寓</h4>
+        <p>从 KLCC 地铁站步行约5-10分钟，放行李休息片刻。</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1579,101.7135&destination=3.1570,101.7115&travelmode=walking" target="_blank">GPS 3.1570, 101.7115</a></p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">15:00-18:00</span>
+        <h4>KLCC 周边逛逛 + 购物</h4>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">15:00</span>
+        <h4>Suria KLCC 商场 <span class="badge badge-indoor">室内</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=3.1588,101.7118&travelmode=walking" target="_blank">GPS 3.1588, 101.7118</a></p>
+        <p class="timeline-distance">📏 距公寓: 步行约5分钟，200m</p>
+        <ul>
+          <li>双子塔底部，马来西亚最高端购物中心</li>
+          <li>品牌：Chanel、Dior、LV、Gucci、Fendi 等国际大牌</li>
+          <li><strong>Isetan 伊势丹百货</strong> — 日用品、零食伴手礼</li>
+          <li>免税店：可退税购物</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">16:30</span>
+        <h4>KLCC 公园 / 双子塔外观 <span class="badge badge-kids">亲子</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1588,101.7118&destination=3.1575,101.7113&travelmode=walking" target="_blank">GPS 3.1575, 101.7113</a></p>
+        <ul>
+          <li>双子塔拍照打卡（外观免费，观景台需购票）</li>
+          <li>儿童戏水池和游乐设施 — <strong>小朋友放电好去处</strong></li>
+          <li>公园有遮荫，但3月午后热，注意防晒补水</li>
+        </ul>
+      </div>
+
+      <!-- Dinner -->
+      <div class="timeline-item food">
+        <span class="time-badge">18:30</span>
+        <h4>晚餐</h4>
+      </div>
+      <div class="restaurant-box">
+        <h5>推荐餐厅</h5>
+        <div class="restaurant-item">
+          1. <strong>小槟城美食馆 / Little Penang Kafe</strong> — 马来西亚风味，叻沙、炒粿条、虾面 <span class="price">~RM 20-35/人</span><br>
+          📏 Suria KLCC Level 4，商场内步行1分钟<br>
+          <span class="addr">📍 Suria KLCC Level 4 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1575,101.7113&destination=3.1588,101.7118&travelmode=walking" target="_blank">GPS 3.1588, 101.7118</a></span>
+        </div>
+        <div class="restaurant-item">
+          2. <strong>关夫人 / Madam Kwan's</strong> — 马来菜经典名店，招牌椰浆饭 Nasi Lemak，口味不太辣适合老人小孩 <span class="price">~RM 25-40/人</span><br>
+          📏 Suria KLCC Level 4，商场内步行1分钟<br>
+          <span class="addr">📍 Suria KLCC Level 4 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1575,101.7113&destination=3.1588,101.7118&travelmode=walking" target="_blank">GPS 3.1588, 101.7118</a></span>
+        </div>
+        <div class="restaurant-item">
+          3. <strong>黄亚华小食店 / Wong Ah Wah</strong> — 最出名的鸡翅烧烤大排档，阿罗街必去 <span class="price">~RM 15-25/人</span><br>
+          📏 距公寓: 约1.5km，Grab打车5分钟或步行20分钟<br>
+          <span class="addr">📍 Jalan Alor（阿罗街） <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=3.1427,101.7108&travelmode=walking" target="_blank">GPS 3.1427, 101.7108</a></span>
+        </div>
+      </div>
+
+      <!-- Night -->
+      <div class="timeline-item spot">
+        <span class="time-badge">夜间</span>
+        <h4>阿罗街 / Jalan Alor 夜市（如果不太累）</h4>
+        <p>步行街小吃：烤鸡翅、沙爹、炒粿条、榴莲</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=3.1430,101.7105&travelmode=walking" target="_blank">GPS 3.1430, 101.7105</a></p>
+        <p class="timeline-distance">📏 距公寓: 1.5km，步行约20分钟</p>
+      </div>
+
+      <!-- Tips -->
+      <div class="tip-box">
+        <strong>Tips:</strong>
+        <ul>
+          <li>凌晨出发非常辛苦，到达后以休息为主，不安排景点</li>
+          <li>KLCC 公园儿童戏水池备用——3月吉隆坡很热，小朋友玩水降温</li>
+          <li>Suria KLCC 商场是吉隆坡最佳购物点，就在公寓旁边，大件购物今天搞定</li>
+          <li>阿罗街晚上人多热闹，但带3岁小朋友和老人注意节奏别太赶</li>
+        </ul>
+      </div>
+
+      <!-- Cost Table -->
+      <div class="section-title">费用估算</div>
+      <table class="cost-table">
+        <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+        <tr><td>携程送机</td><td>已预定</td><td></td></tr>
+        <tr><td>KLIA Ekspres</td><td>~RM 330</td><td>6成人×RM55，小朋友免费</td></tr>
+        <tr><td>LRT</td><td>~RM 10</td><td>6人×RM1.60</td></tr>
+        <tr><td>晚餐</td><td>~RM 150-250</td><td>7人</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== Day 2 ==================== -->
+  <section class="day-section day-2" id="day2">
+    <div class="day-header">Day 2 — 3月4日(周三) 布城 + 马六甲一日游（已报团）</div>
+    <div class="day-body">
+
+      <!-- Route Visual -->
+      <div class="route-visual">
+        KLCC公寓 <span class="arrow">—50km→</span> 粉红清真寺 <span class="arrow">→</span> 布特拉广场 <span class="arrow">→</span> 首相署 <span class="arrow">→</span> 布特拉再也湖 <span class="arrow">—1km→</span> 摩洛哥回教堂 <span class="arrow">—150km→</span> 宝山亭 <span class="arrow">→</span> 汉丽宝井 <span class="arrow">→</span> 鸡场街午餐 <span class="arrow">→</span> 荷兰红屋 <span class="arrow">→</span> 圣保罗堂 <span class="arrow">→</span> 海事博物馆 <span class="arrow">→</span> 马六甲河 <span class="arrow">—2km→</span> 海峡清真寺 <span class="arrow">—150km→</span> KLCC公寓 (全程~320km)
+      </div>
+
+      <!-- Timeline Items -->
+
+      <div class="timeline-item">
+        <span class="time-badge">08:30</span>
+        <h4>出发 — 一日游大巴酒店接</h4>
+        <p>大巴在KLCC公寓/指定地点接。准备：水、零食、防晒霜、帽子、小朋友推车。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=3.1570,101.7115&amp;destination=2.9365,101.6938&amp;travelmode=driving" target="_blank">GPS 3.1570, 101.7115</a></p>
+        <p class="timeline-distance">KLCC → 布城约50km，车程约45-60分钟</p>
+      </div>
+
+      <!-- 上午：布城 Putrajaya -->
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~09:30</span>
+        <h4>粉红清真寺 / Putra Mosque <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=3.1570,101.7115&amp;destination=2.9365,101.6938&amp;travelmode=driving" target="_blank">GPS 2.9365, 101.6938</a></p>
+        <ul>
+          <li>马来西亚标志性粉红色清真寺，可入内参观</li>
+          <li>着装要求：入内需穿长裤/长裙，女性需戴头巾（门口免费借）</li>
+          <li>拍照：外观粉色穹顶很出片，湖边角度最佳</li>
+          <li>开放：周六-周四 09:00-12:30, 14:00-16:00, 17:30-18:00；周五休息</li>
+        </ul>
+        <p>🎫 免费</p>
+        <p class="timeline-distance">📏 距出发点: 50km, 车程约45-60min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~10:00</span>
+        <h4>布特拉广场 / Dataran Putra <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.9365,101.6938&amp;destination=2.9374,101.6929&amp;travelmode=walking" target="_blank">GPS 2.9374, 101.6929</a></p>
+        <ul>
+          <li>布城中心广场，旗杆和喷泉</li>
+          <li>可同时看到粉红清真寺和首相署</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 100m, 步行1min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~10:15</span>
+        <h4>马来西亚首相署 / Perdana Putra <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.9374,101.6929&amp;destination=2.9395,101.6935&amp;travelmode=walking" target="_blank">GPS 2.9395, 101.6935</a></p>
+        <ul>
+          <li>马来西亚首相办公室，绿色穹顶建筑</li>
+          <li>只能外观参观，不能进入</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 200m, 步行2min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~10:30</span>
+        <h4>布特拉再也湖 / Putrajaya Lake <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.9395,101.6935&amp;destination=2.9340,101.6920&amp;travelmode=walking" target="_blank">GPS 2.9340, 101.6920</a></p>
+        <ul>
+          <li>人工湖，环绕布城行政区</li>
+          <li>湖边步道适合拍照，看粉红清真寺倒影</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 500m, 步行5min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~10:45</span>
+        <h4>摩洛哥回教堂 / Astaka Morocco <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.9340,101.6920&amp;destination=2.9295,101.6850&amp;travelmode=driving" target="_blank">GPS 2.9295, 101.6850</a></p>
+        <ul>
+          <li>摩洛哥国王赠送给马来西亚的礼物</li>
+          <li>精美的马赛克瓷砖和伊斯兰几何图案</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 1km, 车程约3min</p>
+      </div>
+
+      <!-- 中午：前往马六甲 -->
+
+      <div class="timeline-item">
+        <span class="time-badge">~11:00</span>
+        <h4>前往马六甲 (Melaka)</h4>
+        <p>布城 → 马六甲约150km，车程约1.5-2小时</p>
+      </div>
+
+      <!-- 下午：马六甲古城 -->
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~12:30</span>
+        <h4>宝山亭 / Sam Po Kong Temple</h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.9295,101.6850&amp;destination=2.1958,102.2481&amp;travelmode=driving" target="_blank">GPS 2.1958, 102.2481</a></p>
+        <ul>
+          <li>马来西亚最古老的中国寺庙（1646年）</li>
+          <li>纪念郑和下西洋</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 150km, 车程约1.5-2h</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~12:50</span>
+        <h4>汉丽宝井 / Hang Li Poh's Well</h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1958,102.2481&amp;destination=2.1945,102.2509&amp;travelmode=walking" target="_blank">GPS 2.1945, 102.2509</a></p>
+        <ul>
+          <li>明朝汉丽宝公主嫁给马六甲苏丹时带来的古井</li>
+          <li>据说喝了井水的人会再回马六甲</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 350m, 步行4min</p>
+      </div>
+
+      <!-- Lunch -->
+      <div class="timeline-item food">
+        <span class="time-badge">~13:00</span>
+        <h4>午餐 — 鸡场街 / Jonker Street</h4>
+      </div>
+      <div class="restaurant-box">
+        <h5>推荐餐厅</h5>
+        <div class="restaurant-item">
+          1. <strong>和记鸡饭团 / Hoe Kee Chicken Rice Ball</strong> — 马六甲招牌鸡饭粒，饭捏成球状配白切鸡 <span class="price">~RM 10-15/人</span><br>
+          📏 距上一站: 400m, 步行5min<br>
+          <span class="addr">📍 鸡场街上 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1945,102.2509&amp;destination=2.1963,102.2480&amp;travelmode=walking" target="_blank">GPS 2.1963, 102.2480</a></span>
+        </div>
+        <div class="restaurant-item">
+          2. <strong>中华茶室 / Chung Wah Chicken Rice</strong> — 另一家出名的鸡饭粒老店，口味稍有不同 <span class="price">~RM 8-12/人</span><br>
+          📏 距上一站: 200m, 步行2min<br>
+          <span class="addr">📍 鸡场街附近 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1945,102.2509&amp;destination=2.1960,102.2475&amp;travelmode=walking" target="_blank">GPS 2.1960, 102.2475</a></span>
+        </div>
+        <div class="restaurant-item">
+          3. <strong>古城鸡饭粒 / Famosa Chicken Rice Ball</strong> — 连锁品牌，环境干净，适合带老人小孩 <span class="price">~RM 12-18/人</span><br>
+          <span class="addr">📍 Jonker街多家分店 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1945,102.2509&amp;destination=2.1955,102.2478&amp;travelmode=walking" target="_blank">GPS 2.1955, 102.2478</a></span>
+        </div>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~14:00</span>
+        <h4>荷兰红屋 / Stadthuys / Dutch Square <span class="badge badge-kids">亲子</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1963,102.2480&amp;destination=2.1942,102.2508&amp;travelmode=walking" target="_blank">GPS 2.1942, 102.2508</a></p>
+        <ul>
+          <li>马六甲地标，荷兰殖民时期建筑（1650年）</li>
+          <li>红色建筑群 + 基督教堂 + 维多利亚女王喷泉</li>
+          <li>广场前有三轮花车可以骑（小朋友会喜欢）</li>
+        </ul>
+        <p>🎫 外观免费，博物馆 RM 12/成人</p>
+        <p class="timeline-distance">📏 距上一站: 350m, 步行4min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~14:30</span>
+        <h4>圣保罗堂 / St. Paul's Church</h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1942,102.2508&amp;destination=2.1935,102.2517&amp;travelmode=walking" target="_blank">GPS 2.1935, 102.2517</a></p>
+        <ul>
+          <li>山顶教堂废墟，1521年葡萄牙人建造</li>
+          <li>山顶俯瞰马六甲海峡，视野开阔</li>
+          <li>⚠️ 需走上坡台阶，带推车不方便，建议抱小朋友或让老人在山下等</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 150m, 步行3min（上坡）</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~15:00</span>
+        <h4>海事博物馆 / Maritime Museum</h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1935,102.2517&amp;destination=2.1888,102.2511&amp;travelmode=walking" target="_blank">GPS 2.1888, 102.2511</a></p>
+        <ul>
+          <li>大型帆船造型博物馆，展示马六甲海上贸易历史</li>
+        </ul>
+        <p>🎫 成人 RM 10 / 儿童 RM 4</p>
+        <p class="timeline-distance">📏 距上一站: 500m, 步行6min（下山）</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~15:30</span>
+        <h4>马六甲河 / Melaka River <span class="badge badge-kids">亲子</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1888,102.2511&amp;destination=2.1960,102.2495&amp;travelmode=walking" target="_blank">GPS 2.1960, 102.2495</a></p>
+        <ul>
+          <li>河两岸彩色壁画和殖民建筑</li>
+          <li>可坐游船：RM 30/成人，RM 23/儿童（约45分钟）</li>
+          <li>沿河步道平坦，推车友好</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 800m, 步行8min</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~16:30</span>
+        <h4>马六甲海峡清真寺 / Melaka Straits Mosque <span class="badge badge-free">免费</span></h4>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1960,102.2495&amp;destination=2.1863,102.2345&amp;travelmode=driving" target="_blank">GPS 2.1863, 102.2345</a></p>
+        <ul>
+          <li>建在海上的"水上清真寺"，日落时分最美</li>
+          <li>3月日落约19:15，如果时间允许可等日落</li>
+          <li>外观参观免费，入内需着装合规</li>
+        </ul>
+        <p class="timeline-distance">📏 距上一站: 2km, 车程约5min</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">~17:30</span>
+        <h4>返程 — 马六甲 → KLCC公寓</h4>
+        <p>马六甲 → 吉隆坡KLCC约150km，车程约2-2.5小时。预计20:00-21:00返回酒店。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=2.1863,102.2345&amp;destination=3.1570,101.7115&amp;travelmode=driving" target="_blank">GPS导航</a></p>
+      </div>
+
+      <!-- Tips -->
+      <div class="tip-box">
+        <strong>Tips:</strong>
+        <ul>
+          <li>一日游行程很满，全天在外约12小时，老人小孩注意体力分配</li>
+          <li>推车在鸡场街和荷兰红屋附近道路平坦好推，但圣保罗堂需爬坡</li>
+          <li>马六甲3月很热（~34°C），防晒+补水必备</li>
+          <li>鸡场街周五-周日晚上有夜市，但跟团时间可能赶不上</li>
+          <li>清真寺参观女性需穿长裙/长裤+戴头巾，门口有免费借</li>
+          <li>大巴上给小朋友准备零食和iPad打发车程时间</li>
+        </ul>
+      </div>
+
+      <!-- Cost Table -->
+      <div class="section-title">费用估算</div>
+      <table class="cost-table">
+        <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+        <tr><td>一日游团费</td><td>已预定</td><td>含车+导游</td></tr>
+        <tr><td>午餐（鸡场街）</td><td>~RM 70-120</td><td>7人</td></tr>
+        <tr><td>海事博物馆</td><td>~RM 70</td><td>5成人+1儿童</td></tr>
+        <tr><td>马六甲河游船（可选）</td><td>~RM 210</td><td>5成人+1儿童</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== Day 3 ==================== -->
+  <section class="day-section day-3" id="day3">
+    <div class="day-header">Day 3 — 3月5日(周四) 吉隆坡 → 亚庇 + 香格里拉日落</div>
+    <div class="day-body">
+
+      <!-- Route Visual -->
+      <div class="route-visual">
+        KLCC公寓退房 <span class="arrow">→</span> KLIA2 <span class="arrow">—✈ 2h35m→</span> 亚庇BKI <span class="arrow">→</span> 丹绒亚路香格里拉 <span class="arrow">→</span> 酒店沙滩日落
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-item">
+        <span class="time-badge">08:00</span>
+        <h4>KLCC PLATINUM2 公寓退房</h4>
+        <p>收拾行李，检查护照和机票。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=3.1570,101.7115&travelmode=driving" target="_blank">GPS 3.1570, 101.7115</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">08:30</span>
+        <h4>前往 KLIA2</h4>
+        <p><strong>方案A（推荐）</strong>: Grab 打车直达 KLIA2，约60-70分钟，RM 80-100/车（7人需2辆）</p>
+        <p><strong>方案B</strong>: LRT → KL Sentral → KLIA Ekspres → KLIA2（LRT RM 1.60/人 + KLIA Ekspres RM 55/人成人）</p>
+        <p>AK5140 航班 11:40 起飞，建议 09:30 前到达 KLIA2</p>
+        <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=2.7456,101.7099&travelmode=driving" target="_blank">GPS 导航: KLCC → KLIA2</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">09:30</span>
+        <h4>到达 KLIA2</h4>
+        <p>亚航所有航班都在 KLIA2。值机 → 托运行李 → 过安检 → 登机口。KLIA2 有 Oldtown White Coffee 等可吃早午餐。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=3.1570,101.7115&destination=2.7456,101.7099&travelmode=driving" target="_blank">GPS 2.7456, 101.7099</a></p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">11:40</span>
+        <h4>航班起飞 AK5140 ✈</h4>
+        <p>吉隆坡 KLIA2 → 亚庇 BKI，飞行约2小时35分钟，A321neo，无免费餐食（可付费购买），预计 14:15 到达。</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">14:15</span>
+        <h4>抵达亚庇机场 BKI</h4>
+        <p>亚庇国际机场 Terminal 1，取行李后 Grab 打车前往酒店。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9371,116.0510&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 5.9371, 116.0510</a></p>
+        <p class="timeline-distance">📏 距机场到酒店: 约3km, Grab约8分钟, RM 10-15</p>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">~15:00</span>
+        <h4>入住丹绒亚路香格里拉 <span class="badge badge-kids">亲子</span></h4>
+        <p>马来西亚最佳日落观赏酒店之一。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9371,116.0510&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 5.9530, 116.0460</a></p>
+        <ul>
+          <li><strong>私人沙滩</strong> — 可直接下海，沙质细腻</li>
+          <li><strong>儿童乐园 Cool Zone</strong> — 3岁小朋友可以玩</li>
+          <li><strong>泳池区</strong> — 多个泳池含儿童池</li>
+          <li><strong>花园</strong> — 热带花园散步</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <span class="time-badge">16:00-17:30</span>
+        <h4>酒店活动 <span class="badge badge-kids">亲子</span></h4>
+        <ul>
+          <li>泳池游泳 / 沙滩玩沙</li>
+          <li>小朋友去 Cool Zone 玩</li>
+          <li>老人可以在花园散步或 Spa</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item spot">
+        <span class="time-badge">17:30-18:30</span>
+        <h4>丹绒亚路日落</h4>
+        <p>香格里拉的日落是亚庇最著名的体验。<strong>Sunset Bar</strong> 是最佳观赏点，需要提前占位。3月亚庇日落约 18:15。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9523,116.0445&travelmode=walking" target="_blank">GPS 5.9523, 116.0445 (Sunset Bar)</a></p>
+      </div>
+
+      <!-- Dinner -->
+      <div class="timeline-item food">
+        <span class="time-badge">19:00</span>
+        <h4>晚餐</h4>
+      </div>
+      <div class="restaurant-box">
+        <h5>推荐餐厅</h5>
+        <div class="restaurant-item">
+          1. <strong>香宫 / Shang Palace</strong> — 酒店内中餐厅，粤菜为主 <span class="price">~RM 60-100/人</span><br>
+          📏 酒店内部，步行2分钟<br>
+          <span class="addr">📍 香格里拉酒店内 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9523,116.0445&destination=5.9530,116.0460&travelmode=walking" target="_blank">GPS 5.9530, 116.0460</a></span>
+        </div>
+        <div class="restaurant-item">
+          2. <strong>大茄来海鲜餐厅 / Welcome Seafood</strong> — 亚庇最出名海鲜，奶油老虎虾、椒盐濑尿虾必点 <span class="price">~RM 30-50/人</span><br>
+          📏 距酒店: 约6km, Grab约15分钟<br>
+          <span class="addr">📍 Jalan Asia City, Kota Kinabalu <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9780,116.0630&travelmode=driving" target="_blank">GPS 5.9780, 116.0630</a></span>
+        </div>
+        <div class="restaurant-item">
+          3. <strong>双天海鲜楼 / Hua Hin Seafood</strong> — 同样热门海鲜餐厅，比大茄来人少一些 <span class="price">~RM 25-45/人</span><br>
+          📏 距酒店: 约6km, Grab约15分钟<br>
+          <span class="addr">📍 Asia City 附近 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9785,116.0635&travelmode=driving" target="_blank">GPS 5.9785, 116.0635</a></span>
+        </div>
+      </div>
+
+      <!-- Tips -->
+      <div class="tip-box">
+        <strong>Tips:</strong>
+        <ul>
+          <li>今天是转场日，行程轻松，以酒店休闲为主</li>
+          <li>香格里拉日落非常美，不要错过</li>
+          <li>Sunset Bar 日落时段很抢手，建议17:00前去占位</li>
+          <li>大茄来海鲜很火，晚上排队长，建议18:30前到</li>
+          <li>亚庇打车用 Grab，比出租车便宜很多</li>
+        </ul>
+      </div>
+
+      <!-- Cost Table -->
+      <div class="section-title">费用估算</div>
+      <table class="cost-table">
+        <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+        <tr><td>Grab 到 KLIA2</td><td>~RM 160-200</td><td>2辆车</td></tr>
+        <tr><td>或 KLIA Ekspres</td><td>~RM 340</td><td>6成人 + LRT</td></tr>
+        <tr><td>Grab 机场→酒店</td><td>~RM 15-25</td><td></td></tr>
+        <tr><td>晚餐</td><td>~RM 200-400</td><td>7人海鲜</td></tr>
+      </table>
+    </div>
+  </section>
+
+<!-- ==================== Day 4 ==================== -->
+<section class="day-section day-4" id="day4">
+  <div class="day-header">Day 4 — 3月6日 (周五) 跳岛游（马穆迪岛 + 沙比岛）</div>
+  <div class="day-body">
+
+    <div class="route-visual">
+      香格里拉 <span class="arrow">—5km→</span> DBKK JETTY码头 <span class="arrow">—快艇→</span> 马穆迪岛 <span class="arrow">—快艇→</span> 沙比岛 <span class="arrow">—快艇→</span> 哲斯顿码头 <span class="arrow">—Grab→</span> 晚餐 <span class="arrow">—6km→</span> 酒店
+    </div>
+
+    <!-- Timeline Items -->
+    <div class="timeline-item">
+      <span class="time-badge">08:00</span>
+      <h4>起床 + 早餐</h4>
+      <p>酒店自助早餐，多吃补充体力。给小朋友和老人涂好防晒霜。</p>
+      <p>准备物品：泳衣、防晒霜（SPF50+）、浮潜装备、防水手机套、换洗衣物、毛巾</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">09:15</span>
+      <h4>出发前往 DBKK JETTY 码头</h4>
+      <p>距酒店约5km，Grab打车约10分钟，RM 10-12</p>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9810,116.0710&travelmode=driving" target="_blank">GPS 5.9810, 116.0710</a></p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">09:45</span>
+      <h4>DBKK JETTY 码头集合</h4>
+      <p>10:00前到达，找到对应旅行社柜台报到。领取救生衣、浮潜装备。码头有洗手间和更衣室。</p>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9810,116.0710&travelmode=driving" target="_blank">GPS 5.9810, 116.0710</a></p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">10:00</span>
+      <h4>出发前往马穆迪岛</h4>
+      <p>快艇约15-20分钟到达，东姑阿都拉曼海洋公园的5个岛之一</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">10:20-12:30</span>
+      <h4>马穆迪岛 / Mamutik Island 浮潜 <span class="badge badge-kids">亲子</span></h4>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9810,116.0710&destination=5.9670,116.0050&travelmode=driving" target="_blank">GPS 5.9670, 116.0050</a></p>
+      <ul>
+        <li>东姑阿都拉曼海洋公园最小的岛，水最清</li>
+        <li>浮潜区域：岛周围珊瑚丰富，鱼群多</li>
+        <li>3岁小朋友：建议在浅水区玩沙玩水，不建议浮潜</li>
+        <li>老人：浅水区踩水即可，水很浅很清</li>
+        <li>救生衣全程穿着</li>
+        <li>岛上设施：洗手间、淋浴区、躺椅</li>
+      </ul>
+      <p class="timeline-distance">距码头约7km，快艇15-20分钟</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">12:30-13:30</span>
+      <h4>岛上午餐</h4>
+      <p>跳岛游一般含简单BBQ午餐或需自费，确认报团时是否含餐。如不含餐，岛上有简单小卖部。</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">13:30</span>
+      <h4>快艇前往沙比岛</h4>
+      <p>约10分钟船程</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">13:45-16:00</span>
+      <h4>沙比岛 / Sapi Island 水上项目 <span class="badge badge-kids">亲子</span></h4>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9670,116.0050&destination=5.9740,116.0010&travelmode=driving" target="_blank">GPS 5.9740, 116.0010</a></p>
+      <ul>
+        <li>东姑阿都拉曼海洋公园最热门的岛</li>
+        <li><strong>香蕉船</strong>：~RM 30-40/人，3-5人一组，小朋友需大人陪同</li>
+        <li><strong>滑翔伞</strong>：~RM 80-120/人，海面飞行约10分钟，需>40kg，3岁小朋友不能参加</li>
+        <li>老人视体力自行决定参不参加水上项目</li>
+        <li>不玩项目的人可在沙滩上玩沙、浅水区嬉水</li>
+      </ul>
+      <p class="timeline-distance">距马穆迪岛约1km，快艇约5-10分钟</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">16:30</span>
+      <h4>返回哲斯顿码头</h4>
+      <p>快艇约15分钟返回。码头有淋浴和换衣服的地方，冲洗更衣后准备晚餐。</p>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9740,116.0010&destination=5.9810,116.0710&travelmode=driving" target="_blank">GPS 5.9810, 116.0710</a></p>
+    </div>
+
+    <!-- Restaurant Recommendations -->
+    <div class="timeline-item food">
+      <span class="time-badge">18:00</span>
+      <h4>晚餐</h4>
+    </div>
+    <div class="restaurant-box">
+      <h5>推荐餐厅</h5>
+      <div class="restaurant-item">
+        1. <strong>新记肉骨茶 / Sin Kee Bak Kut Teh</strong> — 亚庇最出名的肉骨茶，药材汤底浓郁 <span class="price">~RM 15-25/人</span><br>
+        📏 距码头约500m，步行6分钟<br>
+        <span class="addr">📍 Jalan Gaya 附近 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9810,116.0710&destination=5.9800,116.0740&travelmode=walking" target="_blank">GPS 5.9800, 116.0740</a></span>
+      </div>
+      <div class="restaurant-item">
+        2. <strong>富源茶餐厅 / Fook Yuen Cafe & Bakery</strong> — 亚庇连锁茶餐厅，拉茶+椰浆饭+烤面包 <span class="price">~RM 10-20/人</span><br>
+        📏 距码头约800m，步行10分钟<br>
+        <span class="addr">📍 Asia City店 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9810,116.0710&destination=5.9790,116.0680&travelmode=walking" target="_blank">GPS 5.9790, 116.0680</a></span>
+      </div>
+      <div class="restaurant-item">
+        3. <strong>大茄来海鲜餐厅 / Welcome Seafood</strong> — 如果昨天没去，今天可安排 <span class="price">~RM 30-50/人</span><br>
+        📏 距码头约1km，步行12分钟或Grab 5分钟<br>
+        <span class="addr">📍 亚庇 Asia City <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9810,116.0710&destination=5.9780,116.0630&travelmode=driving" target="_blank">GPS 5.9780, 116.0630</a></span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">19:30</span>
+      <h4>返回酒店</h4>
+      <p>Grab打车回香格里拉，约6km，约15分钟</p>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9780,116.0630&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 5.9530, 116.0460</a></p>
+    </div>
+
+    <!-- Tips -->
+    <div class="tip-box">
+      <strong>Tips:</strong>
+      跳岛游必备：防晒霜SPF50+、防水手机套、换洗衣物、拖鞋 |
+      浮潜注意安全，穿救生衣，不要触碰珊瑚 |
+      3岁小朋友不适合深水浮潜和滑翔伞，安排在浅水区玩 |
+      老人视体力参加水上项目，香蕉船相对温和 |
+      岛上太阳很晒，每2小时补涂防晒 |
+      海水可能有水母，穿水母衣更安全 |
+      带防水袋保管手机和现金
+    </div>
+
+    <!-- Cost Table -->
+    <div class="section-title">费用估算</div>
+    <table class="cost-table">
+      <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+      <tr><td>跳岛游团费</td><td>已预定</td><td>含快艇+浮潜装备</td></tr>
+      <tr><td>海洋公园入园费</td><td>~RM 10/人</td><td>可能含在团费中</td></tr>
+      <tr><td>香蕉船</td><td>~RM 30-40/人</td><td>可能含在团费中</td></tr>
+      <tr><td>滑翔伞</td><td>~RM 80-120/人</td><td>可能含在团费中</td></tr>
+      <tr><td>Grab往返</td><td>~RM 30-40</td><td></td></tr>
+      <tr><td>晚餐</td><td>~RM 100-250</td><td>7人</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== Day 5 ==================== -->
+<section class="day-section day-5" id="day5">
+  <div class="day-header">Day 5 — 3月7日 (周六) 红树林旅程（长鼻猴 + 萤火虫）</div>
+  <div class="day-body">
+
+    <!-- 1. Route Visual -->
+    <div class="route-visual">
+      酒店休闲 → <span class="arrow">旅行社接</span> → 红树林保护区(~120km) → 下午茶 → 长鼻猴巡游 → 晚餐 → 萤火虫 → <span class="arrow">旅行社送</span> → 酒店 (已报团 | 1PM接 ~10PM返)
+    </div>
+
+    <!-- 2. Timeline Items -->
+
+    <div class="timeline-item">
+      <span class="time-badge">08:00-12:00</span>
+      <h4>上午：酒店休闲 <span class="badge badge-kids">亲子</span></h4>
+      <p>私人沙滩、泳池（含儿童池）、Cool Zone 儿童乐园、花园散步。上午海水平静，适合玩水。</p>
+      <ul>
+        <li>私人沙滩 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9525,116.0445&travelmode=walking" target="_blank">GPS 5.9525, 116.0445</a></li>
+        <li>泳池区（含儿童浅水池）<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9525,116.0445&destination=5.9528,116.0452&travelmode=walking" target="_blank">GPS 5.9528, 116.0452</a></li>
+        <li>Cool Zone 儿童乐园 — 室内空调</li>
+        <li>吃完午饭回房休息，下午行程持续到晚上10点，保存体力</li>
+      </ul>
+    </div>
+
+    <!-- Lunch -->
+    <div class="timeline-item food">
+      <span class="time-badge">12:00</span>
+      <h4>午餐（酒店内）</h4>
+    </div>
+    <div class="restaurant-box">
+      <h5>推荐餐厅</h5>
+      <div class="restaurant-item">
+        1. <strong>香格里拉自助午餐 / Shangri-La Buffet</strong> — 酒店内多个餐厅可选 <span class="price">~RM 60-80/人</span><br>
+        📍 香格里拉酒店内<br>
+        <span class="addr"><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9528,116.0452&destination=5.9530,116.0460&travelmode=walking" target="_blank">GPS 5.9530, 116.0460</a></span>
+      </div>
+      <div class="restaurant-item">
+        2. <strong>Anjung Saujana 餐厅</strong> — 沙滩旁马来菜，露天海景位 <span class="price">~RM 30-50/人</span><br>
+        📍 香格里拉酒店沙滩区<br>
+        <span class="addr"><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9525,116.0448&travelmode=walking" target="_blank">GPS 5.9525, 116.0448</a></span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">13:00</span>
+      <h4>旅行社到酒店接人</h4>
+      <p>酒店大堂集合，前往红树林，车程约1.5-2小时。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 5.9530, 116.0460</a></p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">~14:30</span>
+      <h4>到达红树林保护区 (Klias Wetland)</h4>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.3620,115.7480&travelmode=driving" target="_blank">GPS 5.3620, 115.7480</a></p>
+      <p class="timeline-distance">📏 距酒店: ~120km, 车程约1.5-2小时</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">15:00</span>
+      <h4>下午茶</h4>
+      <p>马来式下午茶：糕点（Kuih）、水果、茶/咖啡。在河边凉亭休息，等待傍晚出发。</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">16:00-17:30</span>
+      <h4>乘船寻找长鼻猴 / Proboscis Monkey <span class="badge badge-kids">亲子</span></h4>
+      <p>乘小型木船沿河行驶，寻找婆罗洲特有的长鼻猴。</p>
+      <ul>
+        <li>长鼻猴大鼻子非常有辨识度，傍晚最活跃</li>
+        <li>还可能看到：银叶猴、长尾猕猴、鳄鱼、各种鸟类</li>
+        <li>小朋友需穿救生衣，保持安静更容易看到猴子</li>
+        <li>老人注意：座位较窄，需能上下小船</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item food">
+      <span class="time-badge">18:00</span>
+      <h4>晚餐（红树林营地）</h4>
+      <p>马来式自助晚餐（含在团费中）：炒面/炒饭、咖喱鸡、蔬菜、水果。口味不辣，适合小朋友和老人。</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">19:30-21:00</span>
+      <h4>乘船寻找萤火虫 / Firefly Watching <span class="badge badge-kids">亲子</span></h4>
+      <p>天黑后乘船进入红树林，萤火虫成群闪烁如圣诞树。</p>
+      <ul>
+        <li>非常震撼的体验，小朋友会很兴奋</li>
+        <li>拍照建议：手机长曝光模式，关掉闪光灯</li>
+        <li>注意涂防蚊液，河边蚊虫多</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">~22:00</span>
+      <h4>返回酒店</h4>
+      <p>旅行社送回酒店。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.3620,115.7480&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 导航返回</a></p>
+    </div>
+
+    <!-- Tips -->
+    <div class="tip-box">
+      <strong>Tips:</strong>
+      <ul>
+        <li>上午在酒店好好休息，下午到晚上行程持续约9小时</li>
+        <li>防蚊液必备（红树林蚊虫很多），给小朋友用儿童专用防蚊液</li>
+        <li>穿长袖长裤防蚊，同时防晒</li>
+        <li>带外套——晚上河面上会凉</li>
+        <li>小朋友可能在回程车上睡着，带小毯子</li>
+        <li>长鼻猴傍晚最活跃，16:00-17:30 是最佳观赏时间</li>
+        <li>萤火虫需天完全黑才能看到，安排在晚餐后</li>
+        <li>手机充满电，红树林无充电设施</li>
+      </ul>
+    </div>
+
+    <!-- Cost Table -->
+    <div class="section-title">费用估算</div>
+    <table class="cost-table">
+      <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+      <tr><td>红树林团费</td><td>已预定</td><td>含接送+下午茶+晚餐+船</td></tr>
+      <tr><td>酒店午餐</td><td>~RM 200-400</td><td>7人</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="day-section day-6" id="day6">
+  <div class="day-header">Day 6 — 3月8日 (周日) Gaya Street 周日市集 + 返程</div>
+  <div class="day-body">
+
+    <!-- 1. Route Visual -->
+    <div class="route-visual">
+      香格里拉 →<span class="arrow"> Grab </span>→ Gaya Street 周日市集 → Suria Sabah 购物 → 午餐 →<span class="arrow"> Grab </span>→ 酒店取行李 →<span class="arrow"> Grab </span>→ 亚庇机场BKI —<span class="arrow"> ✈ AK1516 </span>→ 上海浦东T2 →<span class="arrow"> 携程接机 </span>→ 家
+    </div>
+
+    <!-- 2. Timeline Items -->
+
+    <div class="timeline-item">
+      <span class="time-badge">08:00</span>
+      <h4>早餐后出发</h4>
+      <p>酒店吃早餐，行李寄存前台，轻装出门逛市集。</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">08:40-10:30</span>
+      <h4>Gaya Street 周日市集 / Gaya Street Sunday Market <span class="badge badge-kids">亲子</span></h4>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9800,116.0730&travelmode=driving" target="_blank">GPS 5.9800, 116.0730</a></p>
+      <ul>
+        <li>每周日 07:00-12:00，只有周日才有！</li>
+        <li>亚庇最本土的露天市场，当地人也会来逛</li>
+        <li>必买：沙巴红茶(RM 10-20/盒)、沙巴蜂蜜(RM 15-30/瓶)、珍珠饰品(RM 20-100)</li>
+        <li>手工艺品(RM 10-50)、当地糕点 Kuih(RM 2-5/个)、热带水果(按重量)</li>
+      </ul>
+      <p class="timeline-distance">📏 距酒店: ~5km, Grab约10分钟, RM 10-12</p>
+    </div>
+
+    <!-- Market breakfast -->
+    <div class="timeline-item food">
+      <span class="time-badge">09:00</span>
+      <h4>市集内早点</h4>
+    </div>
+    <div class="restaurant-box">
+      <h5>推荐早点</h5>
+      <div class="restaurant-item">
+        1. <strong>怡丰茶室 / Yee Fung Laksa</strong> — Gaya Street 最有名的叻沙店，早上排队 <span class="price">~RM 8-12/碗</span><br>
+        📏 距市集入口: 步行2分钟<br>
+        <span class="addr">📍 Gaya Street 上 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9800,116.0730&destination=5.9805,116.0735&travelmode=walking" target="_blank">GPS 5.9805, 116.0735</a></span>
+      </div>
+      <div class="restaurant-item">
+        2. <strong>冯业茶餐室 / Fung Ip Dim Sum</strong> — 港式早茶点心，叉烧包、虾饺、烧卖 <span class="price">~RM 10-15/人</span><br>
+        📍 Gaya Street 上<br>
+        <span class="addr"><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9805,116.0735&destination=5.9802,116.0728&travelmode=walking" target="_blank">GPS 5.9802, 116.0728</a></span>
+      </div>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">10:30-12:00</span>
+      <h4>Suria Sabah 商场</h4>
+      <p>亚庇市中心最大购物商场。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9800,116.0730&destination=5.9790,116.0720&travelmode=walking" target="_blank">GPS 5.9790, 116.0720</a></p>
+      <ul>
+        <li>The Body Shop — 马来西亚品牌，比国内便宜约30%</li>
+        <li>Padini — 马来西亚本土服装品牌，性价比高</li>
+        <li>Guardian / Watson's — 生活用品和护肤品</li>
+        <li>底层超市 — 买伴手礼零食最后机会</li>
+        <li>沙巴特产专柜</li>
+      </ul>
+      <p class="timeline-distance">📏 距Gaya Street: 200m, 步行3分钟</p>
+    </div>
+
+    <!-- Lunch -->
+    <div class="timeline-item food">
+      <span class="time-badge">12:00</span>
+      <h4>午餐</h4>
+    </div>
+    <div class="restaurant-box">
+      <h5>推荐餐厅</h5>
+      <div class="restaurant-item">
+        1. <strong>味雅鸡饭 / Wei Ya Chicken Rice</strong> — 海南鸡饭名店，滑嫩白切鸡配姜蓉 <span class="price">~RM 8-12/人</span><br>
+        📏 距Suria Sabah: ~300m, 步行4分钟<br>
+        <span class="addr">📍 Gaya Street 附近 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9790,116.0720&destination=5.9810,116.0740&travelmode=walking" target="_blank">GPS 5.9810, 116.0740</a></span>
+      </div>
+      <div class="restaurant-item">
+        2. <strong>佑记肉骨茶 / Yu Kee Bak Kut Teh</strong> — 亚庇有名的肉骨茶 <span class="price">~RM 12-20/人</span><br>
+        📏 距Suria Sabah: ~200m, 步行3分钟<br>
+        <span class="addr">📍 Gaya Street 上 <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9790,116.0720&destination=5.9808,116.0732&travelmode=walking" target="_blank">GPS 5.9808, 116.0732</a></span>
+      </div>
+      <div class="restaurant-item">
+        3. <strong>旧街场白咖啡 / Old Town White Coffee</strong> — 马来西亚连锁咖啡店，椰浆饭+白咖啡 <span class="price">~RM 12-18/人</span><br>
+        📍 Suria Sabah 商场内<br>
+        <span class="addr"><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9810,116.0740&destination=5.9790,116.0720&travelmode=walking" target="_blank">GPS 5.9790, 116.0720</a></span>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">14:00</span>
+      <h4>回酒店取行李</h4>
+      <p>Grab 打车回香格里拉。<a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9790,116.0720&destination=5.9530,116.0460&travelmode=driving" target="_blank">GPS 导航</a></p>
+      <p class="timeline-distance">📏 距市区: ~5km, Grab约10分钟</p>
+    </div>
+
+    <div class="timeline-item spot">
+      <span class="time-badge">14:30-17:00</span>
+      <h4>酒店最后时光 <span class="badge badge-kids">亲子</span></h4>
+      <ul>
+        <li>再游泳或去沙滩走走</li>
+        <li>小朋友去 Cool Zone 最后玩一次</li>
+        <li>~17:00 看最后一次丹绒亚路日落（3月日落约18:15）</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">18:00</span>
+      <h4>最终退房</h4>
+      <p>收拾行李，退房。</p>
+    </div>
+
+    <!-- Dinner -->
+    <div class="timeline-item food">
+      <span class="time-badge">18:30</span>
+      <h4>晚餐（机场附近或路上）</h4>
+    </div>
+    <div class="restaurant-box">
+      <h5>推荐餐厅</h5>
+      <div class="restaurant-item">
+        1. <strong>1Borneo Hypermall 美食广场</strong> — 去机场路上的大商场，各种食物选择 <span class="price">~RM 10-20/人</span><br>
+        📏 距酒店: ~8km, Grab约15分钟<br>
+        <span class="addr">📍 Jalan UMS, Kota Kinabalu <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9530,116.0460&destination=5.9890,116.0870&travelmode=driving" target="_blank">GPS 5.9890, 116.0870</a></span>
+      </div>
+      <div class="restaurant-item">
+        2. <strong>亚庇机场餐厅</strong> — 机场内马来菜和快餐，早点到机场也可在里面吃 <span class="price">~RM 15-25/人</span><br>
+        📍 BKI 机场内
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">19:30</span>
+      <h4>前往亚庇机场 BKI</h4>
+      <p><a class="gps-link" href="https://www.google.com/maps/dir/?api=1&origin=5.9890,116.0870&destination=5.9371,116.0510&travelmode=driving" target="_blank">GPS 5.9371, 116.0510</a></p>
+      <p>AK1516 航班 21:55 起飞，建议3小时前到达（国际航班）。</p>
+      <p class="timeline-distance">📏 距1Borneo: ~7km, Grab约12分钟 / 距酒店: ~3km, Grab约8分钟</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">21:55</span>
+      <h4>航班起飞 ✈ AK1516</h4>
+      <p>亚庇 BKI → 上海浦东 PVG T2 | 飞行约4小时25分钟 | A320 | 无免费餐食</p>
+    </div>
+
+    <div class="timeline-item">
+      <span class="time-badge">02:20+1</span>
+      <h4>3月9日 到达上海浦东 T2</h4>
+      <p>已预定携程接机。入境 → 取行李 → 接机师傅 → 回家。</p>
+    </div>
+
+    <!-- Tips -->
+    <div class="tip-box">
+      <strong>Tips:</strong>
+      <ul>
+        <li>3月8日是周日，Gaya Street 市集是亚庇最不可错过的体验</li>
+        <li>市集只到中午12点，早上及时到！</li>
+        <li>沙巴红茶和蜂蜜是最好的伴手礼，价格比商场便宜</li>
+        <li>最后一天注意行李重量，机场有秤可以称</li>
+        <li>亚航严格检查手提行李重量，不要超过7kg</li>
+        <li>退房后行李可以寄存酒店前台直到出发</li>
+        <li>红眼航班回上海，飞机上尽量睡觉</li>
+      </ul>
+    </div>
+
+    <!-- Cost Table -->
+    <div class="section-title">费用估算</div>
+    <table class="cost-table">
+      <tr><th>项目</th><th>费用</th><th>说明</th></tr>
+      <tr><td>Grab往返市区</td><td>~RM 40-50</td><td>2-3趟</td></tr>
+      <tr><td>Gaya Street 购物</td><td>~RM 100-300</td><td>特产伴手礼</td></tr>
+      <tr><td>午餐</td><td>~RM 60-120</td><td>7人</td></tr>
+      <tr><td>晚餐</td><td>~RM 70-150</td><td>7人</td></tr>
+      <tr><td>携程接机</td><td>已预定</td><td></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ==================== Shopping Section ==================== -->
+<section class="shopping-section" id="shopping">
+  <div class="shopping-header">购物指南 &amp; 价格对比</div>
+  <div class="shopping-body">
+
+    <!-- 购物策略 -->
+    <div class="section-title">📅 购物时间安排</div>
+    <table class="price-compare">
+      <tr><th>时间</th><th>地点</th><th>目的</th></tr>
+      <tr><td>3月3日下午</td><td><strong>KLCC Suria 商场</strong></td><td>国际品牌、化妆品、巧克力</td></tr>
+      <tr><td>3月3日下午</td><td><strong>Pavilion</strong></td><td>补充购物</td></tr>
+      <tr><td>3月8日上午</td><td><strong>Gaya Street 周日市集</strong></td><td>沙巴本地特产</td></tr>
+      <tr><td>3月8日上午</td><td><strong>Suria Sabah 商场</strong></td><td>最后补货</td></tr>
+      <tr><td>离境时</td><td><strong>KLIA2 / BKI 机场免税店</strong></td><td>免税烟酒、巧克力</td></tr>
+    </table>
+
+    <!-- 吉隆坡特产 -->
+    <div class="section-title">🍊 吉隆坡必买伴手礼</div>
+    <table class="price-compare">
+      <tr><th>产品</th><th>当地价格</th><th>国内参考</th><th>节省</th></tr>
+      <tr><td><strong>白咖啡 Old Town</strong> 15条装</td><td>RM 12-15 (~¥18-23)</td><td>¥40-50</td><td class="save">~55%</td></tr>
+      <tr><td><strong>BOH 红茶</strong> 50包装</td><td>RM 8-12 (~¥12-18)</td><td>¥35-45</td><td class="save">~60%</td></tr>
+      <tr><td><strong>Beryl's 巧克力</strong> 提拉米苏杏仁</td><td>RM 15-25 (~¥23-38)</td><td>¥50-70</td><td class="save">~50%</td></tr>
+      <tr><td><strong>肉骨茶料包 A1</strong></td><td>RM 3-5 (~¥5-8)</td><td>¥15-20</td><td class="save">~60%</td></tr>
+      <tr><td><strong>猫山王榴莲干/冻干</strong></td><td>RM 30-50 (~¥46-77)</td><td>¥80-150</td><td class="save">~45%</td></tr>
+      <tr><td><strong>Munchy's 饼干系列</strong></td><td>RM 5-10 (~¥8-15)</td><td>¥20-30</td><td class="save">~55%</td></tr>
+      <tr><td><strong>锡制品 Royal Selangor</strong></td><td>RM 50-200 (~¥77-308)</td><td>¥200-600</td><td class="save">~50%</td></tr>
+      <tr><td><strong>东革阿里 Tongkat Ali</strong></td><td>RM 30-80 (~¥46-123)</td><td>¥100-200</td><td class="save">~40%</td></tr>
+      <tr><td><strong>燕窝</strong></td><td>RM 50-200/盒 (~¥77-308)</td><td>¥150-500</td><td class="save">~40%</td></tr>
+    </table>
+
+    <!-- 沙巴特产 -->
+    <div class="section-title">🌴 亚庇/沙巴必买</div>
+    <table class="price-compare">
+      <tr><th>产品</th><th>当地价格</th><th>国内参考</th><th>节省</th></tr>
+      <tr><td><strong>沙巴红茶 Sabah Tea</strong></td><td>RM 10-20 (~¥15-31)</td><td>¥40-60</td><td class="save">~60%</td></tr>
+      <tr><td><strong>沙巴野生蜂蜜</strong></td><td>RM 15-30 (~¥23-46)</td><td>¥60-100</td><td class="save">~55%</td></tr>
+      <tr><td><strong>沙巴珍珠饰品</strong></td><td>RM 20-100 (~¥31-154)</td><td>¥80-300</td><td class="save">~50%</td></tr>
+      <tr><td><strong>手工编织品/木雕</strong></td><td>RM 10-50 (~¥15-77)</td><td>—</td><td class="save">当地独有</td></tr>
+    </table>
+
+    <!-- 化妆品 -->
+    <div class="section-title">💄 化妆品 &amp; 护肤品 (KLCC Suria / Pavilion)</div>
+    <table class="price-compare">
+      <tr><th>品牌</th><th>当地价格</th><th>国内参考</th><th>节省</th></tr>
+      <tr><td><strong>兰蔻 小黑瓶</strong> 50ml</td><td>~RM 380 (~¥585)</td><td>¥760</td><td class="save">~23%</td></tr>
+      <tr><td><strong>雅诗兰黛 小棕瓶</strong> 50ml</td><td>~RM 360 (~¥554)</td><td>¥710</td><td class="save">~22%</td></tr>
+      <tr><td><strong>SK-II 神仙水</strong> 230ml</td><td>~RM 560 (~¥862)</td><td>¥1150</td><td class="save">~25%</td></tr>
+      <tr><td><strong>MAC 子弹头口红</strong></td><td>~RM 90 (~¥138)</td><td>¥190</td><td class="save">~27%</td></tr>
+    </table>
+
+    <!-- 药妆 -->
+    <div class="section-title">💊 Guardian / Watson's 药妆</div>
+    <table class="price-compare">
+      <tr><th>产品</th><th>当地价格</th><th>说明</th><th>节省</th></tr>
+      <tr><td><strong>Himalaya 喜马拉雅 护肤</strong></td><td>RM 10-25</td><td>比国内便宜60%+</td><td class="save">60%+</td></tr>
+      <tr><td><strong>Bio-Oil 百洛油</strong></td><td>RM 25-35</td><td>比国内便宜约40%</td><td class="save">~40%</td></tr>
+      <tr><td><strong>Ellips 护发精油胶囊</strong></td><td>RM 5-8/板</td><td>国内代购¥15-20</td><td class="save">~60%</td></tr>
+      <tr><td><strong>The Body Shop</strong></td><td>比国内便宜30-40%</td><td>马来西亚品牌</td><td class="save">30-40%</td></tr>
+    </table>
+
+    <!-- 免税店 -->
+    <div class="section-title">🛫 免税店</div>
+    <table class="price-compare">
+      <tr><th colspan="4" style="text-align:left;background:#fef3c7">KLIA2 免税店（3月3日到达 / 3月5日转机）</th></tr>
+      <tr><th>产品</th><th>免税价</th><th colspan="2">说明</th></tr>
+      <tr><td><strong>Beryl's 巧克力礼盒</strong></td><td>RM 20-40</td><td colspan="2">最佳伴手礼</td></tr>
+      <tr><td><strong>猫山王榴莲制品</strong></td><td>RM 30-60</td><td colspan="2">冻干/饼干/巧克力</td></tr>
+      <tr><td><strong>白咖啡大包装</strong></td><td>RM 10-15</td><td colspan="2">比超市便宜</td></tr>
+      <tr><td><strong>烟酒</strong></td><td>免税</td><td colspan="2">限额内购买</td></tr>
+      <tr><th colspan="4" style="text-align:left;background:#fef3c7">BKI 亚庇机场免税店（3月8日出发前）</th></tr>
+      <tr><td colspan="4">规模小于KLIA2，基本特产都有。最后机会买 Beryl's 巧克力和白咖啡</td></tr>
+    </table>
+
+    <!-- 购物地点 GPS -->
+    <div class="section-title">🏬 购物地点 GPS</div>
+    <div class="restaurant-box" style="border-left-color:#a855f7">
+      <div class="restaurant-item">
+        <strong>Jaya Grocer (KLCC Suria 内)</strong> — 高端超市，进口商品多
+        <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=3.1557,101.7143&amp;destination=3.1580,101.7120&amp;travelmode=walking" target="_blank">GPS导航</a>
+        <span style="color:#666;font-size:0.85em">距公寓步行5分钟</span>
+      </div>
+      <div class="restaurant-item">
+        <strong>Suria Sabah 底层超市</strong> — 亚庇市中心最方便
+        <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=6.0453,116.0495&amp;destination=5.9790,116.0720&amp;travelmode=driving" target="_blank">GPS导航</a>
+      </div>
+      <div class="restaurant-item">
+        <strong>Gaya Street 周日市集</strong> — 仅周日 07:00-12:00
+        <a class="gps-link" href="https://www.google.com/maps/dir/?api=1&amp;origin=6.0453,116.0495&amp;destination=5.9817,116.0722&amp;travelmode=driving" target="_blank">GPS导航</a>
+      </div>
+    </div>
+
+    <!-- 支付方式 -->
+    <div class="section-title">💳 支付方式</div>
+    <table class="price-compare">
+      <tr><th>方式</th><th>适用场景</th><th colspan="2">说明</th></tr>
+      <tr><td><strong>Grab Pay</strong></td><td>打车、部分餐厅</td><td colspan="2">支持微信/支付宝充值</td></tr>
+      <tr><td><strong>Touch 'n Go eWallet</strong></td><td>地铁、便利店、商场</td><td colspan="2">马来西亚本地电子钱包</td></tr>
+      <tr><td><strong>微信/支付宝</strong></td><td>大商场、机场免税店</td><td colspan="2">KLCC Suria、KLIA2等</td></tr>
+      <tr><td><strong>VISA/万事达</strong></td><td>商场、餐厅</td><td colspan="2">最通用</td></tr>
+      <tr><td><strong>现金 MYR</strong></td><td>小摊、市集、小餐厅</td><td colspan="2">Gaya Street 必须现金</td></tr>
+    </table>
+
+    <!-- 退税 & 换汇提示 -->
+    <div class="tip-box">
+      <strong>⚠️ 退税提示:</strong> 马来西亚实行 SST 制度（非 GST），<strong>不支持游客退税</strong>。标价即最终价格。
+    </div>
+    <div class="tip-box">
+      <strong>💰 换汇建议:</strong>
+      <ul style="margin:5px 0;padding-left:20px">
+        <li>不要在机场换，汇率差</li>
+        <li>吉隆坡最佳: Mid Valley Megamall 或 KLCC 附近 money changer</li>
+        <li>建议换 RM 1000-1500 现金（约 ¥1500-2300），不够再刷卡</li>
+      </ul>
+    </div>
+
+    <!-- 购物清单 -->
+    <div class="section-title">📝 购物清单 Checklist</div>
+    <div style="padding:10px;background:#f9fafb;border-radius:8px">
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 白咖啡 Old Town × 5盒（送人用）</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> BOH 红茶 × 3盒</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> Beryl's 巧克力 × 5盒（最佳伴手礼）</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 肉骨茶料包 A1 × 5包</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 猫山王榴莲干 × 2包</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 沙巴红茶 × 3盒</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 沙巴蜂蜜 × 2瓶</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 锡制品小件（看缘分）</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> Ellips 护发精油 × 几板</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> The Body Shop（看需要）</label>
+      <label style="display:block;padding:4px 0"><input type="checkbox"> 珍珠饰品（Gaya Street）</label>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== Step 10: 出行前准备清单 ==================== -->
+<section class="checklist-section" id="checklist">
+  <div class="checklist-header">出行前准备清单</div>
+  <div class="checklist-body">
+
+    <div class="section-title">证件</div>
+    <ul>
+      <li>护照 ×7人（有效期 ≥6个月）</li>
+      <li>MDAC 电子入境卡（提前在线填写，每人一份）</li>
+      <li>身份证（国内段备用）</li>
+      <li>护照复印件 / 手机拍照备份</li>
+      <li>小朋友出生证明复印件（以防海关查验）</li>
+    </ul>
+
+    <div class="section-title">航班注意</div>
+    <ul>
+      <li><strong>行李额度</strong> — 确认已购买亚航托运行李额（亚航手提限 7kg，严格检查）</li>
+      <li><strong>值机</strong> — 提前在 AirAsia APP 在线值机，打印登机牌或截图</li>
+      <li><strong>餐食</strong> — 亚航不含餐，提前在APP上预订或自带零食</li>
+      <li><strong>D7333 上海→吉隆坡</strong> — 06:00 起飞，凌晨 02:30 出发去浦东（已预定携程送机）</li>
+      <li><strong>AK5140 吉隆坡→亚庇</strong> — 11:40 起飞，需提前到 KLIA2 值机</li>
+      <li><strong>AK1516 亚庇→上海</strong> — 21:55 起飞，02:20+1 到浦东T2（已预定携程接机）</li>
+      <li>行李最后一天注意称重，机场有秤</li>
+    </ul>
+
+    <div class="section-title">通讯与支付</div>
+    <ul>
+      <li><strong>电话卡/eSIM</strong> — 提前买好马来西亚流量卡（推荐 Celcom/Hotlink）</li>
+      <li><strong>必备APP</strong> — Grab（打车）、Google Maps（导航）、AirAsia（值机）、KLIA Ekspres（机场快线购票）</li>
+      <li><strong>换汇</strong> — 出发前换 RM 2,000-3,000 现金（≈ CNY 3,200-4,800）</li>
+      <li><strong>支付</strong> — 大商场支持支付宝/微信，小店和街边用现金</li>
+      <li><strong>KLIA Ekspres</strong> — 提前网上购票可9折（RM 49.5/人 vs RM 55/人）</li>
+    </ul>
+
+    <div class="section-title">小朋友</div>
+    <ul>
+      <li>推车（马六甲鸡场街/荷兰红屋平坦可推，圣保罗堂需爬坡不方便）</li>
+      <li>零食 & 牛奶 / 水杯</li>
+      <li>常用药品（退烧药、止泻药、创可贴、驱蚊液）</li>
+      <li>防晒霜 SPF50+（海岛必备，每2小时补涂）</li>
+      <li>泳衣 & 游泳尿布</li>
+      <li>防水手机套</li>
+      <li>遮阳帽、太阳镜</li>
+    </ul>
+
+    <div class="section-title">景点门票（提前购买）</div>
+    <ul>
+      <li><strong>布城+马六甲一日游</strong> — 已预定（3/4，含车+导游+景点门票）</li>
+      <li><strong>跳岛游（马穆迪岛+沙比岛）</strong> — 已预定（3/6，含快艇+浮潜装备）</li>
+      <li><strong>红树林半日游</strong> — 已预定（3/7，含接送+下午茶+晚餐+船）</li>
+      <li><strong>KLIA Ekspres 机场快线</strong> — 建议提前网上购票（9折优惠）</li>
+      <li><strong>携程送机/接机</strong> — 已预定（3/3 凌晨送机 + 3/8 浦东T2接机）</li>
+    </ul>
+
+    <div class="section-title">其他</div>
+    <ul>
+      <li>转换插头（马来西亚用英标三脚方插，和中国不同）</li>
+      <li>充电宝（飞机上不能托运，需随身带，≤20000mAh）</li>
+      <li>雨伞 / 一次性雨衣（3月午后常有阵雨）</li>
+      <li>浮潜换洗衣物 & 毛巾（跳岛游用）</li>
+      <li>长袖长裤（红树林防蚊+防晒）</li>
+      <li>拖鞋 / 凉鞋（海岛活动）</li>
+      <li>保温杯（给老人和小朋友装热水）</li>
+    </ul>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <p>马来西亚亲子游 2026.03.03-08 | 7人 · 6天5晚 · 吉隆坡+亚庇</p>
+    <p>PVG → KUL(KLIA2) → KK(BKI) → PVG | 双子塔 · 布城 · 马六甲 · 跳岛 · 红树林</p>
+    <p style="margin-top:8px;font-size:0.85em;opacity:0.7;">Generated on 2026-02-28</p>
+  </div>
+</footer>
+
+</body>
+</html>
