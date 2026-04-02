@@ -570,10 +570,10 @@ let _genYear, _genAuList, _genCnList; // cached from last generate()
 
 function generate() {
   const year = parseInt(document.getElementById('yearSelect').value);
-  const auLeave = parseInt(document.getElementById('auLeave').value);
-  const cnLeave = parseInt(document.getElementById('cnLeave').value);
-  const bridgeRange = parseInt(document.getElementById('bridgeRange').value);
-  const minDays = parseInt(document.getElementById('minDays')?.value || 7);
+  const auLeave = parseInt(document.getElementById('auLeave').value) || 20;
+  const cnLeave = parseInt(document.getElementById('cnLeave').value) || 10;
+  const bridgeRange = parseInt(document.getElementById('bridgeRange').value) || 7;
+  const minDays = parseInt(document.getElementById('minDays')?.value) || 0;
 
   const sets = buildSets(year);
   _genAuList = sets.auList; _genCnList = sets.cnList;
