@@ -273,7 +273,8 @@ function getHolidays(year) {
     [`${year}-12-26`]: "节礼日",
   };
 
-  // Apply substitute logic for fixed-date holidays (Anzac Day: only Sun→Mon, not Sat→Mon)
+  // Apply substitute logic for fixed-date holidays
+  // Anzac Day special: Sat→keep Sat + add Mon; Sun→add Mon substitute
   const fixedDates = [`${year}-01-01`,`${year}-01-26`,`${year}-12-25`,`${year}-12-26`];
   const anzacDay = `${year}-04-25`;
   const auList = [];
@@ -285,8 +286,23 @@ function getHolidays(year) {
     let actual = d;
     if (fixedDates.includes(d)) {
       actual = substituteDay(d);
-    } else if (d === anzacDay && dayOfWeek(d) === 0) {
-      actual = addDays(d, 1); // Anzac Day: only Sunday → Monday
+    } else if (d === anzacDay) {
+      const dow = dayOfWeek(d);
+      if (dow === 6) {
+        // Anzac Day Saturday: keep the Saturday as holiday, ALSO add Monday
+        if (!addedDates.has(d)) {
+          auList.push({ date: d, name });
+          addedDates.add(d);
+        }
+        const mon = addDays(d, 2);
+        if (!addedDates.has(mon)) {
+          auList.push({ date: mon, name: '澳新军团日 (额外假日)' });
+          addedDates.add(mon);
+        }
+        return;
+      } else if (dow === 0) {
+        actual = addDays(d, 1); // Sunday → Monday substitute
+      }
     }
     if (!addedDates.has(actual)) {
       auList.push({ date: actual, name: name + (actual !== d ? ` (调休至${formatDateShort(actual)})` : '') });
