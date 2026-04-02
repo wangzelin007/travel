@@ -273,15 +273,21 @@ function getHolidays(year) {
     [`${year}-12-26`]: "节礼日",
   };
 
-  // Apply substitute logic for fixed-date holidays
-  const fixedDates = [`${year}-01-01`,`${year}-01-26`,`${year}-04-25`,`${year}-12-25`,`${year}-12-26`];
+  // Apply substitute logic for fixed-date holidays (Anzac Day: only Sun→Mon, not Sat→Mon)
+  const fixedDates = [`${year}-01-01`,`${year}-01-26`,`${year}-12-25`,`${year}-12-26`];
+  const anzacDay = `${year}-04-25`;
   const auList = [];
   const addedDates = new Set();
 
   auRaw.forEach(d => {
     if (!d) return;
     const name = auNames[d] || d;
-    const actual = fixedDates.includes(d) ? substituteDay(d) : d;
+    let actual = d;
+    if (fixedDates.includes(d)) {
+      actual = substituteDay(d);
+    } else if (d === anzacDay && dayOfWeek(d) === 0) {
+      actual = addDays(d, 1); // Anzac Day: only Sunday → Monday
+    }
     if (!addedDates.has(actual)) {
       auList.push({ date: actual, name: name + (actual !== d ? ` (调休至${formatDateShort(actual)})` : '') });
       addedDates.add(actual);
@@ -873,14 +879,27 @@ function applyHolidayData(year) {
   const textarea = document.getElementById('holidayJson');
   try {
     const data = JSON.parse(textarea.value);
-    if (!data.cn||!data.au) throw new Error('需要 "cn" 和 "au" 字段');
+    if (!Array.isArray(data.cn)||!Array.isArray(data.au)) throw new Error('cn 和 au 必须是数组');
+    // Validate before saving
+    data.cn.forEach((h,i) => { if(!h.name) throw new Error(`cn[${i}] 缺少 name`); });
+    data.au.forEach((h,i) => { if(!h.date||!h.name) throw new Error(`au[${i}] 缺少 date 或 name`); });
+    // Try generate first, only save if successful
     const overrides = loadOverrides();
+    const backup = overrides[year];
     overrides[year] = data;
     saveOverrides(overrides);
-    document.querySelector('.modal-overlay').remove();
-    generate();
-    showToast(`✅ ${year} 年假期已更新`);
-  } catch(e) { alert('❌ JSON 错误：'+e.message); }
+    try {
+      generate();
+      document.querySelector('.modal-overlay').remove();
+      showToast(`✅ ${year} 年假期已更新`);
+    } catch(e2) {
+      // Rollback on generate failure
+      if (backup) overrides[year] = backup; else delete overrides[year];
+      saveOverrides(overrides);
+      generate();
+      throw new Error('数据格式有误，已回滚：' + e2.message);
+    }
+  } catch(e) { alert('❌ 错误：'+e.message); }
 }
 
 function resetHolidayData(year) {
