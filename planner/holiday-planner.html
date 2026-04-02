@@ -584,12 +584,17 @@ let _selectedWindows = new Set();
 let _auOff, _cnOff, _cnWork;
 let _genYear, _genAuList, _genCnList; // cached from last generate()
 
+function readNum(id, fallback) {
+  const v = parseInt(document.getElementById(id)?.value);
+  return Number.isNaN(v) ? fallback : v;
+}
+
 function generate() {
   const year = parseInt(document.getElementById('yearSelect').value);
-  const auLeave = parseInt(document.getElementById('auLeave').value) || 20;
-  const cnLeave = parseInt(document.getElementById('cnLeave').value) || 10;
-  const bridgeRange = parseInt(document.getElementById('bridgeRange').value) || 7;
-  const minDays = parseInt(document.getElementById('minDays')?.value) || 0;
+  const auLeave = readNum('auLeave', 20);
+  const cnLeave = readNum('cnLeave', 10);
+  const bridgeRange = readNum('bridgeRange', 7);
+  const minDays = readNum('minDays', 0);
 
   const sets = buildSets(year);
   _genAuList = sets.auList; _genCnList = sets.cnList;
@@ -605,8 +610,8 @@ function generate() {
 function toggleWindow(idx) {
   if (_selectedWindows.has(idx)) _selectedWindows.delete(idx);
   else _selectedWindows.add(idx);
-  const auLeave = parseInt(document.getElementById('auLeave').value);
-  const cnLeave = parseInt(document.getElementById('cnLeave').value);
+  const auLeave = readNum('auLeave', 20);
+  const cnLeave = readNum('cnLeave', 10);
   renderAll(_genYear, auLeave, cnLeave, _genAuList, _genCnList);
 }
 
