@@ -305,10 +305,8 @@ function getHolidays(year) {
   // Only merge when Mid-Autumn falls within National Day range (Oct 1-7)
   const maNearNational = ma >= `${year}-10-01` && ma <= `${year}-10-07`;
 
-  // Golden Week: Oct 1 to max(Oct 7, ma+2) — union of 7-day ND and 3-day MA
-  const goldenWeekEnd = maNearNational
-    ? (addDays(ma, 2) > `${year}-10-07` ? addDays(ma, 2) : `${year}-10-07`)
-    : `${year}-10-07`;
+  // Golden Week: when Mid-Autumn merges, always 8 days (Oct 1-8)
+  const goldenWeekEnd = maNearNational ? `${year}-10-08` : `${year}-10-07`;
   const goldenWeekDays = daysBetween(`${year}-10-01`, goldenWeekEnd) + 1;
 
   const cnList = [
