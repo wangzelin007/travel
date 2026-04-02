@@ -83,7 +83,8 @@
   .leave-table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 12px; }
   .leave-table th, .leave-table td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
   .leave-table th { background: #f8f9fa; font-weight: 600; }
-  .leave-table tr:last-child td { font-weight: 700; }
+  .leave-table tr:last-child td { font-weight: 400; }
+  .budget-table tr:last-child td { font-weight: 700; }
   .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 0.78em; font-weight: 600; }
   .tag-best { background: #c8e6c9; color: #2e7d32; }
   .tag-good { background: #e3f2fd; color: #1565c0; }
@@ -687,7 +688,7 @@ function renderAll(year, auLeave, cnLeave, auList, cnList) {
 
   // --- Leave Budget (only selected) ---
   html += `<div class="section"><h2>📋 请假预算表</h2>
-    <table class="leave-table">
+    <table class="leave-table budget-table">
       <tr><th>#</th><th>日期</th><th>天数</th><th>🇦🇺 ${auN} 请假</th><th>🇨🇳 ${cnN} 请假</th><th>假期来源</th></tr>`;
   let sA=0,sC=0,sD=0,rowNum=0;
   _allWindows.forEach((w,i) => {
@@ -808,7 +809,7 @@ getHolidays = function(year) {
   const yearData = overrides[year];
   if (!yearData) return base;
   if (yearData.cn && yearData.cn.length) {
-    base.cnList = yearData.cn.map(h => ({ name:h.name, offDays:h.offDays||[], workDays:h.workDays||[] }));
+    base.cnList = yearData.cn.map(h => ({ name:h.name, offDays:Array.isArray(h.offDays)?h.offDays:[], workDays:Array.isArray(h.workDays)?h.workDays:[] }));
   }
   if (yearData.au && yearData.au.length) {
     base.auList = yearData.au.map(h => ({ date:h.date, name:h.name }));
@@ -825,7 +826,11 @@ getHolidays = function(year) {
     o.value=y; o.textContent=y; if(y===cy) o.selected=true;
     sel.appendChild(o);
   }
-  generate();
+  try { generate(); } catch(e) {
+    console.error('初始化失败，清除自定义数据重试:', e);
+    localStorage.removeItem(STORAGE_KEY);
+    generate();
+  }
 })();
 
 function openUpdateModal() {
