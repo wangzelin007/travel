@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>澳大利亚亲子自驾游 2026.09.26-10.06</title>
+<title>🇦🇺 澳大利亚亲子自驾游 2026.09.26 - 10.06</title>
 <meta name="description" content="澳大利亚 11 天 10 晚亲子自驾攻略：悉尼 3 天 + 大洋路自驾 6 天 + 墨尔本。含详细时间表、GPS、餐厅推荐、预算、Checklist。">
 <meta property="og:title" content="🇦🇺 澳大利亚亲子自驾游 2026">
 <meta property="og:description" content="11 天 10 晚，6 人 2 家庭 + 2 个 3 岁宝宝，悉尼→大洋路→墨尔本超详细攻略。">
@@ -21,7 +21,6 @@ body {
   max-width:880px; margin:0 auto; padding:12px;
 }
 
-/* === Trip Header === */
 .trip-header {
   background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
   color:#fff; padding:32px 20px; border-radius:var(--radius);
@@ -30,7 +29,6 @@ body {
 .trip-header h1 { font-size:1.8em; margin-bottom:8px; }
 .trip-header .trip-meta { opacity:.92; font-size:.95em; margin-top:4px; }
 
-/* === Sticky Nav === */
 .day-nav {
   display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
   position:sticky; top:0; background:var(--bg); padding:8px 0;
@@ -44,16 +42,13 @@ body {
 .day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
 .nav-pdf { background:var(--orange)!important; color:#fff!important; border-color:var(--orange)!important; font-weight:700; }
 
-/* === Overview === */
 .overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .overview h2 { font-size:1.2em; margin-bottom:12px; }
-.overview h3.subtitle { margin-top:18px; font-size:1em; color:var(--text); padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; }
 .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
 .info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
 .info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
 .info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
 
-/* === Day Section === */
 .day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .day-header { padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
 .day-body { padding:20px 24px; }
@@ -68,8 +63,10 @@ body {
 .day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
 .day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
 .day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
 
-/* === Markdown body styling (inside day/shopping/checklist) === */
 .md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
 .md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
 .md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
@@ -85,13 +82,11 @@ body {
 .md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
 .md blockquote p { margin:4px 0; color:#555; }
 
-/* Tables (skill spec: blue header + zebra rows) */
 .md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
 .md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
 .md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
 .md tr:nth-child(even) { background:#f8f9fa; }
 
-/* === Shopping Section === */
 .shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
 .shopping-body { padding:20px 24px; }
@@ -99,7 +94,6 @@ body {
 .shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
 .shopping-body td { padding:8px 10px; }
 
-/* === Checklist Section === */
 .checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
 .checklist-body { padding:20px 24px; }
@@ -107,10 +101,8 @@ body {
 .checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
 .checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
 
-/* === Footer === */
 footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 
-/* === Responsive === */
 @media (max-width:600px) {
   body { padding:8px; }
   .trip-header { padding:24px 16px; }
@@ -132,8 +124,8 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 
 <div class="trip-header">
   <h1>🇦🇺 澳大利亚亲子自驾游</h1>
-  <div class="trip-meta">2026.09.26 - 10.06 | 11 天 10 晚 | 6 人（2 家庭 + 2 个 3 岁宝宝）</div>
-  <div class="trip-meta">悉尼 3 天 → 沿海岸自驾 6 天 → 墨尔本飞回悉尼 → 悉尼购物 1 天</div>
+  <div class="trip-meta">2026.09.26 - 10.06</div>
+  <div class="trip-meta">11 天 10 晚 | 6 人（2 家庭 + 2 个 3 岁宝宝） | 悉尼→大洋路→墨尔本</div>
 </div>
 
 <nav class="day-nav">
@@ -531,9 +523,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tbody>
 </table>
 <h2>🛒 待预订（实时价格）</h2>
-<blockquote>
-<p>更新时间：2026-05-17 · 两大一小一间房 · 含税 · 价格随时变动 · 重跑 <code>python3 2026australia/scripts/fetch-live-prices.py</code> 刷新</p>
-</blockquote>
+<p><em>价格抓取时间: 2026-05-17 11:58 · 2 大 1 小一间房 · 含税</em></p>
 <h3>✈️ 机票实时报价</h3>
 <table>
 <thead>
@@ -541,19 +531,19 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <th>航段</th>
 <th>日期</th>
 <th>最低价</th>
-<th>推荐航班（晚班，方便还车）</th>
+<th>推荐航班</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MEL → SYD（10/4 还车后）</td>
+<td>MEL → SYD（10/4 还车后晚班）</td>
 <td>2026-10-04</td>
-<td><strong>AUD 411</strong> (2 大 1 小)</td>
-<td><strong>JQ532 20:50→22:15</strong> Jetstar · <a href="https://www.google.com/travel/flights?q=MEL+to+SYD+2026-10-04">Google Flights →</a></td>
+<td><strong>AUD 411</strong></td>
+<td>JQJQ532 20:50→22:15 (AUD 411)</td>
 </tr>
 </tbody>
 </table>
-<h3>🏨 酒店实时报价（两大一小一间房，含税）</h3>
+<h3>🏨 酒店实时报价（两档对比）</h3>
 <table>
 <thead>
 <tr>
@@ -567,7 +557,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tr>
 <td>悉尼 D1-D3</td>
 <td>2026-09-26→2026-09-29</td>
-<td><a href="https://www.google.com/travel/hotels/entity/ChYI26yR49WQy7pTGgovbS8wdzRkbjRwEAE?check_in=2026-09-26&amp;check_out=2026-09-29"><strong>Ramada Sydney Cabramatta</strong> · 4★ · 4.0/5 (479) · <strong>AUD 177/晚</strong></a></td>
+<td><a href="https://www.google.com/travel/hotels/entity/ChYI26yR49WQy7pTGgovbS8wdzRkbjRwEAE?check_in=2026-09-26&amp;check_out=2026-09-29"><strong>Ramada Hotel &amp; Suites by Wyndham Sydney Cabramatta</strong> · 4★ · 4.0/5 (479) · <strong>AUD 177/晚</strong></a></td>
 <td><a href="https://www.google.com/travel/hotels/entity/ChgIoJXWzbLC8sfjARoLL2cvMXZ6djN0bjgQAQ?check_in=2026-09-26&amp;check_out=2026-09-29"><strong>Pullman Sydney Hyde Park</strong> · 5★ · 4.1/5 (2884) · <strong>AUD 321/晚</strong></a></td>
 </tr>
 <tr>
@@ -580,19 +570,19 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>Huskisson D5</td>
 <td>2026-09-30→2026-10-01</td>
 <td><a href="https://www.google.com/travel/hotels/entity/ChcIobKrlafo1rk_GgsvZy8xdHJwbGM1OBAB?check_in=2026-09-30&amp;check_out=2026-10-01"><strong>Huskisson Beach Motel</strong> · 3★ · 3.8/5 (532) · <strong>AUD 184/晚</strong></a></td>
-<td><a href="https://www.google.com/travel/hotels/entity/ChkQrYaT8IPFoKI_Gg0vZy8xMXprd2Z4Zmo3EAI?check_in=2026-09-30&amp;check_out=2026-10-01"><strong>Sussex Shores Studio</strong> · 5.0/5 (8) · <strong>AUD 130/晚</strong></a></td>
+<td><a href="https://www.google.com/travel/hotels/entity/ChkQrYaT8IPFoKI_Gg0vZy8xMXprd2Z4Zmo3EAI?check_in=2026-09-30&amp;check_out=2026-10-01"><strong>Sussex Shores - Studio Room - Upstairs</strong> · 5.0/5 (8) · <strong>AUD 130/晚</strong></a></td>
 </tr>
 <tr>
 <td>Eden D6</td>
 <td>2026-10-01→2026-10-02</td>
 <td><a href="https://www.google.com/travel/hotels/entity/ChcIsObLuN_5-7lyGgsvZy8xdGQ2Z245NxAB?check_in=2026-10-01&amp;check_out=2026-10-02"><strong>Whale Fisher Motel</strong> · 3★ · 4.6/5 (170) · <strong>AUD 140/晚</strong></a></td>
-<td><a href="https://www.google.com/travel/hotels/entity/ChoQ593ZrcyNlsGSARoNL2cvMTFrcmJ2ZGIwOBAC?check_in=2026-10-01&amp;check_out=2026-10-02"><strong>Calle Calle Bay Cottage</strong> · 4.86/5 (244) · <strong>AUD 260/晚</strong></a></td>
+<td><a href="https://www.google.com/travel/hotels/entity/ChoQ593ZrcyNlsGSARoNL2cvMTFrcmJ2ZGIwOBAC?check_in=2026-10-01&amp;check_out=2026-10-02"><strong>Calle Calle Bay Cottage. Self contained, close to everything.</strong> · 4.8612294/5 (244) · <strong>AUD 260/晚</strong></a></td>
 </tr>
 <tr>
 <td>Lakes Entrance D7</td>
 <td>2026-10-02→2026-10-03</td>
 <td><a href="https://www.google.com/travel/hotels/entity/ChcI55zg-J2hleRjGgsvZy8xdGQyaDF2eBAB?check_in=2026-10-02&amp;check_out=2026-10-03"><strong>Banjo Paterson Motor Inn</strong> · 3★ · 4.4/5 (329) · <strong>AUD 139/晚</strong></a></td>
-<td><a href="https://www.google.com/travel/hotels/entity/ChkIvP_Ktsnc_qVzGg0vZy8xMWI2czhoazZzEAE?check_in=2026-10-02&amp;check_out=2026-10-03"><strong>The Goat and Goose B&amp;B</strong> · 4.4/5 (175) · <strong>AUD 280/晚</strong></a></td>
+<td><a href="https://www.google.com/travel/hotels/entity/ChkIvP_Ktsnc_qVzGg0vZy8xMWI2czhoazZzEAE?check_in=2026-10-02&amp;check_out=2026-10-03"><strong>The Goat and Goose Bed &amp; Breakfast</strong> · 4.4/5 (175) · <strong>AUD 280/晚</strong></a></td>
 </tr>
 <tr>
 <td>Apollo Bay D8</td>
@@ -609,9 +599,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tbody>
 </table>
 <blockquote>
-<p>💰 <strong>总价预算</strong>（"好"档/"很好"档）：
-- "好" 档 7 晚：AUD 177×3 + 197 + 184 + 140 + 139 + 161 + 161×2 = <strong>AUD 1,513</strong>（≈¥7,100）
-- "很好" 档 7 晚：AUD 321×3 + 302 + 130 + 260 + 280 + 414 + 318×2 = <strong>AUD 2,667</strong>（≈¥12,535）</p>
+<p>💰 <strong>酒店总预算</strong>: 好档 <strong>AUD 1,674</strong> · 很好档 <strong>AUD 2,985</strong></p>
 </blockquote>
 <h3>🚗 租车</h3>
 <table>
@@ -631,8 +619,8 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tbody>
 </table>
 <blockquote>
-<p>数据源：<a href="https://github.com/punitarani/fli">fli library</a> (Google Flights，无 key) + <a href="https://serpapi.com/google-hotels-api">SerpAPI google_hotels</a> (免费 100 次/月)
-抓取脚本：<a href="scripts/fetch-live-prices.py">scripts/fetch-live-prices.py</a> · 数据存档：<a href="data/live-prices.json">data/live-prices.json</a></p>
+<p>📊 数据源：<a href="https://github.com/punitarani/fli">fli library</a> (Google Flights，无 key) + <a href="https://serpapi.com/google-hotels-api">SerpAPI google_hotels</a> (免费 100/月)
+🔄 刷新价格：<code>python3 tools/fetch-live-prices.py --config 2026australia/trip-config.json --output 2026australia/data/live-prices.json --markdown-out 2026australia/data/live-prices.md</code></p>
 </blockquote>
 <h2>出发前准备清单（按责任人）</h2>
 <h3>🏠 朋友们在国内准备</h3>
@@ -4697,88 +4685,33 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
   <div class="checklist-header">✅ 出行前准备清单</div>
   <div class="checklist-body md">
     <blockquote>
-<p>出发前 4-6 周开始准备，逐项打勾。标 ⚠️ 为关键事项。</p>
+<p>出发前 4-6 周开始准备，逐项打勾。</p>
 </blockquote>
 <h2>证件 / 文件 ⚠️</h2>
 <ul>
-<li>护照 — 有效期 ≥ 6 个月</li>
-<li>澳洲电子签证 ETA / 600 — 提前 4-6 周申请</li>
-<li>中国驾照 + <strong>NAATI 认证英文翻译件</strong>（自驾必带，淘宝/澳洲华人翻译公司，3-5 工作日，约 ¥150）</li>
-<li>行程单 + 酒店预订确认单（边检可能要查）</li>
-<li>儿童出行授权书 + 出生证明翻译件</li>
-<li>机票电子凭证（去/回程）</li>
-<li>旅行险保单（含医疗 + 自驾）</li>
+<li>护照（有效期 ≥ 6 个月）</li>
+<li>目的地签证</li>
+<li>国际驾照（如自驾）</li>
+<li>行程单 + 酒店预订</li>
+<li>旅行保险</li>
 </ul>
-<h2>现金 / 卡 ⚠️</h2>
+<h2>现金 / 卡</h2>
 <ul>
-<li>澳元 AUD 200/家应急</li>
-<li>双币信用卡 × 2（华夏 / 中行 Visa/Master 免货币转换费）</li>
-<li>Apple Pay / Google Pay 绑定信用卡</li>
+<li>当地货币应急现金</li>
+<li>双币信用卡 × 2</li>
 </ul>
-<h2>电子 / 装备</h2>
+<h2>装备</h2>
 <ul>
-<li>澳标 I 型转换插头 × 4</li>
-<li>三孔插线板 × 2</li>
-<li>充电宝 ≤ 100Wh（托运 + 随身均可）</li>
-<li>Type-C / Lightning 充电线 × 4</li>
-<li>iPad（孩子长途车上看动画）</li>
-</ul>
-<h2>衣物（南半球初春）</h2>
-<ul>
-<li>薄羽绒 / 抓绒外套 × 1</li>
-<li>防风冲锋衣 × 1（大洋路必备）</li>
-<li>长袖 T 恤 × 3-4</li>
-<li>短袖 × 2</li>
-<li>运动鞋 + 沙滩鞋</li>
-<li><strong>小朋友</strong>：保暖衣物加倍 + 防晒帽 + 沙滩玩具</li>
-</ul>
-<h2>防晒 ⚠️</h2>
-<ul>
-<li>SPF50+ 物理防晒霜 × 2 瓶</li>
-<li>太阳镜 + 宽檐帽（每人 1 顶）</li>
-<li>唇膏防晒</li>
-<li>晒后修复芦荟胶</li>
-</ul>
-<h2>用药</h2>
-<ul>
-<li>退烧药 / 创可贴 / 蚊虫膏 / 晕车药</li>
-<li>儿童常备药品（按医嘱）</li>
-<li>益生菌（饮食改变防腹泻）</li>
-</ul>
-<h2>提前预订（按时间排序）⚠️</h2>
-<ul>
-<li><strong>租车</strong>：60 天前（Hertz / Avis / Apex 7 座 People Mover + 2 童座）</li>
-<li><strong>NAATI 驾照翻译件</strong>：30 天前</li>
-<li><strong>悉尼酒店 3 晚</strong>：60 天前</li>
-<li><strong>沿途 5 晚酒店</strong>：30 天前</li>
-<li><strong>Featherdale Wildlife Park 门票 + 抱考拉合影</strong>：14 天前</li>
-<li><strong>Taronga Zoo 门票</strong>：3 天前（官网 -20%）</li>
-<li><strong>Puffing Billy 蒸汽小火车</strong>：⚠️ <strong>20 天前</strong>，周六班次最紧俏</li>
-<li><strong>Jervis Bay 海豚游船</strong>：7 天前</li>
-<li><strong>MEL→SYD 机票（10/4 19:00 后）</strong>：30 天前</li>
-<li><strong>悉尼接机 Maxi Taxi</strong>：7 天前</li>
-</ul>
-<h2>出发前 3 天</h2>
-<ul>
-<li>在线 check-in 国际航班，挑座位</li>
-<li>下载离线地图（Google Maps 选 Sydney / Melbourne / Apollo Bay 区域）</li>
-<li>下载 TRS App 准备退税</li>
-<li>通知信用卡发卡行海外消费（避免风控）</li>
-<li>国内 → 澳洲国际漫游或备 SIM 卡（Optus 30 天 25GB AUD 30）</li>
-<li>行李 4 大箱只装 60%，留空间给战利品</li>
-<li>真空压缩袋 4-6 个</li>
-</ul>
-<h2>出发当天</h2>
-<ul>
-<li>护照 + 签证打印件 + 行程单一并装随身</li>
-<li>提前 3 h 到 PVG T2</li>
-<li>充电宝从托运取出放随身</li>
+<li>转换插头</li>
+<li>充电宝（≤ 100Wh）</li>
+<li>防晒霜 / 太阳镜</li>
+<li>常备药</li>
 </ul>
   </div>
 </section>
 
 <footer>
-  Generated 2026 · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
+  Generated · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
 </footer>
 
 </body>
