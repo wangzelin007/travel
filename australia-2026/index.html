@@ -530,84 +530,42 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tr>
 </tbody>
 </table>
-<h2>🛒 待预订（点击直接打开 Trip.com 比价下单）</h2>
+<h2>🛒 待预订（实时价格）</h2>
 <blockquote>
-<p>⚠️ 价格随时变动。建议<strong>每天刷一次价格</strong>，触底再下单。比价备选：Booking.com / Hotels.com / Airbnb（小镇民宿性价比高）。</p>
+<p>更新时间：2026-05-17 · 两大一小一间房 · 含税 · 价格随时变动 · 重跑 <code>python3 2026australia/scripts/fetch-live-prices.py</code> 刷新</p>
 </blockquote>
-<h3>🏨 酒店</h3>
-<table>
-<thead>
-<tr>
-<th>时段</th>
-<th>入住 → 退房</th>
-<th>关键词</th>
-<th>链接</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>悉尼 D1-D3 (3 晚)</td>
-<td>2026-09-26 → 2026-09-29</td>
-<td>Sydney CBD Hilton</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Sydney+CBD+Hilton&amp;checkin=2026%2F09%2F26&amp;checkout=2026%2F09%2F29&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>Kiama D4 (1 晚)</td>
-<td>2026-09-29 → 2026-09-30</td>
-<td>Kiama NSW Hotel</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Kiama+NSW+Hotel&amp;checkin=2026%2F09%2F29&amp;checkout=2026%2F09%2F30&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>Huskisson D5 (1 晚)</td>
-<td>2026-09-30 → 2026-10-01</td>
-<td>Huskisson Jervis Bay</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Huskisson+Jervis+Bay&amp;checkin=2026%2F09%2F30&amp;checkout=2026%2F10%2F01&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>Eden D6 (1 晚)</td>
-<td>2026-10-01 → 2026-10-02</td>
-<td>Eden NSW</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Eden+NSW&amp;checkin=2026%2F10%2F01&amp;checkout=2026%2F10%2F02&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>Lakes Entrance D7 (1 晚)</td>
-<td>2026-10-02 → 2026-10-03</td>
-<td>Lakes Entrance VIC</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Lakes+Entrance+VIC&amp;checkin=2026%2F10%2F02&amp;checkout=2026%2F10%2F03&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>Apollo Bay D8 (1 晚)</td>
-<td>2026-10-03 → 2026-10-04</td>
-<td>Apollo Bay VIC</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Apollo+Bay+VIC&amp;checkin=2026%2F10%2F03&amp;checkout=2026%2F10%2F04&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-<tr>
-<td>悉尼 D9-D10 (2 晚)</td>
-<td>2026-10-04 → 2026-10-06</td>
-<td>Sydney CBD Hilton</td>
-<td><a href="https://www.trip.com/hotels/list?searchKeyword=Sydney+CBD+Hilton&amp;checkin=2026%2F10%2F04&amp;checkout=2026%2F10%2F06&amp;adult=4&amp;children=2">Trip.com →</a></td>
-</tr>
-</tbody>
-</table>
-<h3>✈️ 机票</h3>
+<h3>✈️ 机票实时报价</h3>
 <table>
 <thead>
 <tr>
 <th>航段</th>
 <th>日期</th>
-<th>人数</th>
-<th>链接</th>
+<th>最低价</th>
+<th>推荐航班（晚班，方便还车）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MEL → SYD（D9 还车后晚班 19:00+）</td>
+<td>MEL → SYD（10/4 还车后）</td>
 <td>2026-10-04</td>
-<td>6</td>
-<td><a href="https://www.trip.com/flights/showfarefirst?dcity=mel&amp;acity=syd&amp;ddate=2026-10-04&amp;class=Y&amp;quantity=6">Trip.com →</a></td>
+<td><strong>AUD 411</strong> (2 大 1 小)</td>
+<td><strong>JQ532 20:50→22:15</strong> Jetstar</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>价格数据：Google Flights（fli library），无需 API key。
+Booking 备选：<a href="https://www.google.com/travel/flights?q=MEL+to+SYD+2026-10-04">Google Flights →</a> · <a href="https://www.trip.com/flights/showfarefirst?dcity=mel&amp;acity=syd&amp;ddate=2026-10-04&amp;class=Y&amp;quantity=3">Trip.com →</a></p>
+</blockquote>
+<h3>🏨 酒店实时报价</h3>
+<p>⚠️ 需要免费 SerpAPI key（100 次/月够用）：</p>
+<ol>
+<li>注册 https://serpapi.com（Google 登录即可）</li>
+<li>从 https://serpapi.com/manage-api-key 复制 key</li>
+<li>加到 <a href="../.env">.env</a>：<code>SERPAPI_KEY=xxx</code></li>
+<li>重跑 <code>python3 2026australia/scripts/fetch-live-prices.py</code></li>
+</ol>
+<p>配好后会自动列出每家酒店 <strong>"好（3-4 星）" + "很好（4.5+ 星）"</strong> 两档实价。</p>
 <h3>🚗 租车</h3>
 <table>
 <thead>
@@ -626,7 +584,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tbody>
 </table>
 <blockquote>
-<p>链接生成器：<a href="scripts/booking-links.py">scripts/booking-links.py</a>（参数改后重跑即可）</p>
+<p>实时价数据脚本：<a href="scripts/fetch-live-prices.py">scripts/fetch-live-prices.py</a>，机票用 <a href="https://github.com/punitarani/fli">fli library</a>（Google Flights），酒店用 SerpAPI google_hotels。</p>
 </blockquote>
 <h2>出发前准备清单（按责任人）</h2>
 <h3>🏠 朋友们在国内准备</h3>
