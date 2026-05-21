@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>👟 悉尼奥特莱斯买鞋攻略 Epping 出发 · 2 人半日/一日</title>
+<meta name="description" content="悉尼奥特莱斯买鞋攻略：Epping 出发，比较 DFO Homebush 和 Birkenhead Point，含品牌、交通、折扣经验与半日行程。">
+<meta property="og:title" content="悉尼奥特莱斯买鞋攻略">
+<meta property="og:description" content="Epping 出发，2 人半日/一日，买鞋优先去哪里。">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --blue:#667eea;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#999;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { opacity:.92; font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:var(--orange)!important; color:#fff!important; border-color:var(--orange)!important; font-weight:700; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#4facfe; text-decoration:none; border-bottom:1px dotted #4facfe; }
+.md a:hover { color:#1d72d8; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px) {
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav a { padding:4px 10px; font-size:.75em; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="trip-header">
+  <h1>👟 悉尼奥特莱斯买鞋攻略</h1>
+  <div class="trip-meta">Epping 出发 · 2 人半日/一日</div>
+  <div class="trip-meta">DFO Homebush vs Birkenhead Point | 官方品牌 + 实时交通 + Reddit 用户经验</div>
+</div>
+
+<nav class="day-nav">
+  <a href="#overview">概览</a>
+</nav>
+
+<section class="overview" id="overview">
+  <h2>📋 行程概览</h2>
+  <div class="info-grid">
+    <div class="info-card"><h3>出发地</h3><p>Epping Station<br>北悉尼通勤区</p></div>
+<div class="info-card"><h3>人数</h3><p>2 人<br>你 + 室友</p></div>
+<div class="info-card"><h3>目标</h3><p>买鞋优先<br>兼顾交通方便</p></div>
+<div class="info-card"><h3>首选</h3><p>DFO Homebush<br>公交 29 分钟</p></div>
+<div class="info-card"><h3>备选</h3><p>Birkenhead Point<br>海边小镇感更强</p></div>
+<div class="info-card"><h3>信息源</h3><p>官网 + Google Maps + Reddit<br>2026-05 实时抓取</p></div>
+  </div>
+  <div class="md">
+    <blockquote>
+<p>2 人（你 + 室友）· 从 <strong>Epping 站</strong> 出发 · 半日 / 一日
+最近更新：2026-05-19</p>
+</blockquote>
+<h2>🎯 一句话结论</h2>
+<p><strong>首选 DFO Homebush</strong>：从 Epping 公交 <strong>29 min</strong> 就到、品牌最全（<strong>Asics / Nike / Adidas / New Balance / HOKA / Skechers / Converse / Hugo Boss / Coach</strong> 等 50+ 家）、不用换太多趟车。</p>
+<p><strong>备选 Birkenhead Point</strong>（Drummoyne）：海湾边购物中心，环境更好，但从 Epping 公交要 <strong>51 min</strong>，得绕去 city 再换公交，<strong>非常不推荐公交去</strong>。开车都要 23 min。</p>
+<blockquote>
+<p>综合建议：<strong>第一次去先 DFO Homebush 试水</strong>。如果买不到喜欢的款、或者想体验海景购物，再周末专门开车去 Birkenhead Point。</p>
+</blockquote>
+<h2>📊 两家奥特莱斯对比</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>DFO Homebush ⭐</th>
+<th>Birkenhead Point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位置</td>
+<td>3-5 Underwood Rd, Homebush</td>
+<td>19 Roseby St, Drummoyne</td>
+</tr>
+<tr>
+<td>从 Epping 开车</td>
+<td><strong>17 min / 11 km</strong></td>
+<td>23 min / 13 km</td>
+</tr>
+<tr>
+<td>从 Epping 公交</td>
+<td><strong>29 min</strong>（M1 14min + 526路 8min + 步行）</td>
+<td>51 min（要去 city 换 500X）</td>
+</tr>
+<tr>
+<td>公交便利度</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐</td>
+</tr>
+<tr>
+<td>鞋类品牌数</td>
+<td><strong>50+</strong>（含 HOKA）</td>
+<td>50+（无 HOKA）</td>
+</tr>
+<tr>
+<td>运动鞋专项</td>
+<td>✅ Asics / Nike / Adidas / NB / HOKA / Converse / Fila</td>
+<td>✅ Asics / Nike / Adidas / NB / Puma / Converse / Fila</td>
+</tr>
+<tr>
+<td>高端鞋</td>
+<td>✅ Jimmy Choo / Bally / Ecco / Aquila</td>
+<td>⚠️ Polo Ralph Lauren / Hugo Boss / Tommy Hilfiger（鞋少）</td>
+</tr>
+<tr>
+<td>童鞋</td>
+<td>✅ 专门 Childrens Footwear 分类</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>营业时间</td>
+<td>周一-三、五-日 <strong>10:00-18:00</strong>；<strong>周四 10:00-20:00</strong></td>
+<td>同左</td>
+</tr>
+<tr>
+<td>停车</td>
+<td><strong>付费</strong>（约 AUD 4-8/小时）</td>
+<td>付费</td>
+</tr>
+<tr>
+<td>餐饮</td>
+<td>Food Court 选择多</td>
+<td>Food Court + 海景</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 想"买鞋顺便逛逛 + 海景"选 Birkenhead；想"专心买鞋 + 公交方便"选 DFO。</p>
+</blockquote>
+<h2>🚇 Epping → DFO Homebush 详细路线</h2>
+<h3>方案 A：公交 ⭐ 推荐</h3>
+<p><strong>29 min · AUD 5-7（Opal 卡）</strong></p>
+<ol>
+<li>🚶 步行 2 min 到 Epping Station</li>
+<li>🚇 <strong>Metro M1（往 Sydenham 方向）→ Strathfield</strong>，14 min（1 站）
+   - 出 Strathfield Station 找 Everton Rd Stand B 站台</li>
+<li>🚌 <strong>526 路 → DFO Homebush, Underwood Rd</strong>，8 min（7 站）
+   - 在 DFO 门口下车</li>
+</ol>
+<p><strong>返程</strong>：在 DFO Underwood Rd 站等 526 路 → Strathfield → Metro M1 回 Epping</p>
+<h3>方案 B：开车</h3>
+<p><strong>17 min · 11 km</strong></p>
+<ul>
+<li>走 M2 → Concord Rd / Homebush Bay Dr</li>
+<li>⚠️ <strong>DFO 转盘是悉尼最烂的转盘</strong>（多个本地人确认），施工中，可能更堵</li>
+<li>停车场入口在 Australia Ave / Homebush Bay Dr 一侧</li>
+<li>周末别开车，<strong>绝对不要 EOFY 周六去</strong>（6 月底财年末，停车场爆满 1-2 小时排队）</li>
+</ul>
+<h3>方案 C：DiDi / Uber</h3>
+<p><strong>约 17 min · AUD 25-35</strong>（单程 2 人均摊更划算）</p>
+<h2>🚇 Epping → Birkenhead Point 详细路线</h2>
+<h3>公交 ⚠️ 不推荐</h3>
+<p><strong>51 min · AUD 6-8</strong></p>
+<ol>
+<li>🚶 步行 2 min 到 Epping Station</li>
+<li>🚇 <strong>Metro M1 → Gadigal</strong>，26 min（9 站，等于穿越大半个北区到 city）</li>
+<li>🚶 步行 3 min 到 Town Hall, Park St, Stand K</li>
+<li>🚌 <strong>500X 路 → Victoria Rd before Day St</strong>，11 min（5 站）</li>
+<li>🚶 步行 5 min 到 Birkenhead Point</li>
+</ol>
+<h3>开车 ⭐ 推荐</h3>
+<p><strong>23 min · 13 km</strong></p>
+<ul>
+<li>走 M2 → Lane Cove Tunnel → Iron Cove Bridge → Victoria Rd</li>
+<li>海湾边停车场，价格类似 DFO</li>
+</ul>
+<h2>👟 DFO Homebush 鞋类品牌完整清单</h2>
+<blockquote>
+<p>据官方 stores 页面（2026-05 最新拉取）</p>
+</blockquote>
+<h3>🏃 运动鞋 / 跑鞋</h3>
+<ul>
+<li><strong>Asics Outlet</strong> — 跑鞋首选，Gel-Kayano / Nimbus 等老款常打 5-7 折</li>
+<li><strong>Adidas Outlet</strong> — 鞋包齐全</li>
+<li><strong>Nike Authentic Factory Outlet</strong> — Air Force 1 等经典款常打 4-6 折</li>
+<li><strong>New Balance Outlet</strong> — 990 / 991 等热门款偶尔有</li>
+<li><strong>HOKA Outlet</strong> — 上一季 Bondi / Clifton 常打 6-8 折（BH 没有）</li>
+<li><strong>Skechers Outlet</strong> — 全店常态 5-7 折</li>
+<li><strong>Converse</strong> (Authentic Factory Outlet) — Chuck Taylor 经典款 5-6 折</li>
+<li><strong>Fila</strong> — 老爹鞋常态半价</li>
+</ul>
+<h3>👞 商务 / 休闲皮鞋</h3>
+<ul>
+<li><strong>Ecco Shoes</strong> — 通勤皮鞋 / Soft 7 等常打 6-8 折</li>
+<li><strong>Aquila</strong> — 澳洲本土皮鞋品牌，西装鞋常 4-6 折</li>
+<li><strong>Hugo Boss Outlet</strong> — 商务鞋偶尔有半价</li>
+<li><strong>Lacoste</strong> — 小白鞋 + polo 一起买</li>
+</ul>
+<h3>👠 女鞋</h3>
+<ul>
+<li><strong>Jimmy Choo Outlet</strong> ⭐ — 高跟鞋上一季常 5-6 折（市价 AUD 1000+ → AUD 500-700）</li>
+<li><strong>Bally</strong> — 皮鞋 + 包，5-7 折</li>
+<li><strong>Coach</strong> — 鞋包都有</li>
+<li><strong>Furla</strong> — 包多鞋少</li>
+<li><strong>Kate Spade</strong> — 平底鞋常打半价</li>
+<li><strong>Tory Burch</strong>（如有）— 经典款常态 5-6 折</li>
+<li><strong>Steve Madden</strong> — 当季款 3-5 折</li>
+</ul>
+<h3>🏕️ 户外鞋</h3>
+<ul>
+<li><strong>Kathmandu</strong> — 徒步鞋 30-60% off</li>
+<li><strong>Macpac</strong> — 户外鞋 + 装备</li>
+<li><strong>Adventure Megastore</strong> — 综合户外</li>
+<li><strong>The North Face</strong> — 鞋少但有</li>
+</ul>
+<h3>👶 童鞋</h3>
+<ul>
+<li>专门 <strong>Childrens Footwear</strong> 分类</li>
+<li>Carters Osh Kosh Bgosh 童装店通常有童鞋</li>
+</ul>
+<h2>👟 Birkenhead Point 鞋类品牌</h2>
+<h3>🏃 运动鞋</h3>
+<ul>
+<li><strong>Nike</strong> / <strong>Adidas</strong> / <strong>Asics</strong> / <strong>New Balance</strong> / <strong>Puma</strong> / <strong>Converse</strong> / <strong>Fila</strong></li>
+<li>⚠️ 没有 HOKA、没有 Brooks</li>
+</ul>
+<h3>👞 休闲 / 商务</h3>
+<ul>
+<li><strong>Ecco</strong> / <strong>Skechers</strong> / <strong>UGG</strong></li>
+<li><strong>Hugo Boss</strong> / <strong>Tommy Hilfiger</strong> / <strong>Calvin Klein</strong> / <strong>Polo Ralph Lauren</strong> — 鞋少为主，主打衣服</li>
+<li><strong>Michael Kors</strong> / <strong>Coach</strong> / <strong>Guess</strong> — 鞋包</li>
+</ul>
+<h3>👶 童鞋</h3>
+<ul>
+<li><strong>Polo Ralph Lauren Kids</strong></li>
+</ul>
+<h2>💰 真实折扣力度（本地 Reddit 用户经验，2025-2026）</h2>
+<h3>✅ 确实能买到便宜的</h3>
+<ul>
+<li><strong>Polo Ralph Lauren</strong> 70%+ off 时 polo 衫 &lt; AUD 30，鞋类同时折</li>
+<li><strong>Boxing Day</strong>（12/26）+ <strong>EOFY</strong>（6 月底）是<strong>全年最低价</strong></li>
+<li><strong>Asics / Nike 老款跑鞋</strong>常态 5-6 折（市价 AUD 200 → AUD 80-100）</li>
+<li><strong>HOKA 上一季款</strong> 6-8 折</li>
+</ul>
+<h3>⚠️ 注意 outlet 套路</h3>
+<blockquote>
+<p>多位用户在 r/sydney 提醒（2025 帖）：
+- <strong>Tommy Hilfiger / Calvin Klein</strong> 部分 outlet 货是<strong>专门为 outlet 生产</strong>的低质量版，<strong>不是正价店打折</strong>。看面料和工艺细节
+- 正品打折版 vs outlet 专供版的区分：
+  - 看吊牌上的款号是否能在官网搜到 → 能搜到 = 正品打折
+  - 看面料标 → outlet 专供常用更便宜的混纺
+- <strong>运动鞋一般是正品</strong>（Nike / Adidas / Asics 等运动品牌的 outlet 多是上一季正品库存）</p>
+</blockquote>
+<h3>📉 历史价格参考（Asics / Nike 跑鞋）</h3>
+<table>
+<thead>
+<tr>
+<th>品牌款式</th>
+<th>市价（专卖店）</th>
+<th>Outlet 常态价</th>
+<th>大促价（Boxing Day）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asics Gel-Kayano 30</td>
+<td>AUD 280</td>
+<td>AUD 140-180</td>
+<td>AUD 100-130</td>
+</tr>
+<tr>
+<td>Nike Air Force 1 经典款</td>
+<td>AUD 170</td>
+<td>AUD 110-130</td>
+<td>AUD 80-100</td>
+</tr>
+<tr>
+<td>Nike Pegasus 41 上一季</td>
+<td>AUD 200</td>
+<td>AUD 100-130</td>
+<td>AUD 80-100</td>
+</tr>
+<tr>
+<td>New Balance 990v6</td>
+<td>AUD 380</td>
+<td>AUD 240-300</td>
+<td>偶尔 200</td>
+</tr>
+<tr>
+<td>HOKA Clifton 9</td>
+<td>AUD 250</td>
+<td>AUD 160-180</td>
+<td>AUD 130-160</td>
+</tr>
+</tbody>
+</table>
+<h2>🗓️ 啥时候去最划算</h2>
+<h3>✅ 最佳时机</h3>
+<ul>
+<li><strong>Boxing Day Sale</strong>（12/26 起 1 周）— 全年最低，但<strong>人挤死</strong></li>
+<li><strong>EOFY</strong>（6 月最后两周到 7 月初）— 第二好的时机</li>
+<li><strong>Click Frenzy / Black Friday</strong>（11 月底）— 中等</li>
+<li><strong>Mid Year Sale</strong>（6 月中）— 中等</li>
+<li><strong>EOSS End of Season Sale</strong>（季节交替）— 看个体品牌</li>
+</ul>
+<h3>❌ 避开</h3>
+<ul>
+<li><strong>周六全天</strong> — 停车爆满 + 试鞋排队</li>
+<li><strong>公共假期连休</strong>（如 Labour Day Long Weekend 10 月初）</li>
+<li><strong>EOFY 周六</strong> — 多人 Reddit 反馈"绝对不要"</li>
+<li><strong>下雨天周末</strong> — 室外停车场更挤</li>
+</ul>
+<h3>🌅 最佳时段</h3>
+<ul>
+<li><strong>工作日上午 10:00-12:00</strong> — 刚开门，人少，店员闲能帮你试码</li>
+<li><strong>周四 18:00-20:00</strong> ⭐ — 只有周四开到晚 8 点，下班顺路逛</li>
+<li><strong>周日下午 16:30 后</strong> — 准备打烊，人最少（但 18:00 关门要赶）</li>
+</ul>
+<h2>🎒 实战 Tips（来自 Reddit 老司机）</h2>
+<ol>
+<li><strong>试穿一定要走一走</strong> — 跑鞋特别是 HOKA / 新款 NB 鞋楦差异大</li>
+<li><strong>不能退货只能换</strong> — 多数 outlet 政策；试好再付钱</li>
+<li><strong>鞋码用 AUS 不是 EU</strong> — AUS = UK 码（女鞋同尺码常+1.5 = US 男鞋）</li>
+<li><strong>Boxing Day 早到</strong> — 8 点排队，10 点开门一冲进去常没货</li>
+<li><strong>现金折扣很少</strong> — 用信用卡 / Apple Pay 即可，<strong>别忘开海外消费</strong>（如果用中国卡）</li>
+<li><strong>大件能寄存</strong> — 服务台帮存购物袋，方便继续逛</li>
+<li><strong>多带个空包</strong> — 鞋盒占地方，决定要的鞋让店员脱掉盒子装袋</li>
+<li><strong>不要轻信"全店 50% off"</strong> — 通常是部分款，多数是 30%</li>
+<li><strong>DFO 有 OUTLET 内 OUTLET</strong> — 主店折扣区里还有 clearance 区，<strong>找标 RED TAG / FINAL CLEARANCE</strong></li>
+<li><strong>不带 TRS 退税身份</strong> — TRS 退税仅限<strong>离境前 60 天内购买、离境时随身带出的游客</strong>。如果你和室友是本地居民（学签 / PR / 公民）就<strong>不能用 TRS</strong></li>
+</ol>
+<h2>📋 半日行程建议（DFO Homebush 工作日）</h2>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>行程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09:30</td>
+<td>Epping Station 集合</td>
+</tr>
+<tr>
+<td>09:35</td>
+<td>Metro M1 → Strathfield（14 min）</td>
+</tr>
+<tr>
+<td>09:55</td>
+<td>Strathfield 站 → 找 Everton Rd Stand B 站台</td>
+</tr>
+<tr>
+<td>10:00</td>
+<td>526 路 → DFO（8 min）</td>
+</tr>
+<tr>
+<td><strong>10:10</strong></td>
+<td>抵达 DFO Homebush</td>
+</tr>
+<tr>
+<td>10:15-11:30</td>
+<td><strong>第一轮：先扫运动鞋</strong>（Asics → Nike → Adidas → NB → HOKA）— 试穿、记款式价格</td>
+</tr>
+<tr>
+<td>11:30-12:00</td>
+<td><strong>第二轮：休闲鞋</strong>（Skechers → Ecco → Converse → Aquila）</td>
+</tr>
+<tr>
+<td>12:00-13:00</td>
+<td>Food Court 午餐（推荐 Mappen 乌冬 / Burger Project / Roll'd 越南卷）</td>
+</tr>
+<tr>
+<td>13:00-14:00</td>
+<td><strong>第三轮：决策买单</strong> — 回到中意的店，复试再下单</td>
+</tr>
+<tr>
+<td>14:00-14:30</td>
+<td>服务台寄存购物袋，去看看包包 / 服饰区</td>
+</tr>
+<tr>
+<td>14:30</td>
+<td>离开，526 路回 Strathfield</td>
+</tr>
+<tr>
+<td>14:38</td>
+<td>Strathfield → Metro M1 → Epping（14 min）</td>
+</tr>
+<tr>
+<td>15:00</td>
+<td>抵达 Epping</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 <strong>如果想加 Birkenhead Point</strong>：本日 DFO 看好不买，明天周四 18:00 后开车去 Birkenhead 比价，<strong>周四开到 20:00</strong>。</p>
+</blockquote>
+<h2>💳 支付 &amp; 退换</h2>
+<ul>
+<li><strong>支付</strong>：Visa / Mastercard / Apple Pay / Google Pay / EFTPOS / Cash</li>
+<li><strong>银联</strong>：部分大牌支持，小店不一定</li>
+<li><strong>支付宝 / 微信</strong>：仅个别中餐店和华人多的店</li>
+<li><strong>退货</strong>：澳洲法律 outlet <strong>可以</strong>因质量问题退；<strong>不是质量问题（不喜欢、尺码不合）一般只换不退</strong>，且<strong>清仓款不能换</strong></li>
+<li><strong>保留收据</strong>：14 天内能换鞋码</li>
+</ul>
+<h2>📍 地址 + 联系方式</h2>
+<h3>DFO Homebush</h3>
+<ul>
+<li>📍 3-5 Underwood Rd, Homebush NSW 2140</li>
+<li>🌐 https://www.homebush.dfo.com.au</li>
+<li>📞 (02) 9748 9800</li>
+<li>🅿️ 付费停车场（约 AUD 4/小时，前 3 小时免费 — <strong>确认下，常变动</strong>）</li>
+</ul>
+<h3>Birkenhead Point</h3>
+<ul>
+<li>📍 19 Roseby St, Drummoyne NSW 2047</li>
+<li>🌐 https://www.birkenheadpoint.com.au</li>
+<li>📞 (02) 9812 8800</li>
+<li>🅿️ 付费停车场</li>
+</ul>
+<h2>📚 数据来源（2026-05 实时抓取）</h2>
+<table>
+<thead>
+<tr>
+<th>来源</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://www.homebush.dfo.com.au">DFO Homebush 官网</a></td>
+<td>品牌列表、营业时间</td>
+</tr>
+<tr>
+<td><a href="https://www.birkenheadpoint.com.au">Birkenhead Point 官网</a></td>
+<td>品牌列表</td>
+</tr>
+<tr>
+<td>Google Maps Directions API</td>
+<td>Epping → 两 outlet 真实公交/驾驶时间</td>
+</tr>
+<tr>
+<td>r/sydney 多个 thread（2024-2025）</td>
+<td>真实用户折扣经验 + 避坑</td>
+</tr>
+<tr>
+<td>Wikipedia</td>
+<td>outlet 历史 / 位置背景</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 价格 + 营业时间 + 品牌列表会变。<strong>出发前 1 周再核一次官网</strong>。</p>
+</blockquote>
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer>
+  Built 2026-05-22 08:08 (v2.0.0) · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
+</footer>
+
+</body>
+</html>
