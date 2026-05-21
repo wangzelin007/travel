@@ -54,6 +54,11 @@
       h2{font-size:16px}
       table{font-size:12.5px}
     }
+    /* Hotel A/B comparison table */
+    .hotel-vs td:first-child{font-weight:700;color:var(--ink);background:#faf7ed;width:18%;white-space:nowrap}
+    .hotel-vs th{font-size:13px}
+    .hotel-vs td{vertical-align:top;line-height:1.55}
+    .hotel-vs code{background:#f4eee2;padding:1px 5px;border-radius:4px;font-size:11px}
     .version-switcher{
       max-width:1260px;margin:0 auto 14px;padding:8px 10px;background:#fffdf8;
       border:1px solid var(--line);border-radius:12px;
@@ -428,8 +433,237 @@
       </p>
     </div>
 
-    <!-- ============== 6. 预算拆项 ============== -->
-    <h2><span class="num">06</span>预算逐项拆分（每家庭 2 大 1 小，AUD / CNY ≈ ×4.7）</h2>
+    <!-- ============== 6. Sydney CBD 二选一 ============== -->
+    <h2><span class="num">06</span>Sydney CBD 二选一 · Novotel Darling Harbour vs Song Hotel Sydney</h2>
+    <p class="lede">
+      4 晚口径（V1 D1–D3 + D10；V2 D1–D4），2 大 1 小一间房。价格 = 2026/05/22 SerpAPI 实抓 · check-in 2026/09/26 → check-out 2026/09/30。
+    </p>
+    <div class="card">
+      <table class="hotel-vs">
+        <colgroup><col style="width:18%"><col style="width:41%"><col style="width:41%"></colgroup>
+        <thead>
+          <tr>
+            <th>对比项</th>
+            <th class="v1c">A · Novotel Sydney on Darling Harbour</th>
+            <th class="v2c">B · Song Hotel Sydney</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📍 地址</td>
+            <td>100 Murray St, <b>Pyrmont</b>（Darling Harbour 西岸）</td>
+            <td>11 Wentworth Ave, <b>Surry Hills</b>（Hyde Park 东南角）</td>
+          </tr>
+          <tr>
+            <td>🗺 GPS</td>
+            <td><code>-33.8723, 151.1979</code></td>
+            <td><code>-33.8773, 151.2116</code></td>
+          </tr>
+          <tr>
+            <td>🚇 最近车站</td>
+            <td>Town Hall 站 9 min（过 Pyrmont Bridge）；Convention Light Rail 1 min</td>
+            <td>Museum 站 4 min；Town Hall 站 11 min</td>
+          </tr>
+          <tr>
+            <td>🐠 到 SEA LIFE 水族馆</td>
+            <td class="v1c"><b>步行 5 min</b>（沿 Darling Harbour）</td>
+            <td>步行 17 min / 轻轨 1 站</td>
+          </tr>
+          <tr>
+            <td>🌳 到 Hyde Park</td>
+            <td>步行 18 min</td>
+            <td class="v2c"><b>步行 2 min</b>（隔街即到）</td>
+          </tr>
+          <tr>
+            <td>🌉 到歌剧院/环形码头</td>
+            <td>步行 22 min / 轻轨+步行 18 min</td>
+            <td>步行 25 min / 公交 20 min</td>
+          </tr>
+          <tr>
+            <td>🏗 开业 · 翻新</td>
+            <td>1991 年开业（Accor 亚太首店），2018 客房翻新</td>
+            <td>历史建筑改建，2022 重新装修升级为 4★</td>
+          </tr>
+          <tr>
+            <td>🛏 房间总数</td>
+            <td><b>525 间</b>（10 层大型酒店）</td>
+            <td><b>~82 间</b>（精品规模）</td>
+          </tr>
+          <tr>
+            <td>📐 标准房面积</td>
+            <td>Superior Queen ~27 m²；Family Room ~34 m²</td>
+            <td>Standard Twin ~24 m²；Family Room ~30 m²</td>
+          </tr>
+          <tr>
+            <td>⭐ 评分（评论数）</td>
+            <td>4.2 / 5（<b>5,463</b> 条 Google 评论）</td>
+            <td>4.2 / 5（<b>3,689</b> 条 Google 评论）</td>
+          </tr>
+          <tr>
+            <td>🏊 泳池 / 健身房</td>
+            <td class="v1c">✓ 室外泳池 + 健身房（含 Spa 区）</td>
+            <td>✗ 无泳池 ✗ 无健身房</td>
+          </tr>
+          <tr>
+            <td>🥐 早餐</td>
+            <td>付费 AUD ~38/成人/天</td>
+            <td class="v2c"><b>含免费自助早餐</b>（4 人 4 天约省 AUD 380）</td>
+          </tr>
+          <tr>
+            <td>🅿 停车</td>
+            <td>酒店内 AUD 60/晚</td>
+            <td>周边 NCP AUD 45–55/晚（非自带车库）</td>
+          </tr>
+          <tr>
+            <td>👶 亲子配置</td>
+            <td>Family Room 可加婴儿床；港湾景房可看每周末 9pm 烟花</td>
+            <td>家庭房+客厅区，离 Hyde Park 儿童乐园 200 m</td>
+          </tr>
+          <tr>
+            <td>💰 单晚价（2 大 1 小）</td>
+            <td class="v1c num"><b>AUD 311</b></td>
+            <td class="v2c num"><b>AUD 340</b></td>
+          </tr>
+          <tr>
+            <td>💵 4 晚总价</td>
+            <td class="v1c num"><b>AUD 1,244</b> · ¥5,847</td>
+            <td class="v2c num"><b>AUD 1,360</b> · ¥6,392</td>
+          </tr>
+          <tr>
+            <td>📊 4 晚总价（含早餐折算）</td>
+            <td class="num">AUD 1,244 + 早餐 ~380 = <b>1,624</b></td>
+            <td class="v2c num">AUD 1,360（含早餐）= <b>1,360</b></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="footnote">
+        <b>结论：</b>
+        ① <b>带泳池要 Novotel</b>（小娃下午回酒店泡水）；接送水族馆/环形码头线路也最近。
+        ② <b>含早餐 + 离 Hyde Park 近 → Song</b>，落地次日想"草地放风 + 不开火"最省心，且总价含早餐反而更低。
+        ③ 综合：<b>有小孩 + Bondi/Manly/Opera House 行程多 → Song</b>；<b>Darling Harbour 沉浸 + 想泳池 → Novotel</b>。
+        4 晚差额仅 AUD 116（¥545），可按动线偏好选。
+      </p>
+    </div>
+
+    <!-- ============== 7. Melbourne CBD 二选一 ============== -->
+    <h2><span class="num">07</span>Melbourne CBD 二选一 · Le Méridien Melbourne vs Dorsett Melbourne</h2>
+    <p class="lede">
+      3 晚口径（V2 D6–D8），2 大 1 小一间房。价格 = 2026/05/22 SerpAPI 实抓 · check-in 2026/10/01 → check-out 2026/10/04。
+    </p>
+    <div class="card">
+      <table class="hotel-vs">
+        <colgroup><col style="width:18%"><col style="width:41%"><col style="width:41%"></colgroup>
+        <thead>
+          <tr>
+            <th>对比项</th>
+            <th class="v1c">A · Le Méridien Melbourne</th>
+            <th class="v2c">B · Dorsett Melbourne</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>📍 地址</td>
+            <td>20 Bourke Street, <b>东 CBD 剧院区</b>（Parliament 旁）</td>
+            <td>615 Little Lonsdale St, <b>西 CBD · West Side Place</b>（Spencer 旁）</td>
+          </tr>
+          <tr>
+            <td>🗺 GPS</td>
+            <td><code>-37.8115, 144.9723</code></td>
+            <td><code>-37.8139, 144.9533</code></td>
+          </tr>
+          <tr>
+            <td>🚇 最近车站</td>
+            <td class="v1c"><b>Parliament 站 1 min</b>；82 路有轨电车门口</td>
+            <td>Flagstaff 站 5 min；Spencer St Free Tram 1 min</td>
+          </tr>
+          <tr>
+            <td>🛍 到 Bourke St Mall</td>
+            <td class="v1c"><b>步行 5 min</b>（沿 Bourke St 直走）</td>
+            <td>步行 11 min</td>
+          </tr>
+          <tr>
+            <td>🚉 到 Southern Cross 站<br>（飞 SYD 出发口）</td>
+            <td>免费有轨电车 12 min</td>
+            <td class="v2c"><b>步行 8 min</b>（拎大行李最省力）</td>
+          </tr>
+          <tr>
+            <td>🚂 到 Puffing Billy 巴士集合点</td>
+            <td>Federation Square 步行 8 min</td>
+            <td>Federation Square 步行 14 min（或免费电车 4 站）</td>
+          </tr>
+          <tr>
+            <td>🎢 到 SEA LIFE Melbourne</td>
+            <td>步行 15 min / 免费电车 6 站</td>
+            <td class="v2c"><b>步行 9 min</b>（沿 Yarra 河）</td>
+          </tr>
+          <tr>
+            <td>🏗 开业</td>
+            <td><b>2023/05 开业</b>（1850s 历史剧院建筑改造，Marriott 旗舰）</td>
+            <td><b>2023/04/18 开业</b>（全新建筑，8 层）</td>
+          </tr>
+          <tr>
+            <td>🛏 房间总数</td>
+            <td><b>235 间</b>（含 14 套房，精品规模）</td>
+            <td><b>316 间</b>（中大型）</td>
+          </tr>
+          <tr>
+            <td>📐 标准房面积</td>
+            <td>Deluxe King <b>28 m²</b>；Suite 起 45 m²</td>
+            <td>Dorsett Room <b>27 m²</b>；Deluxe King 30 m²；Balcony Suite 93 m²</td>
+          </tr>
+          <tr>
+            <td>⭐ 评分（评论数）</td>
+            <td>4.3 / 5（423 条 Google 评论 · 新店）</td>
+            <td>4.3 / 5（<b>944</b> 条 Google 评论 · 多 2.2 倍样本）</td>
+          </tr>
+          <tr>
+            <td>🌟 星级</td>
+            <td class="v1c"><b>5★</b>（Marriott Le Méridien 品牌定位）</td>
+            <td>4★</td>
+          </tr>
+          <tr>
+            <td>🏊 泳池 / 健身房</td>
+            <td>✓ 室内泳池 + 健身房 + Spa</td>
+            <td class="v2c">✓ <b>25 m 室内泳池</b> + 健身房 + Spa + 桑拿</td>
+          </tr>
+          <tr>
+            <td>🥐 早餐</td>
+            <td>Marvelle Bar 自助 AUD 42/成人/天</td>
+            <td>Cantonese 早餐 AUD 38/成人/天</td>
+          </tr>
+          <tr>
+            <td>🅿 停车（含 GST）</td>
+            <td>代客 AUD 70/晚</td>
+            <td>自驾入库 AUD 50/晚（带儿童车更友好）</td>
+          </tr>
+          <tr>
+            <td>👶 亲子配置</td>
+            <td>免费婴儿床；电视有 Kids Channel；早餐区有 Kids Corner</td>
+            <td>Family Connecting Room；泳池更深更适合 3 岁练水；楼下 Spencer St 餐饮多</td>
+          </tr>
+          <tr>
+            <td>💰 单晚价（2 大 1 小）</td>
+            <td class="v1c num"><b>AUD 495</b></td>
+            <td class="v2c num"><b>AUD 470</b></td>
+          </tr>
+          <tr>
+            <td>💵 3 晚总价</td>
+            <td class="v1c num"><b>AUD 1,485</b> · ¥6,980</td>
+            <td class="v2c num"><b>AUD 1,410</b> · ¥6,627</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="footnote">
+        <b>结论：</b>
+        ① <b>5★ 体验 + 历史建筑 + 东 CBD 剧院区 → Le Méridien</b>，到 Bourke St Mall 与 Puffing Billy 集合点最近，适合走"白天景点 + 晚上 Mall 逛街"动线。
+        ② <b>带行李去机场 + 25 m 大泳池 + 评论样本充足 → Dorsett</b>，西 CBD 距 Southern Cross 站仅 8 min，10/4 拖大行李飞 SYD 最省力；泳池更适合小娃练水。
+        ③ <b>价格</b>：Dorsett 3 晚便宜 AUD 75（¥353），同时享受 4★ 而非 5★。<b>看重星级</b>选 Le Méridien；<b>看重务实 + 总价</b>选 Dorsett。
+        ④ 两家都是 2023 年新开业，硬件状态接近全新。
+      </p>
+    </div>
+
+    <!-- ============== 8. 预算拆项 ============== -->
+    <h2><span class="num">08</span>预算逐项拆分（每家庭 2 大 1 小，AUD / CNY ≈ ×4.7）</h2>
     <div class="card">
       <table>
         <thead>
@@ -518,7 +752,7 @@
     </div>
 
     <!-- ============== 7. 综合评分 ============== -->
-    <h2><span class="num">07</span>综合评分（每项 1–5 分，越高越好）</h2>
+    <h2><span class="num">09</span>综合评分（每项 1–5 分，越高越好）</h2>
     <div class="card">
       <table>
         <thead>
@@ -550,7 +784,7 @@
     </div>
 
     <!-- ============== 8. 结论 ============== -->
-    <h2><span class="num">08</span>结论与可执行建议</h2>
+    <h2><span class="num">10</span>结论与可执行建议</h2>
     <div class="card">
       <table>
         <thead>
