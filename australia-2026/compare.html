@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>澳大利亚 2026 · V1 vs V2 调研对比报告</title>
+  <style>
+    :root{
+      --bg:#f3efe7;--paper:#fffdf8;--ink:#1f2937;--muted:#6b7280;--line:#d8d1c3;
+      --v1:#6d28d9;--v1bg:#ede9fe;--v2:#0f766e;--v2bg:#ccfbf1;
+      --good:#166534;--goodbg:#dcfce7;--warn:#9a3412;--warnbg:#ffedd5;
+      --mid:#075985;--midbg:#e0f2fe;--soft:#f4eee2;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#ebe3d4 0%,#f5f1e8 100%);color:var(--ink);font:14px/1.55 "PingFang SC","Hiragino Sans GB","Noto Sans CJK SC",sans-serif}
+    .wrap{max-width:1260px;margin:0 auto;padding:24px 16px 40px}
+    h1{font-size:28px;margin:0 0 4px;line-height:1.2}
+    h2{font-size:18px;margin:24px 0 8px;line-height:1.3;display:flex;align-items:center;gap:8px}
+    h2 .num{display:inline-block;background:var(--ink);color:#fffdf8;font-size:13px;font-weight:800;border-radius:6px;padding:2px 8px}
+    .lede{color:var(--muted);font-size:13px;margin:0 0 4px}
+    .meta{color:var(--muted);font-size:12px;margin:0 0 16px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:0 6px 18px rgba(40,42,48,.05);margin-top:10px;overflow-x:auto}
+    table{width:100%;border-collapse:collapse;background:var(--paper);font-size:13.5px}
+    th,td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}
+    th{background:var(--soft);font-weight:800;white-space:nowrap}
+    td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .v1{color:var(--v1);font-weight:700}.v2{color:var(--v2);font-weight:700}
+    .v1c{background:#faf7ff}.v2c{background:#f0fbf8}
+    .tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:800;line-height:1.5}
+    .tag-v1{background:var(--v1bg);color:var(--v1)}
+    .tag-v2{background:var(--v2bg);color:var(--v2)}
+    .tag-good{background:var(--goodbg);color:var(--good)}
+    .tag-warn{background:var(--warnbg);color:var(--warn)}
+    .tag-mid{background:var(--midbg);color:var(--mid)}
+    .yes{color:var(--good);font-weight:800}
+    .no{color:#9ca3af}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+    .kpi{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+    .kpi .label{color:var(--muted);font-size:12px}
+    .kpi .v1n,.kpi .v2n{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+    .kpi .v1n{color:var(--v1)}.kpi .v2n{color:var(--v2)}
+    .kpi .delta{font-size:12px;color:var(--muted);margin-top:2px}
+    .bar{display:inline-block;height:10px;background:#e5e7eb;border-radius:6px;vertical-align:middle;margin-right:6px}
+    .bar.v1b{background:var(--v1)}
+    .bar.v2b{background:var(--v2)}
+    .barwrap{display:flex;align-items:center;gap:6px;min-width:160px}
+    .small{font-size:12px;color:var(--muted)}
+    .legend{font-size:12px;color:var(--muted);margin:6px 0 0}
+    .legend .tag{margin-right:6px}
+    .footnote{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.6}
+    @media (max-width:900px){
+      .kpi-grid{grid-template-columns:repeat(2,1fr)}
+      h1{font-size:22px}
+      h2{font-size:16px}
+      table{font-size:12.5px}
+    }
+    .version-switcher{
+      max-width:1260px;margin:0 auto 14px;padding:8px 10px;background:#fffdf8;
+      border:1px solid var(--line);border-radius:12px;
+      display:flex;flex-wrap:wrap;gap:6px;justify-content:center;align-items:center;
+    }
+    .version-switcher .vs-label{font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.5px;margin-right:4px}
+    .version-switcher a{
+      display:inline-block;padding:5px 12px;border-radius:16px;
+      font-size:12.5px;font-weight:800;text-decoration:none;
+      background:#f4eee2;color:var(--ink);border:1px solid var(--line);
+    }
+    .version-switcher a:hover{background:var(--v1);color:#fff;border-color:var(--v1)}
+    .version-switcher a.active{background:var(--ink);color:#fffdf8;border-color:var(--ink);cursor:default}
+    .version-switcher a.pdf-link{background:#fef3c7;color:#92400e;border-color:#fcd34d}
+    .version-switcher a.pdf-link:hover{background:#c2410c;color:#fff;border-color:#c2410c}
+  </style>
+</head>
+<body>
+  <nav class="version-switcher">
+    <span class="vs-label">版本</span>
+    <a href="https://wangzelin007.github.io/travel/australia-2026/">V1 沿海长线</a>
+    <a href="https://wangzelin007.github.io/travel/australia-2026/v2/">V2 双城分段</a>
+    <a href="https://wangzelin007.github.io/travel/australia-2026/compare.html" class="active">V1 vs V2 对比</a>
+    <a href="https://wangzelin007.github.io/travel/australia-2026/compare.pdf" class="pdf-link" target="_blank">本页 PDF</a>
+  </nav>
+  <div class="wrap">
+    <h1>澳大利亚 2026 亲子游 · V1 vs V2 对比报告</h1>
+    <p class="lede">2 家庭 6 人（含 2× 3 岁宝宝）· 11 天 10 晚 · 9/26–10/6 · 报告口径：每家庭 2 大 1 小、汇率 1 AUD ≈ 4.7 CNY</p>
+    <p class="meta">
+      <span class="tag tag-v1">V1</span> 当前沿海长线自驾版（Sydney → NSW 南海岸 → VIC 大洋路 → 飞回 Sydney）
+      &nbsp;&nbsp;
+      <span class="tag tag-v2">V2</span> 双城分段版（Sydney 4 晚 → 飞 MEL → Melbourne 3 晚 → Port Campbell 1 晚 → 飞回 Sydney 2 晚）
+    </p>
+
+    <!-- ============== 1. 数据汇总 ============== -->
+    <h2><span class="num">01</span>数据汇总（每家庭口径）</h2>
+
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">自驾天数</div>
+        <div><span class="v1n">V1 · 6 天</span></div>
+        <div><span class="v2n">V2 · 4 天</span></div>
+        <div class="delta">V2 -2 天</div>
+      </div>
+      <div class="kpi">
+        <div class="label">自驾总里程</div>
+        <div><span class="v1n">V1 · 1,618 km</span></div>
+        <div><span class="v2n">V2 · 920 km</span></div>
+        <div class="delta">V2 -698 km / -43%</div>
+      </div>
+      <div class="kpi">
+        <div class="label">自驾总时长</div>
+        <div><span class="v1n">V1 · 22.3 h</span></div>
+        <div><span class="v2n">V2 · 12.5 h</span></div>
+        <div class="delta">V2 -9.8 h / -44%</div>
+      </div>
+      <div class="kpi">
+        <div class="label">最长一天驾车</div>
+        <div><span class="v1n">V1 · 464 km / 5.5 h</span></div>
+        <div><span class="v2n">V2 · 340 km / 6.0 h</span></div>
+        <div class="delta">峰值接近，V2 更短但更弯</div>
+      </div>
+      <div class="kpi">
+        <div class="label">换酒店次数</div>
+        <div><span class="v1n">V1 · 6 次</span></div>
+        <div><span class="v2n">V2 · 3 次</span></div>
+        <div class="delta">V2 -3 次</div>
+      </div>
+      <div class="kpi">
+        <div class="label">国内航段</div>
+        <div><span class="v1n">V1 · 1 段（MEL→SYD）</span></div>
+        <div><span class="v2n">V2 · 2 段（SYD↔MEL）</span></div>
+        <div class="delta">V2 多 1 段 SYD→MEL</div>
+      </div>
+      <div class="kpi">
+        <div class="label">名片景点命中</div>
+        <div><span class="v1n">V1 · 6 / 7</span></div>
+        <div><span class="v2n">V2 · 7 / 7</span></div>
+        <div class="delta">差异：Blue Mountains</div>
+      </div>
+      <div class="kpi">
+        <div class="label">总预算（4★，每家）</div>
+        <div><span class="v1n">V1 · AUD 14,382</span></div>
+        <div><span class="v2n">V2 · AUD 14,838</span></div>
+        <div class="delta">V2 +AUD 456（+3.2%）</div>
+      </div>
+    </div>
+
+    <!-- ============== 2. 景点逐项清单 ============== -->
+    <h2><span class="num">02</span>景点逐项清单（中英 / GPS / 门票 / 是否覆盖）</h2>
+    <p class="legend">
+      <span class="tag tag-good">命中</span> 计入正式行程
+      <span class="tag tag-mid">可选</span> 计入备选 / 顺路
+      <span class="tag-warn tag">未含</span> 不在该方案中
+      &nbsp;·&nbsp;门票：成人 / 4–15 岁，3 岁以下原则上免（个别项目占座收半价）
+    </p>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>景点（中文 / English）</th>
+            <th>类别</th>
+            <th>GPS</th>
+            <th>门票（AUD）</th>
+            <th>V1</th>
+            <th>V2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>悉尼歌剧院 / Sydney Opera House</td><td>城市地标</td><td>-33.8568, 151.2153</td><td class="num">外观 0 / 导览 43</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>环形码头 / Circular Quay</td><td>城市地标</td><td>-33.8611, 151.2126</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>岩石区 / The Rocks</td><td>城市地标</td><td>-33.8591, 151.2080</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>海港大桥南塔 / Pylon Lookout</td><td>城市地标</td><td>-33.8544, 151.2096</td><td class="num">19.5 / 9.5</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>皇家植物园 / Royal Botanic Garden</td><td>城市地标</td><td>-33.8642, 151.2166</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>麦考瑞夫人椅 / Mrs Macquarie's Chair</td><td>城市地标</td><td>-33.8597, 151.2226</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>塔龙加动物园 / Taronga Zoo</td><td>亲子明星</td><td>-33.8435, 151.2413</td><td class="num">55 / 33（4 岁下免）</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>费瑟代尔动物园 / Featherdale Wildlife Park</td><td>亲子明星</td><td>-33.7658, 150.8842</td><td class="num">41 / 22（4 岁下免）</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>邦迪海滩 / Bondi Beach</td><td>城市地标</td><td>-33.8891, 151.2704</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>Bondi → Bronte 海岸步道</td><td>城市自然</td><td>-33.8920, 151.2760</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>蓝山三姐妹峰 / Blue Mountains Three Sisters</td><td>世界自然遗产</td><td>-33.7322, 150.3019</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>景观世界 / Scenic World Katoomba</td><td>世界自然遗产</td><td>-33.7299, 150.3052</td><td class="num">59 / 35</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>Sea Cliff Bridge 海崖桥</td><td>NSW 沿海</td><td>-34.2545, 150.9733</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Kiama Blowhole 喷水洞</td><td>NSW 沿海</td><td>-34.6719, 150.8635</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Hyams Beach 白沙滩</td><td>NSW 沿海</td><td>-35.1114, 150.6947</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Jervis Bay 海豚游船 / Husky Wharf</td><td>NSW 自然/亲子</td><td>-35.0398, 150.6707</td><td class="num">50 / 25</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Pebbly Beach 袋鼠海滩</td><td>NSW 自然/亲子</td><td>-35.6043, 150.3022</td><td class="num">8 / 车</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Bodalla Dairy / Narooma 海豹</td><td>NSW 自然</td><td>-36.0868, 150.0496</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Eden 鲸鱼博物馆</td><td>NSW 文化</td><td>-37.0686, 149.9088</td><td class="num">13 / 7</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Lakes Entrance 抓蟹 / Kalimna Jetty</td><td>VIC 沿海/亲子</td><td>-37.8800, 147.9580</td><td class="num">蟹笼 ~30</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>联邦广场 / Federation Square</td><td>墨尔本市内</td><td>-37.8179, 144.9690</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>南岸 / Southbank Promenade</td><td>墨尔本市内</td><td>-37.8226, 144.9651</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>维州国立美术馆 / NGV</td><td>墨尔本市内</td><td>-37.8226, 144.9686</td><td class="num">0（常设展）</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>墨尔本水族馆 / SEA LIFE Melbourne</td><td>墨尔本市内</td><td>-37.8198, 144.9583</td><td class="num">56 / 40</td><td class="no">未含</td><td><span class="tag tag-mid">可选</span></td></tr>
+          <tr><td>维多利亚州立图书馆 / State Library</td><td>墨尔本市内</td><td>-37.8098, 144.9645</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>卡尔顿花园 / Carlton Gardens</td><td>墨尔本市内</td><td>-37.8062, 144.9712</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>布莱顿彩虹小屋 / Brighton Bathing Boxes</td><td>墨尔本近郊</td><td>-37.9176, 144.9876</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-mid">可选</span></td></tr>
+          <tr><td>蒸汽小火车 / Puffing Billy（Belgrave→Menzies Creek 短线）</td><td>VIC 亲子明星</td><td>-37.9090, 145.3552</td><td class="num">61 / 48（3 岁下免）</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>Apollo Bay 阿波罗湾（途经）</td><td>大洋路</td><td>-38.7552, 143.6676</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>Kennett River 野生考拉点</td><td>大洋路</td><td>-38.6666, 143.8618</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>Marriners Lookout</td><td>大洋路</td><td>-38.7380, 143.6692</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td class="no">未含</td></tr>
+          <tr><td>Gibson Steps</td><td>大洋路</td><td>-38.6687, 143.1120</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>十二门徒岩 / 12 Apostles</td><td>大洋路</td><td>-38.6621, 143.1051</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>洛克阿德峡谷 / Loch Ard Gorge</td><td>大洋路</td><td>-38.6466, 143.0705</td><td class="num">0</td><td><span class="tag tag-good">命中</span></td><td><span class="tag tag-good">命中</span></td></tr>
+          <tr><td>伦敦断桥 / London Arch</td><td>大洋路</td><td>-38.6378, 143.0855</td><td class="num">0</td><td class="no">未含</td><td><span class="tag tag-mid">可选</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="4">合计</th>
+            <th class="num">V1 命中 25</th>
+            <th class="num">V2 命中 23 + 可选 3</th>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="footnote">
+        全球认知度对照（按 Lonely Planet / 国家旅游局头版）：歌剧院、Bondi、Taronga、Blue Mountains、Puffing Billy、Great Ocean Road、12 Apostles 是常年出现在“澳洲必看 7 项”里的“名片级”。
+        V1 缺 Blue Mountains（用 NSW 南海岸 9 个 local 点替换）；V2 缺 NSW 南海岸 9 个 local 点，但补齐了 Blue Mountains 和墨尔本市内 7 项。
+      </p>
+    </div>
+
+    <!-- ============== 3. 每日逐日对比 ============== -->
+    <h2><span class="num">03</span>每日行程逐日对比（活动 / 自驾 km / h / 当晚住宿城市）</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>日 / 日期</th>
+            <th class="v1c">V1 主活动</th>
+            <th class="v1c num">V1 自驾</th>
+            <th class="v1c">V1 当晚住</th>
+            <th class="v2c">V2 主活动</th>
+            <th class="v2c num">V2 自驾</th>
+            <th class="v2c">V2 当晚住</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>D1</b> 9/26 Sat</td>
+            <td class="v1c">06:15 落地 → 皇家植物园 → Mrs Macquarie 椅 → Circular Quay 日落</td>
+            <td class="v1c num">0 km</td>
+            <td class="v1c">Sydney CBD</td>
+            <td class="v2c">同 V1（落地 → 皇家植物园 → Mrs Macquarie 椅 → Circular Quay 日落）</td>
+            <td class="v2c num">0 km</td>
+            <td class="v2c">Sydney CBD</td>
+          </tr>
+          <tr>
+            <td><b>D2</b> 9/27 Sun</td>
+            <td class="v1c">Taronga Zoo → The Rocks 周末市集 → 海港大桥南塔</td>
+            <td class="v1c num">0 km（渡轮）</td>
+            <td class="v1c">Sydney CBD</td>
+            <td class="v2c">同 V1（Taronga → The Rocks → Pylon Lookout）</td>
+            <td class="v2c num">0 km（渡轮）</td>
+            <td class="v2c">Sydney CBD</td>
+          </tr>
+          <tr>
+            <td><b>D3</b> 9/28 Mon</td>
+            <td class="v1c">Featherdale 抱考拉 → Bondi 海滩</td>
+            <td class="v1c num">Uber 往返 ~76 km</td>
+            <td class="v1c">Sydney CBD</td>
+            <td class="v2c">Featherdale → Bondi → Bondi-to-Bronte 步道</td>
+            <td class="v2c num">Uber 往返 ~76 km</td>
+            <td class="v2c">Sydney CBD</td>
+          </tr>
+          <tr>
+            <td><b>D4</b> 9/29 Tue</td>
+            <td class="v1c">取车 → Sea Cliff Bridge → Kiama Blowhole → 入住 Kiama</td>
+            <td class="v1c num">149 km / 2.5 h</td>
+            <td class="v1c">Kiama NSW</td>
+            <td class="v2c">取车 → Blue Mountains（Echo Point / Three Sisters / Scenic World）→ 当日回 Sydney</td>
+            <td class="v2c num">180 km / 3.0 h</td>
+            <td class="v2c">Sydney CBD（不挪窝）</td>
+          </tr>
+          <tr>
+            <td><b>D5</b> 9/30 Wed</td>
+            <td class="v1c">Kiama → Hyams Beach 白沙 → Husky 海豚游船</td>
+            <td class="v1c num">83 km / 1.5 h</td>
+            <td class="v1c">Huskisson NSW</td>
+            <td class="v2c">还车 → SYD → MEL 航班（QF 班次任选）→ Southbank / Fed Square / NGV</td>
+            <td class="v2c num">0 km（飞行）</td>
+            <td class="v2c">Melbourne CBD</td>
+          </tr>
+          <tr>
+            <td><b>D6</b> 10/1 Thu</td>
+            <td class="v1c">Husky → Pebbly Beach 袋鼠 → Bodalla Dairy → Narooma 海豹 → Eden</td>
+            <td class="v1c num">270 km / 4.0 h</td>
+            <td class="v1c">Eden NSW</td>
+            <td class="v2c">墨尔本市内：SEA LIFE / State Library / Carlton Gardens / Lanes 巷道</td>
+            <td class="v2c num">0 km（电车步行）</td>
+            <td class="v2c">Melbourne CBD</td>
+          </tr>
+          <tr>
+            <td><b>D7</b> 10/2 Fri</td>
+            <td class="v1c">Eden → 跨州 → Lakes Entrance 抓蟹 → Ninety Mile Beach</td>
+            <td class="v1c num">244 km / 3.5 h</td>
+            <td class="v1c">Lakes Entrance VIC</td>
+            <td class="v2c">取车 → Puffing Billy 短线 → Brighton Bathing Boxes（可选）→ 回墨尔本</td>
+            <td class="v2c num">140 km / 2.3 h</td>
+            <td class="v2c">Melbourne CBD</td>
+          </tr>
+          <tr>
+            <td><b>D8</b> 10/3 Sat</td>
+            <td class="v1c"><span class="tag tag-warn">最长</span> Lakes Entrance → Sale → Belgrave Puffing Billy → Geelong</td>
+            <td class="v1c num"><b>408 km / 5.1 h</b></td>
+            <td class="v1c">Geelong VIC</td>
+            <td class="v2c"><span class="tag tag-warn">最长</span> 墨尔本 → Torquay → Lorne → Kennett River → Apollo Bay → 12 Apostles 傍晚 → Port Campbell</td>
+            <td class="v2c num"><b>340 km / 6.0 h</b></td>
+            <td class="v2c">Port Campbell VIC</td>
+          </tr>
+          <tr>
+            <td><b>D9</b> 10/4 Sun <span class="small">（夏令时切换）</span></td>
+            <td class="v1c"><span class="tag tag-warn">第二长</span> Geelong → Apollo Bay → 12 Apostles → Loch Ard → MEL Airport → 飞 SYD</td>
+            <td class="v1c num"><b>464 km / 5.5 h</b> + 机场日</td>
+            <td class="v1c">Sydney CBD</td>
+            <td class="v2c">Port Campbell → Loch Ard Gorge →（London Arch 可选）→ 内陆返 MEL Airport → 飞 SYD</td>
+            <td class="v2c num">260 km / 3.2 h + 机场日</td>
+            <td class="v2c">Sydney CBD</td>
+          </tr>
+          <tr>
+            <td><b>D10</b> 10/5 Mon</td>
+            <td class="v1c">悉尼 CBD：QVB / Pitt St / Westfield / Chemist Warehouse</td>
+            <td class="v1c num">0 km</td>
+            <td class="v1c">Sydney CBD</td>
+            <td class="v2c">同 V1（悉尼 CBD 购物）</td>
+            <td class="v2c num">0 km</td>
+            <td class="v2c">Sydney CBD</td>
+          </tr>
+          <tr>
+            <td><b>D11</b> 10/6 Tue</td>
+            <td class="v1c">退税 + 回国（HO1668 09:15）</td>
+            <td class="v1c num">0 km</td>
+            <td class="v1c">— 离境</td>
+            <td class="v2c">同 V1（退税 + 回国 HO1668）</td>
+            <td class="v2c num">0 km</td>
+            <td class="v2c">— 离境</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>合计</th>
+            <th class="v1c num" colspan="3">自驾 1,618 km / 22.3 h · 6 个驾驶日</th>
+            <th class="v2c num" colspan="3">自驾 920 km / 12.5 h · 4 个驾驶日</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- ============== 4. 驾驶强度分布 ============== -->
+    <h2><span class="num">04</span>驾驶强度分布（按日 km，长度可视化）</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>日</th>
+            <th>V1 km</th>
+            <th style="width:38%">V1 强度</th>
+            <th>V2 km</th>
+            <th style="width:38%">V2 强度</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>D1</td><td class="num">0</td><td><span class="small">不涉及自驾（接机）</span></td><td class="num">0</td><td><span class="small">不涉及自驾（接机）</span></td></tr>
+          <tr><td>D2</td><td class="num">0</td><td><span class="small">不涉及自驾（渡轮 + 步行）</span></td><td class="num">0</td><td><span class="small">不涉及自驾（渡轮 + 步行）</span></td></tr>
+          <tr><td>D3</td><td class="num">0</td><td><span class="small">不涉及自驾（Uber XL 76 km 往返）</span></td><td class="num">0</td><td><span class="small">不涉及自驾（Uber XL 76 km 往返）</span></td></tr>
+          <tr><td>D4</td><td class="num">149</td><td><span class="barwrap"><span class="bar v1b" style="width:74px"></span><span class="small">149</span></span></td><td class="num">180</td><td><span class="barwrap"><span class="bar v2b" style="width:90px"></span><span class="small">180</span></span></td></tr>
+          <tr><td>D5</td><td class="num">83</td><td><span class="barwrap"><span class="bar v1b" style="width:42px"></span><span class="small">83</span></span></td><td class="num">0</td><td><span class="small">不涉及自驾（SYD→MEL 飞行日）</span></td></tr>
+          <tr><td>D6</td><td class="num">270</td><td><span class="barwrap"><span class="bar v1b" style="width:135px"></span><span class="small">270</span></span></td><td class="num">0</td><td><span class="small">不涉及自驾（墨尔本市内电车）</span></td></tr>
+          <tr><td>D7</td><td class="num">244</td><td><span class="barwrap"><span class="bar v1b" style="width:122px"></span><span class="small">244</span></span></td><td class="num">140</td><td><span class="barwrap"><span class="bar v2b" style="width:70px"></span><span class="small">140</span></span></td></tr>
+          <tr><td>D8</td><td class="num">408</td><td><span class="barwrap"><span class="bar v1b" style="width:204px"></span><span class="small">408</span></span></td><td class="num">340</td><td><span class="barwrap"><span class="bar v2b" style="width:170px"></span><span class="small">340</span></span></td></tr>
+          <tr><td>D9</td><td class="num">464</td><td><span class="barwrap"><span class="bar v1b" style="width:232px"></span><span class="small">464 + 飞行</span></span></td><td class="num">260</td><td><span class="barwrap"><span class="bar v2b" style="width:130px"></span><span class="small">260 + 飞行</span></span></td></tr>
+          <tr><td>D10</td><td class="num">0</td><td><span class="small">不涉及自驾（悉尼 CBD 步行 / QVB / Westfield）</span></td><td class="num">0</td><td><span class="small">不涉及自驾（悉尼 CBD 步行 / QVB / Westfield）</span></td></tr>
+          <tr><td>D11</td><td class="num">0</td><td><span class="small">不涉及自驾（离境，机场大巴 / Uber）</span></td><td class="num">0</td><td><span class="small">不涉及自驾（离境，机场大巴 / Uber）</span></td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>合计</th>
+            <th class="num">1,618 km</th>
+            <th></th>
+            <th class="num">920 km</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="footnote">
+        V1 在 D6/D7/D8/D9 出现连续 4 天 244 km+ 的“压路”，其中 D8(408)+D9(464) 是连背两天的双峰。
+        V2 把高强度压成 D8(340) 单峰，D9 因前一晚已睡 Port Campbell 直接缩到 260 km，且 <b>第二天的航班无压力</b>是因为 12 Apostles 已在前一天傍晚收掉、D9 只是补一两个短停后撤回机场。
+      </p>
+    </div>
+
+    <!-- ============== 5. 酒店逐晚 ============== -->
+    <h2><span class="num">05</span>酒店逐晚成本（4★ 连锁档，每家 1 间房 / AUD）</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>第 N 晚 / 日期</th>
+            <th class="v1c">V1 酒店</th>
+            <th class="v1c num">V1 / 晚</th>
+            <th class="v2c">V2 酒店</th>
+            <th class="v2c num">V2 / 晚</th>
+            <th class="num">差额</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>1 · 9/26</td><td class="v1c">Sydney CBD（Novotel Darling Harbour 4★）</td><td class="v1c num">302</td><td class="v2c">Sydney CBD（同酒店）</td><td class="v2c num">302</td><td class="num">0</td></tr>
+          <tr><td>2 · 9/27</td><td class="v1c">Sydney CBD（Novotel Darling Harbour 4★）</td><td class="v1c num">302</td><td class="v2c">Sydney CBD（同酒店）</td><td class="v2c num">302</td><td class="num">0</td></tr>
+          <tr><td>3 · 9/28</td><td class="v1c">Sydney CBD（Novotel Darling Harbour 4★）</td><td class="v1c num">302</td><td class="v2c">Sydney CBD（同酒店）</td><td class="v2c num">302</td><td class="num">0</td></tr>
+          <tr><td>4 · 9/29</td><td class="v1c">Kiama（Mercure Gerringong 4★）</td><td class="v1c num">197</td><td class="v2c">Sydney CBD（多住 1 晚，同酒店）</td><td class="v2c num">302</td><td class="num">+105</td></tr>
+          <tr><td>5 · 9/30</td><td class="v1c">Huskisson（Dolphin Shores 4★）</td><td class="v1c num">254</td><td class="v2c">Melbourne CBD 4★（估）</td><td class="v2c num">210</td><td class="num">-44</td></tr>
+          <tr><td>6 · 10/1</td><td class="v1c">Eden（Twofold Bay Motor Inn 4★）</td><td class="v1c num">185</td><td class="v2c">Melbourne CBD 4★</td><td class="v2c num">210</td><td class="num">+25</td></tr>
+          <tr><td>7 · 10/2</td><td class="v1c">Lakes Entrance（Abel Tasman 4★）</td><td class="v1c num">155</td><td class="v2c">Melbourne CBD 4★</td><td class="v2c num">210</td><td class="num">+55</td></tr>
+          <tr><td>8 · 10/3</td><td class="v1c">Geelong（Holiday Inn 4★）</td><td class="v1c num">370</td><td class="v2c">Port Campbell 4★（小镇估）</td><td class="v2c num">220</td><td class="num">-150</td></tr>
+          <tr><td>9 · 10/4</td><td class="v1c">Sydney CBD（Novotel Darling Harbour 4★）</td><td class="v1c num">302</td><td class="v2c">Sydney CBD（同酒店）</td><td class="v2c num">302</td><td class="num">0</td></tr>
+          <tr><td>10 · 10/5</td><td class="v1c">Sydney CBD（Novotel Darling Harbour 4★）</td><td class="v1c num">302</td><td class="v2c">Sydney CBD（同酒店）</td><td class="v2c num">302</td><td class="num">0</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>10 晚合计</th>
+            <th class="v1c"></th>
+            <th class="v1c num">2,671</th>
+            <th class="v2c"></th>
+            <th class="v2c num">2,662</th>
+            <th class="num">-9</th>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="footnote">
+        <b>口径已统一：所有“悉尼 CBD”行 = Novotel Sydney on Darling Harbour 4★ · AUD 302/晚</b>（2026/05/17 SerpAPI 实抓）。
+        旧版第 1–3 晚曾用 Ramada Cabramatta（AUD 177/晚），但 Cabramatta 位于悉尼西南 30 km 外，到 CBD 火车 45 min，不属于 CBD，已剔除。
+        Kiama / Huskisson / Eden / Lakes Entrance / Geelong 5 个小镇 4★ 均为同批实抓价。
+        V2 墨尔本 3 晚按悉尼同档 4★ 取 AUD 210/晚估值（Holiday Inn / Mercure Melbourne CBD 区间），Port Campbell 1 晚按 Lakes Entrance 同档型小镇 +30% 估 AUD 220。
+        实际订房可用 <code>tools/fetch-live-prices.py --project 2026australia-v2</code> 复核。
+      </p>
+    </div>
+
+    <!-- ============== 6. 预算拆项 ============== -->
+    <h2><span class="num">06</span>预算逐项拆分（每家庭 2 大 1 小，AUD / CNY ≈ ×4.7）</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>口径</th>
+            <th class="v1c num">V1 AUD/家</th>
+            <th class="v2c num">V2 AUD/家</th>
+            <th class="num">差额 AUD</th>
+            <th class="num">差额 CNY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>✈ 国际机票</td>
+            <td>PVG↔SYD，AUD 800/成人 × 2.75（小孩 0.75）</td>
+            <td class="v1c num">4,400</td>
+            <td class="v2c num">4,400</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td>✈ 澳洲国内段</td>
+            <td>V1：MEL→SYD × 1（Jetstar JQ532 实价 411/人，每家 2.75 人）；V2：SYD→MEL + MEL→SYD × 2 段</td>
+            <td class="v1c num">411</td>
+            <td class="v2c num">906</td>
+            <td class="num">+495</td>
+            <td class="num">+¥2,327</td>
+          </tr>
+          <tr>
+            <td>🚗 租车</td>
+            <td>V1：7 座 6 天异地还车 1 单；V2：Sydney 1 天 + Melbourne 3 天 2 单</td>
+            <td class="v1c num">900</td>
+            <td class="v2c num">750</td>
+            <td class="num">-150</td>
+            <td class="num">-¥705</td>
+          </tr>
+          <tr>
+            <td>🍽 餐饮</td>
+            <td>AUD 80/人/天 × 3 人 × 10 天</td>
+            <td class="v1c num">2,400</td>
+            <td class="v2c num">2,400</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td>🎫 门票/跟团</td>
+            <td>V1：海豚游船 200 + Taronga 175 + Featherdale 165 + Puffing 244 + 杂 → 600；V2：加 Scenic World 约 +120</td>
+            <td class="v1c num">600</td>
+            <td class="v2c num">720</td>
+            <td class="num">+120</td>
+            <td class="num">+¥564</td>
+          </tr>
+          <tr>
+            <td>🛍 购物预算</td>
+            <td>不分档，每家独立</td>
+            <td class="v1c num">3,000</td>
+            <td class="v2c num">3,000</td>
+            <td class="num">0</td>
+            <td class="num">0</td>
+          </tr>
+          <tr>
+            <td>🏨 酒店（4★ 连锁，10 晚）</td>
+            <td>详见第 5 表（悉尼统一为 Novotel Darling Harbour 302/晚）</td>
+            <td class="v1c num">2,671</td>
+            <td class="v2c num">2,662</td>
+            <td class="num">-9</td>
+            <td class="num">-¥42</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2">合计（4★ 档，每家）</th>
+            <th class="v1c num">14,382</th>
+            <th class="v2c num">14,838</th>
+            <th class="num">+456</th>
+            <th class="num">+¥2,143</th>
+          </tr>
+        </tfoot>
+      </table>
+      <p class="footnote">
+        差额结构：V2 比 V1 贵主要来自 <b>多一段 SYD→MEL 国内段 (+495 AUD)</b> 与 <b>多 1 个 Scenic World 门票 (+120 AUD)</b>，
+        被 <b>少 1 天租车 (-150)</b> + <b>住宿基本打平 (-9)</b> 部分抵消。
+        净差额约 <b>+456 AUD ≈ ¥2,143 / 家</b>，2 家庭合计 <b>≈ ¥4,286</b>。
+      </p>
+    </div>
+
+    <!-- ============== 7. 综合评分 ============== -->
+    <h2><span class="num">07</span>综合评分（每项 1–5 分，越高越好）</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>维度</th>
+            <th>评分口径（量化锚点）</th>
+            <th class="v1c num">V1</th>
+            <th class="v2c num">V2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>名片景点命中</td><td>7 张国家名片中命中数（歌剧院 / Bondi / Taronga / Blue Mtns / Puffing Billy / GOR / 12 Apostles）</td><td class="v1c num">6 / 7 → <b>4</b></td><td class="v2c num">7 / 7 → <b>5</b></td></tr>
+          <tr><td>独有景点数量（非名片）</td><td>该方案独有、对方没有的有效景点</td><td class="v1c num">9 个（NSW 南海岸）→ <b>5</b></td><td class="v2c num">10 个（蓝山 + 墨尔本市内）→ <b>5</b></td></tr>
+          <tr><td>自驾里程负担</td><td>5 分 = ≤ 600 km；4 分 = 600–1,000；3 分 = 1,000–1,500；2 分 = 1,500–2,000</td><td class="v1c num">1,618 km → <b>2</b></td><td class="v2c num">920 km → <b>4</b></td></tr>
+          <tr><td>最长单日驾驶</td><td>5 分 = ≤ 250 km；4 分 = 250–350；3 分 = 350–450；2 分 = ≥ 450</td><td class="v1c num">464 km → <b>2</b></td><td class="v2c num">340 km → <b>4</b></td></tr>
+          <tr><td>换酒店疲劳</td><td>5 分 = 2 次；4 分 = 3 次；3 分 = 4 次；2 分 = 5 次；1 分 = ≥ 6 次</td><td class="v1c num">6 次 → <b>1</b></td><td class="v2c num">3 次 → <b>4</b></td></tr>
+          <tr><td>机场日强度</td><td>D9 机场日自驾 km + 是否撞夏令时</td><td class="v1c num">464 km + DST → <b>1</b></td><td class="v2c num">260 km + DST → <b>3</b></td></tr>
+          <tr><td>行程容错</td><td>任意一天砍掉后骨架是否还在</td><td class="v1c num">沿线砍 1 天 = 后面住宿全错位 → <b>2</b></td><td class="v2c num">城市日可灵活替换 → <b>4</b></td></tr>
+          <tr><td>预算优势</td><td>每家总预算，越低分越高</td><td class="v1c num">AUD 14,382 → <b>5</b></td><td class="v2c num">AUD 14,838 → <b>5</b></td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2">合计（满分 40）</th>
+            <th class="v1c num">22 / 40</th>
+            <th class="v2c num">34 / 40</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- ============== 8. 结论 ============== -->
+    <h2><span class="num">08</span>结论与可执行建议</h2>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>客户画像</th>
+            <th>建议</th>
+            <th>关键依据（数据）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>第一次来澳，要把名片刷全 + 两个 3 岁娃不崩</td>
+            <td><span class="tag tag-v2">选 V2</span></td>
+            <td>名片命中 7/7、自驾 -698 km、换酒店 -3 次、综合 34 vs 22；多花 AUD 456/家（¥2,143）</td>
+          </tr>
+          <tr>
+            <td>明确想走 NSW 南海岸（Kiama / Hyams / Jervis Bay / Pebbly Beach / Lakes Entrance）公路片</td>
+            <td><span class="tag tag-v1">继续 V1</span></td>
+            <td>这 9 个 local 点只有 V1 有；但要接受 1,618 km 自驾、6 次换酒店、D8 408 km + D9 464 km 连背两天</td>
+          </tr>
+          <tr>
+            <td>关心 10/4 机场日体感</td>
+            <td><span class="tag tag-v2">选 V2 且 10/3 住 Port Campbell</span></td>
+            <td>V1 机场日 464 km / 5.5 h；V2 机场日 260 km / 3.2 h；前一晚已睡 Port Campbell，12 Apostles 前一晚收掉</td>
+          </tr>
+          <tr>
+            <td>对预算敏感（每家 ≤ AUD 14,500）</td>
+            <td><span class="tag tag-v1">V1 低 456 AUD</span></td>
+            <td>两版差距约 3.2%；差额结构 = 多一段澳洲国内段 +495 AUD（其它项基本打平）</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="footnote">
+        数据口径与免责声明：里程/时长来自 Google Maps Driving（2026-05 抓取，含轻度交通）；机票/酒店来自 SerpAPI Google Hotels 2026-05-17 23:56 实价；
+        墨尔本 3 晚 + Port Campbell 1 晚为按同档型估值，订房时建议执行 <code>python3 tools/fetch-live-prices.py --project 2026australia-v2</code> 复核。
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

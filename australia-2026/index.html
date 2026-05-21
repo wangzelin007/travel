@@ -42,6 +42,22 @@ body {
 .day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
 .nav-pdf { background:var(--orange)!important; color:#fff!important; border-color:var(--orange)!important; font-weight:700; }
 
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
 .overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .overview h2 { font-size:1.2em; margin-bottom:12px; }
 .info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
@@ -122,6 +138,13 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </style>
 </head>
 <body>
+
+<nav class="version-switcher"><span class="vs-label">版本</span>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/" class="active">V1 沿海长线</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/v2/">V2 双城分段</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/compare.html">V1 vs V2 对比</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/trip.pdf" class="pdf-link" target="_blank">本页 PDF</a>
+  </nav>
 
 <div class="trip-header">
   <h1>🇦🇺 澳大利亚亲子自驾游</h1>
@@ -4978,7 +5001,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </section>
 
 <footer>
-  Built 2026-05-17 23:56 (v2.0.0) · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
+  Built 2026-05-22 00:31 (v2.0.0) · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
 </footer>
 
 </body>

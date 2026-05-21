@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🇦🇺 澳大利亚亲子游 v2 2026.09.26 - 10.06</title>
+<meta name="description" content="澳大利亚亲子游 v2：悉尼与墨尔本双城分段，保最著名景点，降低带两个 3 岁娃的长线自驾压力。">
+<meta property="og:title" content="澳大利亚亲子游 v2">
+<meta property="og:description" content="双城分段版：Sydney 4 天 + Melbourne 4 天 + Sydney 2 晚。">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --blue:#667eea;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#999;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { opacity:.92; font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:var(--orange)!important; color:#fff!important; border-color:var(--orange)!important; font-weight:700; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#4facfe; text-decoration:none; border-bottom:1px dotted #4facfe; }
+.md a:hover { color:#1d72d8; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px) {
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav a { padding:4px 10px; font-size:.75em; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+<nav class="version-switcher"><span class="vs-label">版本</span>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/">V1 沿海长线</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/v2/" class="active">V2 双城分段</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/compare.html">V1 vs V2 对比</a>
+  <a href="https://wangzelin007.github.io/travel/australia-2026/v2/trip.pdf" class="pdf-link" target="_blank">本页 PDF</a>
+  </nav>
+
+<div class="trip-header">
+  <h1>🇦🇺 澳大利亚亲子游 v2</h1>
+  <div class="trip-meta">2026.09.26 - 10.06</div>
+  <div class="trip-meta">11 天 10 晚 | 双城分段版 | 悉尼 4 天 + 墨尔本 4 天 + 悉尼回程 2 晚</div>
+</div>
+
+<nav class="day-nav">
+  <a href="#overview">概览</a>
+  <a href="trip.pdf" class="nav-pdf" target="_blank">PDF</a>
+</nav>
+
+<section class="overview" id="overview">
+  <h2>📋 行程概览</h2>
+  <div class="info-grid">
+    <div class="info-card"><h3>出行日期</h3><p>2026/9/26 - 10/06<br>11 天 10 晚</p></div>
+<div class="info-card"><h3>人数</h3><p>6 人<br>2 家庭 + 2 个 3 岁宝宝</p></div>
+<div class="info-card"><h3>核心思路</h3><p>保最著名景点<br>砍最累长途</p></div>
+<div class="info-card"><h3>Sydney</h3><p>4 天主玩<br>港湾 + 动物 + Bondi + 蓝山</p></div>
+<div class="info-card"><h3>Melbourne</h3><p>4 天主玩<br>Puffing Billy + 大洋路</p></div>
+<div class="info-card"><h3>回程</h3><p>10/4 晚飞回悉尼<br>10/5 缓冲购物</p></div>
+  </div>
+  <div class="md">
+    <blockquote>
+<p>版本目标：不再走 NSW→VIC 长线海岸压路，而是 <strong>悉尼 4 晚 + 墨尔本 4 晚 + 悉尼 2 晚</strong>
+适合：2 家庭 + 2 个 3 岁宝宝
+核心原则：<strong>保最著名地标，砍最累长途</strong></p>
+</blockquote>
+<h2>推荐天数分配</h2>
+<h3>第一次来澳洲、以最著名景点为优先</h3>
+<ul>
+<li><strong>Sydney 主玩 4 天</strong>：港湾 / 动物 / <strong>Bondi 邦迪海滩</strong> / <strong>Blue Mountains 蓝山</strong></li>
+<li><strong>Melbourne 主玩 4 天</strong>：城市 / <strong>Puffing Billy 蒸汽小火车</strong> / <strong>Great Ocean Road 大洋路</strong></li>
+<li><strong>Sydney 回程缓冲 2 晚</strong>：购物 / 打包 / 国际航班容错</li>
+</ul>
+<p>中途飞行建议：
+- <strong>9/30（D5）SYD → MEL</strong>
+- <strong>10/4（D9）MEL → SYD</strong></p>
+<p>这是 11 天 10 晚里，对“第一次来 + famous spots + 带 3 岁娃”最平衡的切法。</p>
+<h2>行程逻辑</h2>
+<ul>
+<li><strong>悉尼 3 天城市</strong>：港湾 / 动物 / 海滩</li>
+<li><strong>悉尼周边 1 天短自驾</strong>：Blue Mountains</li>
+<li><strong>飞墨尔本</strong>：避免中间 6 天跨州压路</li>
+<li><strong>墨尔本 2 天城市/近郊</strong>：市区 + Puffing Billy</li>
+<li><strong>墨尔本周边 1.5 天短自驾</strong>：大洋路核心段</li>
+<li><strong>飞回悉尼</strong>：接国际回程最稳</li>
+</ul>
+<h2>住宿框架（10 晚）</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>城市</th>
+<th>建议区域</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/26-9/29</td>
+<td>悉尼 4 晚</td>
+<td>CBD / Circular Quay</td>
+<td>不挪窝，适合带娃</td>
+</tr>
+<tr>
+<td>9/30-10/2</td>
+<td>墨尔本 3 晚</td>
+<td>CBD / Docklands / Southbank</td>
+<td>走路 + 电车方便</td>
+</tr>
+<tr>
+<td>10/3</td>
+<td>Port Campbell / Princetown 1 晚</td>
+<td>十二门徒附近</td>
+<td><strong>关键优化</strong>：把 12 Apostles 挪到 10/3，减轻 10/4 赶机场压力</td>
+</tr>
+<tr>
+<td>10/4-10/5</td>
+<td>悉尼 2 晚</td>
+<td>CBD</td>
+<td>回程 / 购物</td>
+</tr>
+</tbody>
+</table>
+<h2>为什么这样切天数</h2>
+<h3>Sydney 少于 4 天会亏</h3>
+<p>Sydney 真正值得第一次游客看的，不止是歌剧院：
+- <strong>Circular Quay 环形码头</strong> / 皇家植物园 / <strong>Mrs Macquarie's Chair 麦考瑞夫人椅</strong>
+- <strong>Taronga Zoo 塔龙加动物园</strong>
+- <strong>Bondi 邦迪海滩</strong>
+- <strong>Blue Mountains 蓝山</strong></p>
+<p>少于 4 天，Blue Mountains 往往就会被砍掉；而它的全球知名度其实比 Kiama / Eden / Lakes Entrance 更高。</p>
+<h3>Melbourne 少于 4 天也会亏</h3>
+<p>Melbourne 如果只待 2-3 天，通常只能做到：
+- CBD 1 天
+- <strong>Puffing Billy 蒸汽小火车</strong> 1 天
+- <strong>Great Ocean Road 大洋路</strong> 硬压 1 天</p>
+<p>这样太赶。</p>
+<p>给到 4 天，才有可能：
+- 1 天城市
+- 1 天城市/亲子室内
+- 1 天 Puffing Billy
+- 1.5 天 Great Ocean Road</p>
+<h3>所以最佳切法</h3>
+<p>不是均分，也不是一边特别多，
+而是：
+- <strong>Sydney 前段 4 天完整打卡</strong>
+- <strong>Melbourne 中段 4 天拿最值钱内容</strong>
+- <strong>Sydney 末段 2 晚兜底</strong></p>
+<h2>行程总览（11 天）</h2>
+<table>
+<thead>
+<tr>
+<th>日</th>
+<th>日期</th>
+<th>主要内容</th>
+<th>驾车</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>9/26 Sat</td>
+<td>接机 → 酒店寄存 → 皇家植物园 → <strong>Mrs Macquarie's Chair 麦考瑞夫人椅</strong> → <strong>Circular Quay 环形码头</strong> 日落</td>
+<td>无</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>9/27 Sun</td>
+<td><strong>Taronga Zoo 塔龙加动物园</strong> → <strong>The Rocks 岩石区</strong> → <strong>Pylon Lookout 海港大桥南塔</strong></td>
+<td>无</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>9/28 Mon</td>
+<td><strong>Featherdale Wildlife Park 费瑟代尔野生动物园</strong> → <strong>Bondi Beach 邦迪海滩</strong> / <strong>Bondi to Bronte 海岸步道</strong></td>
+<td>轻度</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>9/29 Tue</td>
+<td>取车 → <strong>Blue Mountains 蓝山</strong>（<strong>Echo Point 回声角 / Three Sisters 三姐妹峰 / Scenic World 景观世界</strong>）→ 回悉尼</td>
+<td><strong>单日往返约 180 km / 2.5-3 h</strong></td>
+</tr>
+<tr>
+<td>D5</td>
+<td>9/30 Wed</td>
+<td>悉尼 → 墨尔本航班 → <strong>Southbank 南岸</strong> / <strong>Federation Square 联邦广场</strong> / <strong>NGV 维州国立美术馆</strong>（室内）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>10/1 Thu</td>
+<td>墨尔本市区亲子日：SEA LIFE / State Library / Carlton Gardens / 墨尔本巷道</td>
+<td>无</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>10/2 Fri</td>
+<td>取车 → <strong>Puffing Billy 蒸汽小火车</strong>（Belgrave→Menzies Creek 短线）→ <strong>Brighton Bathing Boxes 布莱顿彩虹小屋</strong>（可选）→ 回墨尔本</td>
+<td><strong>约 120-160 km</strong></td>
+</tr>
+<tr>
+<td>D8</td>
+<td>10/3 Sat</td>
+<td>墨尔本 → <strong>Torquay 托基</strong> / <strong>Lorne 洛恩</strong> / <strong>Kennett River 肯尼特河野生考拉点</strong> / <strong>Apollo Bay 阿波罗湾</strong> → <strong>12 Apostles 十二门徒岩</strong> 看傍晚 → <strong>Port Campbell 坎贝尔港</strong> 住</td>
+<td><strong>约 320-360 km / 5.5-6.5 h</strong></td>
+</tr>
+<tr>
+<td>D9</td>
+<td>10/4 Sun</td>
+<td><strong>Port Campbell 坎贝尔港</strong> → <strong>Loch Ard Gorge 洛克阿德峡谷</strong> / （可选 <strong>London Arch 伦敦断桥</strong>）→ 内陆返墨尔本机场还车 → 飞悉尼</td>
+<td><strong>约 240-280 km / 3-3.5 h</strong></td>
+</tr>
+<tr>
+<td>D10</td>
+<td>10/5 Mon</td>
+<td>悉尼 CBD 购物 / 休整 / 打包</td>
+<td>无</td>
+</tr>
+<tr>
+<td>D11</td>
+<td>10/6 Tue</td>
+<td>退税 + 回国</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h2>v2 版本的亮点</h2>
+<h3>0. 中途飞墨尔本的时点是对的</h3>
+<p>把飞行放在 <strong>D5</strong>，好处是：
+- 不会打断 Sydney 经典段
+- 不会把 Blue Mountains 挤掉
+- 也不会把 Melbourne 压得太短</p>
+<p>把回飞 Sydney 放在 <strong>D9 晚</strong>，好处是：
+- D10 还可以购物 / 收尾
+- D11 早班国际航班更稳</p>
+<h3>0.5 不建议简单把 10/3 和 10/4 对调</h3>
+<p>表面看像是“把累的一天往前挪”，但实际上如果直接对调：
+- 10/3 会变成 <strong>Melbourne → 12 Apostles → 住宿</strong>，本身就很长
+- 10/4 还是要从大洋路沿线一路回 Melbourne Airport，并不会真正轻松多少</p>
+<p><strong>更优解不是对调，而是改睡 Port Campbell / Princetown。</strong></p>
+<p>这样好处是：
+- <strong>10/3</strong> 把最远、最散的海岸线景点一次收掉，没有航班压力
+- <strong>10/4</strong> 只补 Loch Ard Gorge / London Arch 这种短停，然后走内陆去机场
+- 机场日从“边玩边赶”改成“短停后撤退”，对两个 3 岁娃更稳</p>
+<h3>1. Sydney 名片一张不丢</h3>
+<ul>
+<li>歌剧院</li>
+<li><strong>Circular Quay 环形码头</strong></li>
+<li><strong>Taronga 塔龙加动物园</strong></li>
+<li><strong>Bondi 邦迪海滩</strong></li>
+<li><strong>Featherdale 费瑟代尔野生动物园</strong></li>
+</ul>
+<h3>2. 用 Blue Mountains 替代 NSW 南海岸长链条</h3>
+<p>对国际游客而言，<strong>Three Sisters 三姐妹峰 / Scenic World 景观世界</strong> 的全球认知度比 Kiama / Eden / Lakes Entrance 更高。</p>
+<h3>3. 维州只保留“最值钱的两张牌”</h3>
+<ul>
+<li><strong>Puffing Billy 蒸汽小火车</strong></li>
+<li><strong>Great Ocean Road 大洋路 / 12 Apostles 十二门徒岩</strong></li>
+</ul>
+<h3>4. 家长压力更低</h3>
+<ul>
+<li>少 4-5 次酒店搬运</li>
+<li>少 2 天 4-6 小时纯赶路日</li>
+<li>车上崩溃概率更低</li>
+<li><strong>而且 10/4 机场日不再是最累的一天</strong></li>
+</ul>
+<h2>v2 版本的损失</h2>
+<ul>
+<li>没有 Jervis Bay 海豚游船</li>
+<li>没有 Pebbly Beach 袋鼠海滩</li>
+<li>没有 Lakes Entrance 抓蟹</li>
+<li>少了“从悉尼一路开到墨尔本”的成就感</li>
+</ul>
+<h2>对 3 岁孩子的实际优势</h2>
+<h3>午睡更容易保住</h3>
+<ul>
+<li>D1-D3、D5-D6、D10-D11 基本都是城市内活动</li>
+<li>真正高强度只剩 D8-D9</li>
+</ul>
+<h3>上厕所 / 换衣服 / 临时回酒店更容易</h3>
+<ul>
+<li>悉尼和墨尔本都连续住同一家，不像 V1 天天装车卸车</li>
+</ul>
+<h3>生病或天气崩掉时更好救</h3>
+<ul>
+<li>如果 D7 下雨，Puffing Billy 可以平移</li>
+<li>如果 D8 状态差，可以只开到 Apollo Bay，放弃 12 Apostles 傍晚段</li>
+<li>如果 D9 状态差，可以只保 Loch Ard Gorge，直接撤机场</li>
+</ul>
+<h2>预算变化（相对 V1）</h2>
+<h3>会增加</h3>
+<ul>
+<li>如果和<strong>当前 V1</strong>（沿海自驾到墨尔本、只飞 <strong>MEL → SYD</strong>）相比：会<strong>新增一段 SYD → MEL 单程机票 × 6 人</strong></li>
+<li>如果你最终把 <strong>V1 也改成飞去墨尔本再飞回悉尼</strong>：那国内机票成本就<strong>基本同一量级</strong>，主要不再是差异点</li>
+<li>墨尔本市区酒店 2-3 晚</li>
+</ul>
+<h3>会减少</h3>
+<ul>
+<li>少 2-3 晚沿海酒店</li>
+<li>少 3 天长途租车与油费</li>
+<li>少大量异地移动成本</li>
+</ul>
+<blockquote>
+<p>更准确地说：<strong>如果拿当前 V1 比，V2 多的是一段 SYD → MEL；如果两版都采用 Sydney ↔ Melbourne 国内往返，那机票基本不是差异点，真正拉开预算的是酒店结构、租车天数、油费和异地移动成本。</strong></p>
+</blockquote>
+<h2>推荐拍板意见</h2>
+<h3>选 V2，如果你更在意</h3>
+<ul>
+<li>小朋友状态</li>
+<li>家长不崩</li>
+<li>住得稳</li>
+<li>保最 famous 的景点，而不是“尽量全”</li>
+</ul>
+<h3>继续 V1，如果你更在意</h3>
+<ul>
+<li>NSW 南海岸自然风景</li>
+<li>海岸线一路压过去的公路片感</li>
+<li>Pebbly Beach / Lakes Entrance 这种更偏 local 的体验</li>
+</ul>
+<h2>我的建议</h2>
+<p><strong>如果你现在已经开始怀疑 V1 会不会太累，那其实答案已经很明显了：你们更适合 V2。</strong></p>
+<p>因为真正到了现场，两个 3 岁娃只要有一个午睡崩，V1 的连锁反应会很大；V2 至少大部分日子都还能回酒店、改餐厅、砍景点。</p>
+  </div>
+</section>
+
+
+
+
+
+
+
+<footer>
+  Built 2026-05-22 00:31 (v2.0.0) · <a href="https://github.com/wangzelin007/travel">github.com/wangzelin007/travel</a>
+</footer>
+
+</body>
+</html>
