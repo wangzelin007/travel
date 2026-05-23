@@ -816,8 +816,19 @@
 
     <!-- ============== 7. 综合评分 ============== -->
     <h2><span class="num">09</span>综合评分（每项 1–5 分，越高越好）</h2>
-    <div class="card">
+    <div class="card" id="s09-card">
+      <style>
+        #s09-card table{table-layout:fixed}
+        #s09-card td,#s09-card th{vertical-align:top}
+        #s09-card td.v1c.num,#s09-card td.v2c.num,#s09-card th.v1c.num,#s09-card th.v2c.num{white-space:normal}
+      </style>
       <table>
+        <colgroup>
+          <col style="width:110px">
+          <col>
+          <col style="width:25%">
+          <col style="width:25%">
+        </colgroup>
         <thead>
           <tr>
             <th>维度</th>
@@ -828,7 +839,7 @@
         </thead>
         <tbody>
           <tr><td>名片景点命中</td><td>7 张国家名片中命中数（歌剧院 / Bondi / Taronga / Blue Mtns / Puffing Billy / GOR / 12 Apostles）</td><td class="v1c num">6 / 7 → <b>4</b></td><td class="v2c num">6 / 7 → <b>4</b></td></tr>
-          <tr><td>独有景点数量（非名片）</td><td>该方案独有、对方没有的有效景点</td><td class="v1c num">7 个（NSW 南海岸 Hyams/Jervis/Pebbly/Bodalla/Eden/Lakes Entrance 等）→ <b>5</b></td><td class="v2c num">9 个（墨尔本市内 7 + Wollongong/Nan Tien + Brighton Beach Boxes）→ <b>5</b></td></tr>
+          <tr><td>独有景点数量（非名片）</td><td>该方案独有、对方没有的有效景点</td><td class="v1c num">7 个（NSW 南海岸）→ <b>5</b></td><td class="v2c num">9 个（MEL 市内 + Wollongong）→ <b>5</b></td></tr>
           <tr><td>自驾里程负担</td><td>5 分 = ≤ 600 km；4 分 = 600–1,000；3 分 = 1,000–1,500；2 分 = 1,500–2,000</td><td class="v1c num">1,618 km → <b>2</b></td><td class="v2c num">988 km → <b>4</b></td></tr>
           <tr><td>最长单日驾驶</td><td>5 分 = ≤ 250 km；4 分 = 250–350；3 分 = 350–450；2 分 = ≥ 450</td><td class="v1c num">464 km → <b>2</b></td><td class="v2c num">340 km → <b>4</b></td></tr>
           <tr><td>换酒店疲劳</td><td>5 分 = 2 次；4 分 = 3 次；3 分 = 4 次；2 分 = 5 次；1 分 = ≥ 6 次</td><td class="v1c num">6 次 → <b>1</b></td><td class="v2c num">3 次 → <b>4</b></td></tr>
