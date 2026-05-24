@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>澳大利亚 2026 · 会议 Agenda</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --paper: #ffffff;
+    --ink: #28282e;
+    --muted: #6b6b75;
+    --line: #e6e3dd;
+    --accent: #2b7a78;
+    --accent-soft: #e0f0ee;
+    --v1: #d68a3c;
+    --v1-soft: #fbeed7;
+    --v2: #3b7dd8;
+    --v2-soft: #dde9fa;
+    --warn-bg: #fff4d6;
+    --warn-line: #f0d68a;
+    --fact: #1f5c34;
+    --fact-soft: #d6ecdc;
+    --estimate: #7a4017;
+    --estimate-soft: #fbe2cf;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.6;
+    padding: 28px 20px 64px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 {
+    font-size: 1.8em; font-weight: 800;
+    margin-bottom: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .meta {
+    color: var(--muted); font-size: 0.92em;
+    margin-bottom: 8px;
+  }
+  .meta a { color: var(--accent); }
+
+  h2 {
+    font-size: 1.2em; font-weight: 700;
+    margin: 28px 0 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent);
+  }
+
+  .source-box {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 18px 0;
+    font-size: 0.92em;
+  }
+  .source-box .title {
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #6b5a20;
+  }
+  .source-box ul { padding-left: 22px; }
+  .source-box li { margin-bottom: 3px; }
+
+  .modes {
+    display: flex; gap: 12px;
+    margin: 12px 0 8px;
+    flex-wrap: wrap;
+  }
+  .mode {
+    flex: 1; min-width: 280px;
+    background: var(--paper);
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .mode:hover { border-color: var(--accent); }
+  .mode.selected { border-color: var(--accent); background: var(--accent-soft); }
+  .mode .head { font-weight: 700; margin-bottom: 4px; }
+  .mode .desc { color: var(--muted); font-size: 0.9em; }
+  .mode .check {
+    display: inline-block; width: 16px; height: 16px;
+    border: 2px solid var(--line); border-radius: 4px;
+    margin-right: 8px; vertical-align: -2px;
+    position: relative;
+  }
+  .mode.selected .check { border-color: var(--accent); background: var(--accent); }
+  .mode.selected .check::after {
+    content: '✓'; position: absolute; top: -3px; left: 1px;
+    color: #fff; font-size: 13px; font-weight: 800;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0 0;
+    table-layout: fixed;
+  }
+  thead th {
+    background: #f4f1ec;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 0.9em;
+    font-weight: 700;
+    border-bottom: 1px solid var(--line);
+  }
+  tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    font-size: 0.92em;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fbfaf6; }
+
+  /* 对比表 */
+  .compare-table col.dim { width: 110px; }
+  .compare-table col.opt { width: calc((100% - 110px) / 2); }
+  .compare-table th.dim { color: var(--muted); }
+  .compare-table th.v1c { color: var(--v1); background: var(--v1-soft); }
+  .compare-table th.v2c { color: var(--v2); background: var(--v2-soft); }
+  .compare-table td.v1c { background: rgba(214,138,60,0.05); }
+  .compare-table td.v2c { background: rgba(59,125,216,0.05); }
+  .compare-table td.dim { color: var(--muted); font-weight: 600; }
+
+  /* 决策表 */
+  .decision-table col.item { width: 48%; }
+  .decision-table col.date { width: 130px; }
+  .decision-table col.why { width: calc(52% - 130px); }
+  .decision-table .date {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .decision-table .why {
+    color: var(--muted);
+    font-size: 0.88em;
+    line-height: 1.5;
+  }
+  .checkbox {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 1.5px solid var(--line);
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: -2px;
+    cursor: pointer;
+  }
+  .checkbox.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+    position: relative;
+  }
+  .checkbox.checked::after {
+    content: '✓'; color: #fff; font-size: 11px;
+    position: absolute; top: -3px; left: 1px;
+  }
+  tr.done td:not(.date) { text-decoration: line-through; color: var(--muted); }
+  tr.done .date { color: var(--muted); }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.72em;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+    margin-left: 4px;
+    vertical-align: 1px;
+  }
+  .badge.fact { background: var(--fact-soft); color: var(--fact); }
+  .badge.estimate { background: var(--estimate-soft); color: var(--estimate); }
+
+  .risk { color: #c0392b; font-weight: 700; }
+
+  code, .mono { font-family: 'SF Mono', Menlo, Consolas, monospace; font-size: 0.9em; }
+
+  @media (max-width: 720px) {
+    body { padding: 16px 10px 48px; }
+    h1 { font-size: 1.4em; }
+    .decision-table col.item { width: 50%; }
+    .decision-table col.date { width: 90px; }
+    .decision-table col.why { width: calc(50% - 90px); }
+    thead th, tbody td { padding: 8px 8px; font-size: 0.85em; }
+  }
+
+  .footer {
+    margin-top: 32px; text-align: center;
+    font-size: 0.8em; color: var(--muted);
+  }
+
+  /* 打印 PDF 优化 */
+  @media print {
+    body { background: #fff; padding: 14px 12px 28px; font-size: 13px; }
+    .wrap { max-width: none; }
+    h2 { margin-top: 18px; }
+    .source-box, .modes, table, tbody tr { page-break-inside: avoid; }
+    .footer { display: none; }
+    .mode, .mode.selected, .badge, .compare-table th.v1c, .compare-table th.v2c,
+    .compare-table td.v1c, .compare-table td.v2c, thead th, .source-box {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🇦🇺 澳大利亚 2026 · 会议 Agenda</h1>
+  <div class="meta">
+    📊 会前发：<a href="https://wangzelin007.github.io/travel/australia-2026/compare.html" target="_blank">对比报告</a>
+    · 当前日期：2026-05-24 · 距出发 <b>125 天</b>
+  </div>
+
+  <div class="source-box">
+    <div class="title">📌 截止日期依据来源（事实 vs 经验估计）</div>
+    <ul>
+      <li><span class="badge fact">事实</span> <b>NSW + VIC 学校假期</b>：2026-09-19 至 10-05（NSW + VIC 教育部官网公布的 2026 Term 3 校历）。我们行程 9/26-10/6 与假期重叠 10 天（除 D11 返程），全境家庭旅游高峰。</li>
+      <li><span class="badge fact">事实</span> <b>FTS 出件时效</b>：tisnational.gov.au 官方 10 个工作日（旺季实际可能 4-6 周）。</li>
+      <li><span class="badge estimate">经验估计</span> 酒店紧俏度、机票价格曲线、Puffing Billy 周六班、harness 安全座椅库存 — 行业常识无官方数据源。</li>
+    </ul>
+  </div>
+
+  <h2>1. 讨论模式</h2>
+  <div class="modes">
+    <div class="mode" data-mode="A">
+      <div class="head"><span class="check"></span>A：所有细节我自己定</div>
+      <div class="desc">朋友家只确认大方向 V1 / V2</div>
+    </div>
+    <div class="mode" data-mode="B">
+      <div class="head"><span class="check"></span>B：每一项一起讨论</div>
+      <div class="desc">朋友家每项决策都共同确认</div>
+    </div>
+  </div>
+
+  <h2>2. V1 / V2 现状</h2>
+  <table class="compare-table">
+    <colgroup>
+      <col class="dim"><col class="opt"><col class="opt">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="dim"></th>
+        <th class="v1c">V1：全程沿海自驾</th>
+        <th class="v2c">V2：悉尼/墨尔本双城</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dim">骨架</td>
+        <td class="v1c">悉尼 3 天 → 沿海岸自驾 6 天到墨尔本 → 飞回悉尼 → 购物</td>
+        <td class="v2c">悉尼 4 晚 → 飞墨尔本 4 晚 → 飞回悉尼 2 晚</td>
+      </tr>
+      <tr>
+        <td class="dim">总自驾</td>
+        <td class="v1c"><b>1,910 km</b>（6 个驾驶日）</td>
+        <td class="v2c"><b>988 km</b>（4 个驾驶日）</td>
+      </tr>
+      <tr>
+        <td class="dim">最长单日</td>
+        <td class="v1c">480 km（D9 Geelong 吉朗→MEL 墨尔本 大洋路段）</td>
+        <td class="v2c">340 km（D8 大洋路段）</td>
+      </tr>
+      <tr>
+        <td class="dim">换酒店</td>
+        <td class="v1c"><b>6 次</b></td>
+        <td class="v2c"><b>3 次</b></td>
+      </tr>
+      <tr>
+        <td class="dim">中途飞行</td>
+        <td class="v1c">1 段（墨尔本 → 悉尼）</td>
+        <td class="v2c">2 段（悉尼 ↔ 墨尔本）</td>
+      </tr>
+      <tr>
+        <td class="dim">核心亮点</td>
+        <td class="v1c">
+          • 悉尼（港湾 / Taronga 塔龙加动物园 / Featherdale 费瑟代尔野生动物园 / Bondi 邦迪海滩）<br>
+          • 南海岸长途自驾（Kiama 基亚马喷潮口 + Hyams 海姆斯白沙滩 + Jervis 杰维斯湾海豚船 + Pebbly 佩布利袋鼠海滩 + Bodalla 博达拉乳品厂 + Narooma 纳鲁马野生海豹 + Eden 伊登 + Lakes Entrance 湖海口）<br>
+          • 大洋路长途自驾（Puffing Billy 蒸汽小火车 + Twelve Apostles 12 门徒岩 + Loch Ard Gorge 洛克阿德峡谷 + London Arch 伦敦断桥）
+        </td>
+        <td class="v2c">
+          • 悉尼（港湾 / Taronga 塔龙加动物园 / Featherdale 费瑟代尔野生动物园 / Bondi 邦迪海滩）<br>
+          • 悉尼短途自驾（Sea Cliff Bridge 海崖大桥 + Wollongong 卧龙岗南天寺 + Kiama 基亚马喷潮口）<br>
+          • 墨尔本（SEA LIFE 水族馆 / State Library 州立图书馆 / Carlton Gardens 卡尔顿花园）<br>
+          • 墨尔本短途自驾（Great Ocean Road 大洋路 12 门徒岩 + Puffing Billy 蒸汽小火车）
+        </td>
+      </tr>
+      <tr>
+        <td class="dim">预算（4★ 酒店档/家）</td>
+        <td class="v1c"><b>AUD 14,632</b></td>
+        <td class="v2c"><b>AUD 14,628</b></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3. 选 V1：待决事项</h2>
+  <table class="decision-table">
+    <colgroup>
+      <col class="item"><col class="date"><col class="why">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>事项</th>
+        <th>最晚确认</th>
+        <th>截止依据</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="checkbox"></span> <b>V1 确认</b></td>
+        <td class="date">2026-06-28</td>
+        <td class="why">与行程内容确认对齐，确保所有预订依据统一</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 行程内容确认（翻一遍对比报告 36 个景点图片，勾去 / 增加）</td>
+        <td class="date">2026-06-28</td>
+        <td class="why">决定沿线住哪、要买哪些景点票，与酒店预订对齐</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> <span class="risk">★</span> <b>D9 超极限日风险认可</b>（10/4 夏令时切换 + 480 km 自驾 + 当晚 QF491 20:30 航班）</td>
+        <td class="date">2026-06-28</td>
+        <td class="why"><span class="badge fact">事实</span> 凌晨 02:00→03:00 AEDT 夏令时启用，实际少睡 1h；<b>05:30 起床 + 06:00 退房 + Geelong→大洋路→MEL 还车→飞 SYD</b>；待决：全家接受 + 轮换司机 或 改中文 1 日游包车</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> <span class="risk">★</span> <b>5 个沿线小镇酒店</b>（Kiama 基亚马 / Huskisson 哈斯基森 / Eden 伊登 / Lakes Entrance 湖海口 / Geelong 吉朗）</td>
+        <td class="date">2026-06-28</td>
+        <td class="why"><span class="badge fact">事实</span> Term 3 学校假期高峰；<span class="badge estimate">经验估计</span> 沿海家庭旅游小镇 4★ 家庭房 <b>3 个月前</b>开始紧；<b>V1 最大风险项</b></td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 租车 7 座 + 2 个前向式 Forward-Facing Harness 安全座椅<br>（D4 9/29 悉尼取车 / D9 10/4 墨尔本机场还）</td>
+        <td class="date">2026-07-26</td>
+        <td class="why">主要车型可免费取消、后期可改；<span class="badge estimate">经验估计</span> 旺季 <b>2 个 harness 座椒</b>稀缺，<b>8-10 周前</b>确认较能保证</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 悉尼 CBD 酒店（9/26-9/28 + 10/4-10/5，共 5 晚）</td>
+        <td class="date">2026-07-26</td>
+        <td class="why"><span class="badge fact">事实</span> Term 3 学校假期；<span class="badge estimate">经验估计</span> CBD 4★ 旺季 <b>60-90 天前</b>价格最低，3 周内涨 <b>30-40%</b>；<b>免费取消到入住前 24-48 小时</b>，先锁价再灵活调</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 墨尔本 → 悉尼 机票<br>（D9 10/4 周日晚，推荐 QF491 Qantas 澳航 20:30→21:55）</td>
+        <td class="date">2026-08-03</td>
+        <td class="why"><span class="badge fact">事实</span> 学校假期最后一天 + 周日晚 = 返程高峰；<span class="badge estimate">经验估计</span> QF/VA 同班次 <b>60-90 天前</b>价格最低，订后不可改</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 驾照英文翻译<br>（<b>FTS 免费翻译</b>：每签证 10 份，<a href="https://www.tisnational.gov.au/Our-services/Free-Translating-Service/About" target="_blank">tisnational.gov.au</a>）</td>
+        <td class="date">2026-08-15</td>
+        <td class="why"><span class="badge fact">事实</span> 官方 10 个工作日；<b>旺季实际可能 4-6 周</b>，预留 6 周缓冲 → 9/26 减 6 周</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> Puffing Billy 蒸汽小火车票（D8 10/3 周六班次）</td>
+        <td class="date">2026-08-22</td>
+        <td class="why"><span class="badge fact">事实</span> Term 3 学校假期最后一个周六；<span class="badge estimate">经验估计</span> <b>6 周前</b>抢家庭组合座最稳</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> Jervis Bay 杰维斯湾 海豚船票（D5 9/30，Klook 客路 5 折）</td>
+        <td class="date">2026-09-23</td>
+        <td class="why"><span class="badge estimate">经验估计</span> 多艘船每日多班，<b>1-2 周前</b>够；Klook 折扣码常年有</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. 选 V2：待决事项</h2>
+  <table class="decision-table">
+    <colgroup>
+      <col class="item"><col class="date"><col class="why">
+    </colgroup>
+    <thead>
+      <tr>
+        <th>事项</th>
+        <th>最晚确认</th>
+        <th>截止依据</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="checkbox"></span> <b>V2 确认</b></td>
+        <td class="date">2026-06-28</td>
+        <td class="why">与行程内容确认对齐，确保所有预订依据统一</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 行程内容确认（翻一遍对比报告 36 个景点图片，勾去 / 增加）</td>
+        <td class="date">2026-06-28</td>
+        <td class="why">决定景点票优先级，与酒店预订对齐</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> <span class="risk">★</span> <b>Port Campbell 坎贝尔港 酒店</b>（D8 10/3 周六，1 晚）</td>
+        <td class="date">2026-06-28</td>
+        <td class="why"><span class="badge fact">事实</span> 12 门徒岩 旁的小镇全镇约 100-150 间客房，Term 3 学校假期 + 周六；<span class="badge estimate">经验估计</span> 4★ 家庭房 <b>3 个月前</b>就紧；<b>V2 最大风险项</b></td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 租车 7 座 + 2 个前向式 Forward-Facing Harness 安全座椅<br>（D7 10/2 墨尔本取车 / D9 10/4 墨尔本机场还）</td>
+        <td class="date">2026-07-26</td>
+        <td class="why">主要车型可免费取消、后期可改；<span class="badge estimate">经验估计</span> 旺季 <b>2 个 harness 座椒</b> <b>8-10 周前</b>确认较能保证</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 悉尼 CBD 酒店（9/26-9/29 + 10/4-10/5，共 6 晚）</td>
+        <td class="date">2026-07-26</td>
+        <td class="why"><span class="badge fact">事实</span> Term 3 学校假期；<span class="badge estimate">经验估计</span> CBD 4★ 旺季 <b>60-90 天前</b>价格最低，3 周内涨 <b>30-40%</b>；<b>免费取消到入住前 24-48 小时</b>，先锁价再灵活调</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 墨尔本 CBD 酒店（9/30-10/2，共 3 晚）</td>
+        <td class="date">2026-07-26</td>
+        <td class="why"><span class="badge estimate">经验估计</span> 墨尔本 CBD 4★ 旺季 <b>60-90 天前</b>价格最低；同样多支持免费取消，早锁价</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 悉尼 → 墨尔本 机票<br>（D5 9/30 周三，推荐 QF425 Qantas 澳航 09:00→10:35）</td>
+        <td class="date">2026-08-03</td>
+        <td class="why"><span class="badge estimate">经验估计</span> QF/VA 同班次 <b>60-90 天前</b>价格最稳，订后不可改</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 墨尔本 → 悉尼 机票<br>（D9 10/4 周日下午，推荐 QF491 Qantas 澳航 17:00→18:25）</td>
+        <td class="date">2026-08-03</td>
+        <td class="why"><span class="badge fact">事实</span> 学校假期最后一天 + 周日晚返程高峰；<span class="badge estimate">经验估计</span> <b>60-90 天前</b>订完</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> 驾照英文翻译<br>（<b>FTS 免费翻译</b>：每签证 10 份，<a href="https://www.tisnational.gov.au/Our-services/Free-Translating-Service/About" target="_blank">tisnational.gov.au</a>）</td>
+        <td class="date">2026-08-15</td>
+        <td class="why"><span class="badge fact">事实</span> 官方 10 个工作日；<b>旺季实际可能 4-6 周</b>，预留 6 周缓冲</td>
+      </tr>
+      <tr>
+        <td><span class="checkbox"></span> Puffing Billy 蒸汽小火车票（D7 10/2 周五班次）</td>
+        <td class="date">2026-08-21</td>
+        <td class="why"><span class="badge fact">事实</span> Term 3 学校假期内的周五；<span class="badge estimate">经验估计</span> 周五比周六稍松，<b>6 周前</b>抢家庭组合座最稳</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer">
+    点击 checkbox / 模式卡片记录选择，状态仅保存在浏览器（localStorage）
+  </div>
+</div>
+
+<script>
+  // localStorage 安全包装（隐私模式下不抛错）
+  const LS = {
+    get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
+
+  // 模式选择
+  document.querySelectorAll('.mode').forEach(el => {
+    el.addEventListener('click', () => {
+      document.querySelectorAll('.mode').forEach(m => m.classList.remove('selected'));
+      el.classList.add('selected');
+      LS.set('agenda-mode', el.dataset.mode);
+    });
+  });
+  const savedMode = LS.get('agenda-mode');
+  if (savedMode) {
+    const m = document.querySelector(`.mode[data-mode="${savedMode}"]`);
+    if (m) m.classList.add('selected');
+  }
+
+  // checkbox
+  document.querySelectorAll('.checkbox').forEach((cb, i) => {
+    cb.dataset.id = 'cb-' + i;
+    if (LS.get(cb.dataset.id) === '1') {
+      cb.classList.add('checked');
+      cb.closest('tr').classList.add('done');
+    }
+    cb.addEventListener('click', () => {
+      const tr = cb.closest('tr');
+      const on = !cb.classList.contains('checked');
+      cb.classList.toggle('checked', on);
+      tr.classList.toggle('done', on);
+      LS.set(cb.dataset.id, on ? '1' : '0');
+    });
+  });
+</script>
+</body>
+</html>
