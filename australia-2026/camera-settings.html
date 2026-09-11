@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>📷 相机参数 · 🇦🇺 澳大利亚亲子游</title>
+<meta name="description" content="澳大利亚行程相机参数：按日期、地点和拍摄场景整理，可保存完整参数图片。">
+<style>
+:root {
+  --blue:#667eea;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#999;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { opacity:.92; font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:var(--orange)!important; color:#fff!important; border-color:var(--orange)!important; font-weight:700; }
+.nav-todo { background:#fef3c7!important; color:#92400e!important; border-color:#fcd34d!important; }
+.nav-supplement { background:#e0f2fe!important; color:#075985!important; border-color:#7dd3fc!important; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#4facfe; text-decoration:none; border-bottom:1px dotted #4facfe; }
+.md a:hover { color:#1d72d8; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.route-map {
+  background:#f8fafc; border-radius:8px; padding:14px;
+  margin:0 0 18px; border:1px solid var(--border);
+}
+.route-map h5 { font-size:.92em; color:#475569; margin-bottom:4px; text-align:center; }
+.route-map-note { text-align:center; color:var(--text3); font-size:.76em; margin-bottom:8px; }
+.route-map svg { width:100%; height:auto; display:block; }
+.route-map img { width:100%; height:auto; display:block; border-radius:6px; }
+.route-map-split { display:flex; align-items:center; gap:10px; }
+.route-map-panel { flex:1 1 0; min-width:0; margin:0; }
+.route-map-panel img { aspect-ratio:8/5; object-fit:cover; }
+.route-map-panel figcaption { margin-top:5px; color:var(--text2); font-size:.72em; text-align:center; }
+.route-map-flight { flex:0 0 124px; display:flex; flex-direction:column; align-items:center; gap:3px; color:#475569; font-size:.72em; text-align:center; }
+.route-map-flight-icon { font-size:1.6em; color:var(--blue); }
+.route-stops { display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:10px; font-size:.76em; color:var(--text2); }
+.route-stops span { display:inline-flex; align-items:center; gap:4px; }
+.route-stops b { display:inline-flex; width:18px; height:18px; align-items:center; justify-content:center; border-radius:50%; background:var(--blue); color:#fff; font-size:.72em; }
+.route-stops .route-stop-optional { color:#64748b; opacity:.78; }
+.route-stops .route-stop-optional b { background:#f8fafc; color:#64748b; border:2px dashed #94a3b8; }
+.route-stop-extra { color:#64748b; font-weight:700; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#fff; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+.todo-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.todo-header { background:linear-gradient(135deg,#fef3c7,#fdba74); padding:20px 24px; color:#78350f; font-size:1.2em; font-weight:700; }
+.todo-body { padding:20px 24px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px) {
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav a { padding:4px 10px; font-size:.75em; }
+  .route-map-split { flex-direction:column; align-items:stretch; }
+  .route-map-flight { flex-basis:auto; padding:2px 12px; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+
+.supplementary-main { background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.supplementary-actions { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px; }
+.supplementary-button { appearance:none; border:1px solid #0284c7; background:#0284c7; color:#fff; border-radius:6px; padding:9px 13px; font:inherit; font-size:.86em; font-weight:700; cursor:pointer; }
+.camera-scene { border:1px solid var(--border); border-radius:8px; padding:16px; margin:18px 0; background:#fff; overflow:visible; }
+.camera-scene > h2 { margin-top:0; }
+.camera-scene .export-note { font-size:.78em; color:var(--text3); margin:4px 0 10px; }
+.camera-scene table { display:table; table-layout:fixed; overflow:visible; }
+.camera-scene th:first-child, .camera-scene td:first-child { width:31%; }
+.camera-scene th, .camera-scene td { white-space:normal; overflow-wrap:anywhere; word-break:normal; }
+.camera-scene h3 { break-after:avoid; }
+@media (max-width:600px) {
+  .supplementary-main { padding:14px; }
+  .camera-scene { padding:12px; margin:14px 0; }
+  .camera-scene table { font-size:.78em; }
+  .camera-scene th, .camera-scene td { padding:6px; }
+}
+</style>
+</head>
+<body class="supplementary-page camera">
+<div class="trip-header">
+  <h1>📷 相机参数</h1>
+  <div class="trip-meta">2026.09.26 - 10.06</div>
+  <div class="trip-meta">Fujifilm X-T20 富士相机 + XF18-55mm F2.8-4 | 按日期与场景查找</div>
+</div>
+<nav class="day-nav"><a href="index.html" data-same-tab>返回主行程</a></nav>
+<main class="supplementary-main md"><p>器材固定为 <strong>Fujifilm X-T20 富士相机＋XF18-55mm F2.8-4 镜头</strong>。以下是手持拍摄起步参数，不是对应日期的天气预报；先按场景选择，照片明暗正常、主体清楚就不要改。</p>
+<p>太阳变强或被云遮住时，照片正常就不用调；需要调整时一次只改一项再试拍。</p>
+<table>
+<thead>
+<tr>
+<th>日期与地点</th>
+<th>拍摄场景</th>
+<th>使用配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1 9/26 · 皇家植物园、歌剧院、岩石区</td>
+<td>白天城市风景与建筑</td>
+<td>配置 1</td>
+</tr>
+<tr>
+<td>D1 9/26 · Circular Quay 环形码头</td>
+<td>日落与蓝调时刻</td>
+<td>配置 2</td>
+</tr>
+<tr>
+<td>D2 9/27 · Taronga Zoo 塔龙加动物园</td>
+<td>动物、飞鸟与表演</td>
+<td>配置 3</td>
+</tr>
+<tr>
+<td>D1-D11 · 各景点同行人物</td>
+<td>家庭合影与小朋友</td>
+<td>配置 4</td>
+</tr>
+<tr>
+<td>D3 9/28 · 悉尼大学、Bondi 海滩；D4 9/29 · 南海岸；D8 10/3 · 大洋路</td>
+<td>白天建筑、海岸与静止风景</td>
+<td>配置 5；D4 即已确认的 Kiama 基亚马配置</td>
+</tr>
+<tr>
+<td>D5 9/30 · Federation Square 联邦广场、Southbank 南岸</td>
+<td>傍晚城市与手持夜景</td>
+<td>配置 2</td>
+</tr>
+<tr>
+<td>D6 10/1 · Puffing Billy 蒸汽小火车</td>
+<td>运动中的火车与人物</td>
+<td>配置 6</td>
+</tr>
+<tr>
+<td>D7 10/2 · SEA LIFE Melbourne Aquarium 墨尔本水族馆</td>
+<td>暗光水族与游动动物</td>
+<td>配置 7</td>
+</tr>
+<tr>
+<td>D7 10/2 · Melbourne Museum 墨尔本博物馆、州立图书馆穹顶；D10 10/5 · QVB</td>
+<td>室内建筑与静止展品</td>
+<td>配置 8</td>
+</tr>
+<tr>
+<td>D8 10/3 · Kennett River；Seafarers Getaway</td>
+<td>野生考拉、羊驼</td>
+<td>配置 3</td>
+</tr>
+<tr>
+<td>D8 10/3 · Seafarers Getaway；D10 10/5 · Sydney Tower 悉尼塔（若执行）</td>
+<td>日落与蓝调时刻</td>
+<td>配置 2</td>
+</tr>
+<tr>
+<td>D9 10/4 · Twelve Apostles 十二门徒岩、Loch Ard Gorge 洛克阿德峡谷</td>
+<td>清晨海岸风景</td>
+<td>配置 9</td>
+</tr>
+<tr>
+<td>D10 10/5 · QVB、Myer、Westfield、餐厅</td>
+<td>商场、商品与餐食</td>
+<td>配置 10</td>
+</tr>
+<tr>
+<td>D11 10/6 · 悉尼机场</td>
+<td>快速旅行记录</td>
+<td>配置 4；不为拍照影响值机、退税和登机</td>
+</tr>
+</tbody>
+</table>
+<section class="camera-scene"><h2>配置 1 · 白天城市风景与建筑</h2>
+<p>适用：D1 皇家植物园、歌剧院和岩石区，以及日间城市外观；主体基本静止，兼顾天空和建筑高光。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大1600、最低快门1/250秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = 0、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>PROVIA / 标准</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>0</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；对准建筑边缘或树木纹理</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，内置闪光灯收回</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 -1/3 挡</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F5.6</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>建筑全景18-23mm；外立面局部35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；转光圈环至 F5.6</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS（光学防抖）设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关；X-T20 中文手册称“灰度效果”</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>控制照片明暗：太暗往 + 调，天空过亮往 - 调。</td>
+</tr>
+<tr>
+<td>光圈 F5.6 改为 F8</td>
+<td>阳光很强且快门接近1/4000秒时减少进光并扩大清晰范围。</td>
+</tr>
+<tr>
+<td>焦距18mm改为23-35mm</td>
+<td>建筑边缘拉伸明显时收窄视角，让线条更自然。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 2 · 日落、蓝调时刻与城市灯光</h2>
+<p>适用：D1 Circular Quay 环形码头、D5 Southbank 南岸、D8 Seafarers Getaway 海景酒店，以及 D10 Sydney Tower 悉尼塔（若执行）的手持傍晚场景。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/125秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = +1、B = -1</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>Classic Chrome / 经典正片</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；对准建筑灯光边缘，不对空白天空</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，内置闪光灯收回</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>日落先设 -2/3 挡；入夜后先设 -1/3 挡</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F4</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>城市全景18-23mm；灯光和人物35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；转光圈环至 F4</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>保住天空颜色：太阳周围发白就往 - 调，建筑黑成一片才往 + 调。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限3200改为6400</td>
+<td>入夜后人物或船只拍糊时提高上限以换取更快快门。</td>
+</tr>
+<tr>
+<td>光圈 F4 改为镜头最大光圈</td>
+<td>光线继续下降时增加进光，但画面边缘和前后景会更容易虚。</td>
+</tr>
+<tr>
+<td>最低快门1/125秒改为1/60秒</td>
+<td>只有静止城市景物且双手稳定时降低快门以控制 ISO。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 3 · 动物、飞鸟与临时动作</h2>
+<p>适用：D2 Taronga Zoo 塔龙加动物园的动物和表演，以及 D8 Kennett River 的野生考拉、鹦鹉和 Seafarers Getaway 的羊驼。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/500秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = 0、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>PROVIA / 标准</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>0</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>C（连续自动对焦）＋区域；区域放在动物头部活动范围</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，避免惊扰动物和玻璃反光</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A，由自动 ISO 最低快门约束动作</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 0；白色动物或逆光场景按现场微调</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F4-5.6；长焦端优先 F4</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>环境动物18-35mm；远处动物和细节55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>CH（高速连拍）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低快门1/500秒改为1/1000秒</td>
+<td>飞鸟、海狮跳跃或奔跑动物仍有拖影时提高最低快门。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限3200改为6400</td>
+<td>阴影区快门掉速时提高上限以优先冻结动作。</td>
+</tr>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>逆光动物脸太黑往 + 调，白毛或水面过亮往 - 调。</td>
+</tr>
+<tr>
+<td>CH改为CL</td>
+<td>动物动作变慢时改低速连拍，减少重复照片。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 4 · 家庭合影与小朋友</h2>
+<p>适用：全程白天家庭合影、小朋友玩耍，以及 D11 悉尼机场不影响流程的快速旅行记录。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认200、最大3200、最低快门1/250秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = +1、B = -1</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>ASTIA / 柔和</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S＋单点拍站定合影；小朋友活动时改 C＋区域；脸部 / 眼睛检测开启</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>户外关闭；室内脸部明显太暗时才弹出并设 -1 挡闪光补偿</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 0</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>单人 F4；两排合影 F5.6</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>环境合影23-35mm；半身人像35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>手持关；相机放稳拍全员合影时设10秒</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S；小朋友活动时改 CL</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>人脸偏暗往 + 调，额头和白衣发白往 - 调。</td>
+</tr>
+<tr>
+<td>S＋单点改为C＋区域</td>
+<td>小朋友开始走动或跑动时连续追焦，提高合焦成功率。</td>
+</tr>
+<tr>
+<td>光圈 F4 改为 F5.6</td>
+<td>两排人物有人虚时收小光圈，扩大前后清晰范围。</td>
+</tr>
+<tr>
+<td>焦距退回23-35mm</td>
+<td>场地狭窄或人数较多时扩大视角，但不要用18mm贴近人脸。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 5 · Kiama 基亚马白天海岸、建筑与静止风景</h2>
+<p>适用：D3 悉尼大学与 Bondi 海岸、D4 Bald Hill 至 Kangaroo Valley 全段、D8 Bells Beach 至 Seafarers Getaway；以下逐项保留已确认的 Kiama 基亚马起步配置。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大1600、最低快门1/250秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = 0、B = +1；白墙明显偏蓝时将 B 调回0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>Velvia / 鲜艳</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；中心点对准有纹理的建筑或岩石</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，内置闪光灯收回</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）；光线太暗时实际快门仍可能慢于1/250秒</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 -1/3 挡，即从0向负数方向转一小格</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F5.6</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>海岸全景18-23mm；建筑局部35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；转光圈环至屏幕显示 F5.6</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；拍摄设置 &gt; 防抖模式 &gt; 仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关；图像质量设置 &gt; 长时间曝光降噪</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关；拍摄设置 &gt; 自拍</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）；顶部左侧驱动拨盘设 S</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关；X-T20 中文手册称为“灰度效果”</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）；手机日常修图用 JPEG，RAW 留作备用</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>设置 &gt; 连接设置 &gt; 无线设置 &gt; 调手机图尺寸：关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -（机顶拨盘，每格1/3挡）</td>
+<td>控制照片明暗：太暗往 + 调，太亮往 - 调。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限1600改为3200</td>
+<td>弱光下快门太慢时，可帮助维持更快快门，但噪点可能增加。</td>
+</tr>
+<tr>
+<td>光圈 F5.6 改为 F4</td>
+<td>进光量约翻倍，可换取更快快门或更低 ISO，但前后清晰范围变小。</td>
+</tr>
+<tr>
+<td>光圈 F5.6 改为 F8</td>
+<td>快门已到1/4000秒仍过曝时，让进光量约减半。</td>
+</tr>
+<tr>
+<td>白平衡 B + / -</td>
+<td>控制整张照片的蓝黄倾向：往 + 偏蓝，往 - 偏黄，不只影响海水。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 6 · Puffing Billy 蒸汽小火车运动场景</h2>
+<p>适用：D6 10:00 Puffing Billy 蒸汽小火车进站、出站、行驶以及车上人物；安全优先，不把身体或器材伸出车外。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/1000秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = +1、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>Classic Chrome / 经典正片</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>0</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>C（连续自动对焦）＋区域；区域放在车头或人物前进方向</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，内置闪光灯收回</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A，由自动 ISO 保持最低1/1000秒</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 -1/3 挡</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F4</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>站台环境18-35mm；远处车头35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>CH（高速连拍）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低快门1/1000秒改为1/500秒</td>
+<td>火车停稳或缓慢移动且 ISO 过高时降低最低快门。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限3200改为6400</td>
+<td>林荫下火车仍拍糊时提高上限以维持动作快门。</td>
+</tr>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>黑色车头细节全丢时往 + 调，白色蒸汽过曝时往 - 调。</td>
+</tr>
+<tr>
+<td>CH改为CL</td>
+<td>车停站后改低速连拍，减少重复照片。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 7 · SEA LIFE 水族馆暗光与游动动物</h2>
+<p>适用：D7 企鹅、鲨鱼隧道、鳄鱼和水缸；隔着玻璃拍摄，镜头尽量贴近玻璃并避开反光。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认800、最大6400、最低快门1/250秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = 0、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>PROVIA / 标准</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>C（连续自动对焦）＋区域；区域对准动物头部，不对玻璃划痕</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，避免玻璃反光并遵守场馆规定</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A，由自动 ISO 保持最低1/250秒</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 -1/3 挡</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>使用当前焦段最大光圈：18mm约F2.8，55mm约F4</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>大水缸18-23mm；动物特写35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；光圈转到当前焦段最大值</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>CL（低速连拍）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门，减少人造灯下电子快门条纹风险</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最低快门1/250秒改为1/500秒</td>
+<td>鲨鱼或企鹅仍有拖影时提高最低快门。</td>
+</tr>
+<tr>
+<td>最低快门1/250秒改为1/125秒</td>
+<td>静止鳄鱼或展缸且 ISO 已到6400时降低最低快门。</td>
+</tr>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>动物主体黑成一片往 + 调，水缸灯和白色企鹅过亮往 - 调。</td>
+</tr>
+<tr>
+<td>镜头位置靠近玻璃</td>
+<td>反光明显时让遮光罩靠近玻璃并换角度，避免拍到室内倒影。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 8 · 室内建筑、穹顶与静止展品</h2>
+<p>适用：D7 Melbourne Museum 墨尔本博物馆、State Library Victoria 维州州立图书馆圆顶大厅，以及 D10 QVB Queen Victoria Building 维多利亚女王大厦室内。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/125秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = 0、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>PROVIA / 标准</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>0</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；对准穹顶线条、书桌或展品纹理</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，遵守场馆规定并避免玻璃反光</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 0</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F4</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>穹顶和大厅18-23mm；展品局部35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；转光圈环至 F4</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>室内整体灰暗往 + 调，窗户和顶灯大片发白往 - 调。</td>
+</tr>
+<tr>
+<td>光圈 F4 改为 F2.8-4最大光圈</td>
+<td>手持快门太慢时增加进光，但展厅前后清晰范围会变小。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限3200改为6400</td>
+<td>不允许三脚架且快门低于1/125秒时提高上限以减少手抖。</td>
+</tr>
+<tr>
+<td>焦距18mm改为23mm</td>
+<td>穹顶边缘变形明显时稍微收窄视角并保持相机水平。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 9 · Twelve Apostles 十二门徒岩清晨海岸</h2>
+<p>适用：D9 08:25 后的 Twelve Apostles 十二门徒岩和 Loch Ard Gorge 洛克阿德峡谷；此时已过日出但太阳较低，优先保住天空和白色浪花。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/250秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>200%；实际拍摄 ISO 至少为400</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = +1、B = 0</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>Velvia / 鲜艳</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；对准中远处岩柱边缘</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，内置闪光灯收回</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 -1/3 挡</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>手动 F5.6</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>海岸全景18-23mm；岩柱局部35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A；转光圈环至 F5.6</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>白色浪花和天空发白往 - 调，岩柱完全没细节才往 + 调。</td>
+</tr>
+<tr>
+<td>自动 ISO 上限3200改为1600</td>
+<td>太阳升高且快门足够快时降低上限以减少噪点。</td>
+</tr>
+<tr>
+<td>光圈 F5.6 改为 F8</td>
+<td>光线充足且需要更多前后景清晰时收小一挡。</td>
+</tr>
+<tr>
+<td>白平衡 R + / -</td>
+<td>清晨画面过冷可往 + 增红，颜色正常就保持不动。</td>
+</tr>
+</tbody>
+</table>
+<div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section>
+<section class="camera-scene"><h2>配置 10 · 商场、商品与餐食</h2>
+<p>适用：D10 QVB、Myer、Westfield、Chemist Warehouse 和餐厅；商品记录要拍清标签，餐食颜色自然优先。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>配置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO 感光度</td>
+<td>自动2：默认400、最大3200、最低快门1/125秒</td>
+</tr>
+<tr>
+<td>DR 动态范围</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>白平衡</td>
+<td>自动，不输入固定色温</td>
+</tr>
+<tr>
+<td>白平衡偏移</td>
+<td>R = +1、B = -1</td>
+</tr>
+<tr>
+<td>降噪功能</td>
+<td>-2</td>
+</tr>
+<tr>
+<td>胶片模拟</td>
+<td>ASTIA / 柔和</td>
+</tr>
+<tr>
+<td>高光色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>阴影色调</td>
+<td>-1</td>
+</tr>
+<tr>
+<td>色彩</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>锐度</td>
+<td>0</td>
+</tr>
+<tr>
+<td>对焦模式</td>
+<td>S（单次自动对焦）＋单点；商品对准文字标签，餐食对准主体前部</td>
+</tr>
+<tr>
+<td>闪光灯</td>
+<td>关闭，避免商品包装和餐具反光</td>
+</tr>
+<tr>
+<td>快门速度</td>
+<td>顶部快门拨盘设 A（自动）</td>
+</tr>
+<tr>
+<td>曝光补偿</td>
+<td>先设 0</td>
+</tr>
+<tr>
+<td>光圈</td>
+<td>商品和餐食 F4；商场环境 F5.6</td>
+</tr>
+<tr>
+<td>焦距</td>
+<td>商场环境18-23mm；商品、标签和餐食35-55mm</td>
+</tr>
+<tr>
+<td>曝光模式</td>
+<td>A（光圈优先），屏幕应显示 A</td>
+</tr>
+<tr>
+<td>顶部 AUTO 拨杆</td>
+<td>退出 AUTO（全自动）</td>
+</tr>
+<tr>
+<td>镜头光圈开关</td>
+<td>拨到光圈图标，不是 A</td>
+</tr>
+<tr>
+<td>光学防抖</td>
+<td>镜头 OIS 设 ON；防抖模式设仅拍摄时</td>
+</tr>
+<tr>
+<td>长时间曝光降噪</td>
+<td>关</td>
+</tr>
+<tr>
+<td>自拍延时</td>
+<td>关</td>
+</tr>
+<tr>
+<td>驱动模式</td>
+<td>S（单张拍摄）</td>
+</tr>
+<tr>
+<td>快门类型</td>
+<td>机械快门</td>
+</tr>
+<tr>
+<td>颗粒效果</td>
+<td>关</td>
+</tr>
+<tr>
+<td>图像质量 / 保存格式</td>
+<td>FINE + RAW（精细 JPEG 照片＋RAW 原始文件）</td>
+</tr>
+<tr>
+<td>图像尺寸</td>
+<td>L 3:2（6000 × 4000）</td>
+</tr>
+<tr>
+<td>RAW 录制</td>
+<td>无损压缩</td>
+</tr>
+<tr>
+<td>色彩空间</td>
+<td>sRGB（通用色彩空间）</td>
+</tr>
+<tr>
+<td>无线传手机缩图</td>
+<td>关，按原尺寸传输</td>
+</tr>
+</tbody>
+</table>
+<h3>现场微调</h3>
+<table>
+<thead>
+<tr>
+<th>微调</th>
+<th>一句话说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>曝光补偿 + / -</td>
+<td>白色价签偏灰往 + 调，包装高光发白往 - 调。</td>
+</tr>
+<tr>
+<td>白平衡 R / B + / -</td>
+<td>商场灯光偏绿黄时先用自动白平衡，颜色仍不自然再小幅调整红蓝方向。</td>
+</tr>
+<tr>
+<td>光圈 F4 改为 F5.6</td>
+<td>商品前后部分有一处虚时收小光圈扩大清晰范围。</td>
+</tr>
+<tr>
+<td>最低快门1/125秒改为1/250秒</td>
+<td>小朋友拿商品或餐桌人物有动作时提高最低快门。</td>
+</tr>
+</tbody>
+</table><div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section></main>
+<footer>Built 2026-09-12 09:28 (v2.1.0)</footer>
+
+<script>
+async function saveCameraCard(button) {
+  const source = button.closest('.camera-scene');
+  const width = 1200;
+  const padding = 48;
+  const tableWidth = width - padding * 2;
+  const firstColumn = 330;
+  const secondColumn = tableWidth - firstColumn;
+  const fontFamily = '"PingFang SC","Microsoft YaHei",sans-serif';
+  const measureCanvas = document.createElement('canvas');
+  const measureContext = measureCanvas.getContext('2d');
+
+  function wrap(context, text, maxWidth) {
+    const lines = [];
+    let line = '';
+    for (const character of text.trim()) {
+      const candidate = line + character;
+      if (line && context.measureText(candidate).width > maxWidth) {
+        lines.push(line);
+        line = character;
+      } else {
+        line = candidate;
+      }
+    }
+    if (line) lines.push(line);
+    return lines.length ? lines : [''];
+  }
+
+  function layout(context, draw) {
+    let y = padding;
+    const text = (value, x, maxWidth, font, color, lineHeight, bottomGap = 12) => {
+      context.font = font;
+      const lines = wrap(context, value, maxWidth);
+      if (draw) {
+        context.fillStyle = color;
+        lines.forEach((line, index) => context.fillText(line, x, y + lineHeight * (index + 1) - 6));
+      }
+      y += lines.length * lineHeight + bottomGap;
+    };
+    for (const element of source.children) {
+      if (element.matches('.supplementary-actions,.export-note')) continue;
+      if (element.matches('h2')) {
+        text(element.textContent, padding, tableWidth, `700 34px ${fontFamily}`, '#1f2937', 44, 18);
+      } else if (element.matches('h3')) {
+        y += 10;
+        text(element.textContent, padding, tableWidth, `700 27px ${fontFamily}`, '#075985', 36, 14);
+      } else if (element.matches('p')) {
+        text(element.textContent, padding, tableWidth, `400 23px ${fontFamily}`, '#475569', 34, 14);
+      } else if (element.matches('table')) {
+        const rows = [...element.rows];
+        rows.forEach((row, rowIndex) => {
+          const cells = [...row.cells];
+          context.font = `${rowIndex === 0 ? '700' : '400'} 22px ${fontFamily}`;
+          const leftLines = wrap(context, cells[0]?.textContent || '', firstColumn - 24);
+          const rightLines = wrap(context, cells[1]?.textContent || '', secondColumn - 24);
+          const rowHeight = Math.max(leftLines.length, rightLines.length) * 32 + 20;
+          if (draw) {
+            context.fillStyle = rowIndex === 0 ? '#667eea' : rowIndex % 2 ? '#ffffff' : '#f8fafc';
+            context.fillRect(padding, y, tableWidth, rowHeight);
+            context.strokeStyle = '#dbe3ec';
+            context.strokeRect(padding, y, tableWidth, rowHeight);
+            context.beginPath();
+            context.moveTo(padding + firstColumn, y);
+            context.lineTo(padding + firstColumn, y + rowHeight);
+            context.stroke();
+            context.fillStyle = rowIndex === 0 ? '#ffffff' : '#334155';
+            leftLines.forEach((line, index) => context.fillText(line, padding + 12, y + 30 + index * 32));
+            rightLines.forEach((line, index) => context.fillText(line, padding + firstColumn + 12, y + 30 + index * 32));
+          }
+          y += rowHeight;
+        });
+        y += 20;
+      }
+    }
+    return y + padding;
+  }
+
+  const height = layout(measureContext, false);
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d');
+  context.fillStyle = '#fff';
+  context.fillRect(0, 0, width, height);
+  layout(context, true);
+  const link = document.createElement('a');
+  const heading = source.querySelector('h2')?.textContent.trim() || 'camera-settings';
+  link.download = heading.replace(/[\\/:*?"<>|\s]+/g, '-') + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+</script>
+
+</body>
+</html>
