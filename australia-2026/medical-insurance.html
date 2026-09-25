@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>就医与理赔 · 🇦🇺 澳大利亚亲子游</title>
+<meta name="description" content="澳洲就医与境外旅行保险理赔准备：区分急救、费用报销和医疗转运，列明材料及本单待确认事项。">
+<style>
+:root {
+  --blue:#4f63d2;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#5f6b7a;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-padding-top:110px; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,var(--blue) 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:#9a3412!important; color:#fff!important; border-color:#9a3412!important; font-weight:700; }
+.nav-todo { background:#fef3c7!important; color:#92400e!important; border-color:#fcd34d!important; }
+.nav-supplement { background:#e0f2fe!important; color:#075985!important; border-color:#7dd3fc!important; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#075985; text-decoration:none; border-bottom:1px dotted currentColor; }
+.md a:hover { color:#034c75; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.md details.travel-details { margin:14px 0; padding:0 12px; border:1px solid #fcd34d; border-left:3px solid var(--orange); border-radius:6px; background:#fffbeb; }
+.md details.travel-details summary { padding:12px 0; color:#78350f; font-size:.92em; font-weight:700; cursor:pointer; overflow-wrap:anywhere; }
+.md details.travel-details summary::marker { color:var(--orange); }
+.md details.travel-details summary:focus-visible { outline:2px solid var(--orange); outline-offset:3px; }
+.md details.travel-details[open] { padding-bottom:8px; }
+.md details.travel-details[open] summary { border-bottom:1px solid #fde68a; }
+
+.route-map {
+  background:#f8fafc; border-radius:8px; padding:14px;
+  margin:0 0 18px; border:1px solid var(--border);
+}
+.route-map h5 { font-size:.92em; color:#475569; margin-bottom:4px; text-align:center; }
+.route-map-note { text-align:center; color:var(--text3); font-size:.76em; margin-bottom:8px; }
+.route-map svg { width:100%; height:auto; display:block; }
+.route-map img { width:100%; height:auto; display:block; border-radius:6px; }
+.route-map-split { display:flex; align-items:center; gap:10px; }
+.route-map-panel { flex:1 1 0; min-width:0; margin:0; }
+.route-map-panel img { aspect-ratio:8/5; object-fit:cover; }
+.route-map-panel figcaption { margin-top:5px; color:var(--text2); font-size:.72em; text-align:center; }
+.route-map-flight { flex:0 0 124px; display:flex; flex-direction:column; align-items:center; gap:3px; color:#475569; font-size:.72em; text-align:center; }
+.route-map-flight-icon { font-size:1.6em; color:var(--blue); }
+.route-stops { display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:10px; font-size:.76em; color:var(--text2); }
+.route-stops span { display:inline-flex; align-items:center; gap:4px; }
+.route-stops b { display:inline-flex; width:18px; height:18px; align-items:center; justify-content:center; border-radius:50%; background:var(--blue); color:#fff; font-size:.72em; }
+.route-stops .route-stop-optional { color:#64748b; opacity:.78; }
+.route-stops .route-stop-optional b { background:#f8fafc; color:#64748b; border:2px dashed #94a3b8; }
+.route-stop-extra { color:#64748b; font-weight:700; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+.todo-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.todo-header { background:linear-gradient(135deg,#fef3c7,#fdba74); padding:20px 24px; color:#78350f; font-size:1.2em; font-weight:700; }
+.todo-body { padding:20px 24px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px), (pointer:coarse) {
+  html { scroll-padding-top:76px; }
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav { flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; overscroll-behavior-x:contain; }
+  .day-nav a { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; min-height:44px; padding:6px 10px; font-size:.8em; white-space:nowrap; }
+  .md a[data-same-tab] { display:inline-flex; align-items:center; justify-content:center; min-width:60px; min-height:44px; margin:2px 4px 2px 0; padding:6px 5px; font-weight:600; }
+  .md table.itinerary-table, .md table.restaurant-table { position:relative; overflow:visible; font-size:.88em; }
+  .md .itinerary-table thead, .md .restaurant-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .md .itinerary-table tbody, .md .restaurant-table tbody { display:block; }
+  .md .itinerary-table tbody tr { display:grid; grid-template-columns:76px minmax(0,1fr); gap:2px 8px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .itinerary-table td { display:block; min-width:0; padding:3px 6px; border:0; overflow-wrap:anywhere; }
+  .md .itinerary-table td:first-child { color:#075985; font-weight:700; }
+  .md .itinerary-table td:last-child { grid-column:1 / -1; }
+  .md .itinerary-table td:last-child::before { content:attr(data-label) " · "; color:var(--text3); font-size:.85em; }
+  .md .itinerary-table td:empty { display:none; }
+  .md .restaurant-table tbody tr { display:block; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .restaurant-table td { display:block; min-width:0; padding:4px 6px; border:0; overflow-wrap:anywhere; }
+  .md .restaurant-table td:first-child { font-weight:700; color:var(--text); }
+  .md .restaurant-table td:not(:first-child)::before { content:attr(data-label) " · "; color:var(--text3); }
+  .md .restaurant-table a { display:inline-flex; align-items:center; min-height:44px; }
+  .route-map-split { flex-direction:column; align-items:stretch; }
+  .route-map-flight { flex-basis:auto; padding:2px 12px; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+
+.supplementary-main { background:var(--card); border-radius:var(--radius); padding:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.supplementary-actions { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 18px; }
+.supplementary-button { appearance:none; border:1px solid #0284c7; background:#0284c7; color:#fff; border-radius:6px; padding:9px 13px; font:inherit; font-size:.86em; font-weight:700; cursor:pointer; }
+.camera-scene { border:1px solid var(--border); border-radius:8px; padding:16px; margin:18px 0; background:#fff; overflow:visible; }
+.camera-scene > h2 { margin-top:0; }
+.camera-scene .export-note { font-size:.78em; color:var(--text3); margin:4px 0 10px; }
+.camera-scene table { display:table; table-layout:fixed; overflow:visible; }
+.camera-scene th:first-child, .camera-scene td:first-child { width:31%; }
+.camera-scene th, .camera-scene td { white-space:normal; overflow-wrap:anywhere; word-break:normal; }
+.camera-scene h3 { break-after:avoid; }
+@media (max-width:600px) {
+  .supplementary-main { padding:14px; }
+  .camera-scene { padding:12px; margin:14px 0; }
+  .camera-scene table { font-size:.78em; }
+  .camera-scene th, .camera-scene td { padding:6px; }
+}
+</style>
+</head>
+<body class="supplementary-page ">
+<div class="trip-header">
+  <h1>就医与理赔</h1>
+  <div class="trip-meta">2026.09.26 - 10.06</div>
+  <div class="trip-meta">众安无忧保·境外旅行险 | 急救、报案与材料 | 本单保障明细待核实</div>
+</div>
+<nav class="day-nav"><a href="index.html" data-same-tab>返回主行程</a></nav>
+<main class="supplementary-main md"><p>适用：本团通过支付宝购买、由<strong>众安在线财产保险股份有限公司</strong>承保的<strong>无忧保·境外旅行险</strong>。另一家庭的澳洲保险按自己的合同办理，不套用本页。</p>
+<p><strong>核对日期：2026-09-25。当前是就医准备与材料指引，不是本单保障已全部确认的赔付承诺。</strong>现有截图只有保单详情首页；尚未取得电子保单的保障表、特别约定及适用条款。以下把已核实的就医操作、公开条款参考和必须向众安确认的项目分开。</p>
+<blockquote>
+<p><strong>紧急情况先拨 <a href="tel:000" target="_blank" rel="noopener noreferrer">000</a>，说 “Ambulance”，先救治，不等保险审批。</strong>另一位大人在不影响照护的情况下尽快联系保险公司。不能因为担心报销、等待客服或材料不全而延误急救。000 电话免费，不代表救护车服务免费。</p>
+<p><strong>报案、付款、正式索赔是三件事。</strong>先垫付不等于可以等回国才首次报案；报案成功也不等于已获赔付或直付批准。</p>
+</blockquote>
+<h2>1. 目前能确认什么，还缺什么</h2>
+<ul>
+<li><strong>已确认</strong>：截图中的产品名称、承保公司，以及保单页有“理赔服务”“申请理赔”和“电子保单”入口。</li>
+<li><strong>未确认</strong>：所选方案、澳大利亚是否在承保区域、每个人尤其小朋友是否列为被保险人、准确起止时刻、医疗保额、免赔额、赔付比例、等待期及疾病定义。</li>
+<li><strong>未确认</strong>：本单是否包含当地救护车、门急诊、住院直付、既往疾病急性发作；报案和交材料的期限；本单指定救援机构及境外可拨打的电话。</li>
+<li><strong>不能替代</strong>：成人保单截图不证明孩子有保障；“保障中”不证明所有疾病都赔；网上同名产品、其他档位及下方公开参考条款，都不能代替本单合同。</li>
+</ul>
+<p><strong>出发前由投保人从截图右下角“电子保单”下载完整 PDF，连同保障明细、特别约定、条款附件保存到手机。</strong>若一家分别投保，要逐人核对；文件仅在家人和正式理赔渠道内使用，不上传公开攻略。</p>
+<h2>2. 救护车和医疗费用能不能报</h2>
+<h3>当地 000 救护车：目前不能承诺本单可赔</h3>
+<p>必须让众安按本单确认：地面救护车是否承保、归入哪项责任、是否有独立限额和免赔，以及<strong>上门急救但未送院、现场处置、送往医院、医院间转运</strong>分别怎样处理。不能只看到“紧急医疗运送和送返”就认定每张 000 账单都能报。</p>
+<p>这一区分有实际条款依据：众安公开《附加急性病医疗费用保险条款（互联网 2025 版）》第四条把救护车费用列入某些境外特定急性病医疗费用；公开的旅行医疗运送条款则要求指定救援机构判断、批准和安排。<strong>这是两种不同责任的例子，不证明本单含其中任何一项；也不能把“特定急性病”理解为所有感冒、发烧都承保。</strong>[来源 1、2]</p>
+<p>发生急救时仍先呼叫 000。保存急救时间、原因、救护记录、独立账单及付款凭证，再由众安核赔；不为了等批准而推迟救护车，也不承诺事后一定获赔。</p>
+<h3>门诊、急诊、住院与药品：逐项看保障表</h3>
+<p>以下是<strong>需要核对的费用类别，不是已确认的本单赔付清单</strong>：</p>
+<ul>
+<li><strong>门诊 / 急诊诊疗费</strong>：先确认意外和疾病是否都保、疾病是否限特定类别，以及所去医院或 GP 诊所是否符合合同的医疗机构定义。澳洲合法营业不自动等于保险认可。</li>
+<li><strong>医生开具的检查</strong>：血液、尿液、病理和影像检查等，核对是否为受保疾病或意外所需；保存检查报告及独立收费单。</li>
+<li><strong>处方药和治疗</strong>：保留处方、药名、剂量、数量、配药凭证和收据。自行买的非处方药、保健品不能默认报销。</li>
+<li><strong>住院、手术、床位、护理、治疗材料</strong>：核对医学必要性、费用限额、病房标准和预授权要求。家长陪护、住宿、餐费、误工及出租车费不能直接混入医疗费，须有对应责任才可能赔。</li>
+<li><strong>复诊、回国继续治疗、保期结束后的费用</strong>：须另外核对延续治疗条件和时限；不能因为在旅途中首次就诊，就认定以后所有费用都保。</li>
+<li><strong>转院、空中救援、医疗送返中国</strong>：不当作普通门诊的“先付钱后报销”。安全允许时，先由保单指定救援机构评估、批准并安排；已付普通医疗费也不等于可自行安排医疗送返。[来源 2]</li>
+</ul>
+<p>所有赔付仍受被保险人、承保区域、保险期间、病因、除外责任、合理必要费用、免赔和比例等条件限制；已由其他保险补偿的部分应如实申报，不能重复报销获利。</p>
+<h3>出发前已有症状、既往病史与过敏：必须单独确认</h3>
+<p><strong>在澳洲看急诊，不会自动把出发前已存在的问题变成“旅途中突发的新病”。</strong>已有症状、已就诊、已用药、正在等待检查结果及相关并发症，都应如实向医生和众安说明。过敏史及这次发作的关系也要按合同判断，不能一概说必赔或必不赔。</p>
+<p>众安公开条款中既有排除投保前已患疾病的医疗责任，也有单独的“旅行既往疾病急性发作紧急救治”附加责任；后者另有急性发作、紧急救治等条件。<strong>存在这种附加险，不代表本单已经购买。</strong>应请众安结合实际病史书面确认，而不是仅问“儿童急诊保不保”。有既往病史也不代表其他不相关的受保意外一定不赔。[来源 1、3]</p>
+<p>本页不作诊断，也不判断是否适合飞行或旅行；如当前病情有疑问，由孩子的治疗医生评估。</p>
+<h2>3. 在澳洲怎样就医、报案和付款</h2>
+<h3>A. 严重或紧急：先急救，同步或随后尽快报案</h3>
+<ol>
+<li>严重呼吸困难、失去意识等紧急情况拨 <strong><a href="tel:000" target="_blank" rel="noopener noreferrer">000</a></strong>，说明要救护车，给出位置、孩子年龄及当前情况；需要时说 “Mandarin interpreter, please”。按调度员指示处理。</li>
+<li>家长照护病人；另一位大人携带护照、药物清单、过敏资料及保单，在不耽误救治的情况下联系本单救援机构 / 众安。记录症状出现时间、就诊时间、报案时间、案件号和未能及时联系的原因。</li>
+<li>告诉医院有中国购买的境外旅行保险；<strong>不要承诺保险公司会直接付医院</strong>。如果尚无书面直付安排，按医院的收费、押金和账单流程办理，并保留全部凭证。</li>
+<li>若需住院、手术、转院或高额治疗，尽快让家长、医院账务人员与救援机构沟通。紧急救治不等待审批；可计划的后续安排先核对授权。</li>
+</ol>
+<h3>B. 情况稳定的普通看诊：有条件先联系，再按指引就医</h3>
+<ol>
+<li>不确定该去哪里时，可先咨询注册护士：悉尼 / 新州 <strong><a href="tel:1800022222" target="_blank" rel="noopener noreferrer">healthdirect 1800 022 222</a></strong>；墨尔本 / 维州 <strong><a href="tel:1300606024" target="_blank" rel="noopener noreferrer">Nurse-on-Call 1300 60 60 24</a></strong>。这是医疗咨询，不是保险审批；变为紧急情况就拨 000。[来源 4、5]</li>
+<li>用支付宝进入<strong>这张保单</strong>的“理赔服务 / 申请理赔”，申请人工指导，确认医院或诊所是否认可、是否需预授权、能否先垫付，以及怎样正式登记报案。聊天咨询不一定等于已报案，索取案件号。</li>
+<li><strong>只有在本单允许事后报销的费用项目下，才按先垫付、后申请的方式准备。</strong>就医时收齐下面的资料，不必为了等回国而延后报案；线上是否可在澳洲先交件、回国补件，以本单指引为准。</li>
+</ol>
+<h3>C. 住院垫付 / 直付、医疗转运：先核对资格并取得安排</h3>
+<ul>
+<li>问清是否有住院垫付或直付服务、最低条件、可用医院、覆盖项目、免赔及自付部分；这些服务<strong>不是支付宝买保险就自动有</strong>。</li>
+<li>需要直付时，请保险 / 救援机构向医院发出适用的 <strong>Guarantee of Payment（付款担保）</strong>，并由医院确认收到和接受；不要仅凭口头“应该可以”取消付款安排。</li>
+<li>垫付可能需要签署担保或事后结算；不受保、超限额或被核定为自付的费用仍可能由患者承担。</li>
+<li>自行安排转运的核赔风险较高。众安公开转运条款有事前批准要求及紧急不可通知时的例外约定，<strong>例外并非自动赔付，且本单适用版本仍待核实</strong>。[来源 2]</li>
+</ul>
+<h3>回国后提交，还是第一时间联系？</h3>
+<p><strong>稳妥做法是“当地尽快报案并确认流程，回国后按约定补齐材料”，而不是“回国才第一次联系”。</strong>本单尚未提供，不能编造统一的 24 / 48 小时或若干天期限，也不能承诺所有费用都允许先垫后赔。报案时让客服书面列出：最迟通知时间、正式索赔期限、缺件补交期限和提交渠道，并保存答复。</p>
+<h2>4. 离开医院前，要拿到哪些材料</h2>
+<p><strong>至少把“病历 / 诊断、检查报告、费用明细、付款凭证”作为一套收集，不只拿一张 Tax Invoice。</strong>以下按减少回国补件的风险准备；公开参考条款明确要求其中的病历、诊断、检查报告和原始费用单据，本单最终材料清单仍以正式理赔指引为准。[来源 1]</p>
+<ol>
+<li><strong>诊断和就诊摘要</strong><br>
+   索取 <strong>ED discharge summary（急诊离院小结）</strong>、<strong>medical / clinical report（诊疗报告）</strong>；若住院，再要 <strong>hospital discharge summary（住院出院小结）</strong>。应可核对患者姓名、就诊日期、症状及发病经过、诊断、治疗和后续安排。没有最终诊断就保留医生的实际记录，不为理赔改写病史。</li>
+<li><strong>检查 / 检验报告</strong><br>
+   索取本次实际做过的 <strong>pathology / laboratory results</strong> 和 <strong>radiology / imaging reports</strong>，例如验血、尿检、X 光、超声或 CT 报告。不要求为了理赔增加检查。尚未出结果的，记下追踪方式及医院联系人；不只拍收费项目名称。</li>
+<li><strong>原始医疗账单和逐项明细</strong><br>
+   保存医院、医生、检验、影像分别出具的 <strong>invoice / itemised invoice</strong>：患者姓名、日期、机构、项目、金额和币种应清楚。医院可能分开发账单，不能只收医院总账而漏掉医生或检查费。[来源 6]</li>
+<li><strong>已付款凭证</strong><br>
+   保存 <strong>receipt / paid invoice</strong>，以及刷卡或转账记录。单有 invoice 不一定证明已付；银行流水通常也不能代替医疗项目明细。家长代付孩子费用时，医疗文件仍应对应孩子，代付凭证一并保留。</li>
+<li><strong>处方与药房单据</strong><br>
+<strong>Prescription（处方）</strong>、药名与浓度 / 剂量、数量、配药标签、药房明细收据。别只留下药盒或无项目的信用卡小票。</li>
+<li><strong>用过救护车时</strong><br>
+   索取或申请 <strong>ambulance invoice / receipt</strong> 和 <strong>ambulance patient care record / report</strong>；留存日期、出发及到达地点、急救原因、处置及送医记录。救护车可能独立、稍后寄账单，核对可联系的邮箱 / 地址并跟进，不把医院结清理解为救护车也结清。</li>
+<li><strong>身份、保单、旅行与未成年人资料</strong><br>
+   电子保单及条款、患者护照 / 身份证明、签证、行程与登机牌、可取得的出入境记录；孩子的监护人身份证明和关系证明按要求提供。电子通关无盖章时向众安确认替代材料；代办索赔可能需授权书。</li>
+<li><strong>理赔申请与沟通资料</strong><br>
+   案件号、理赔申请表、收款账户、预授权 / 付款担保、客服书面确认；如已从其他保险获赔，留结算单。仅走本单官方渠道，银行卡和保单编号不放群公开链接或攻略网页。</li>
+</ol>
+<p><strong>澳洲医院的正式电子文件也应保存原文件。</strong>是否接受电子原件、是否需中文翻译或纸质原件，由众安按本单确认；不要假设澳洲医院必须出具国内格式的红章病历。拍照备份不等于可以丢掉原件。</p>
+<p><strong>病历补取可能并不即时。</strong>悉尼儿童医院网络说明：申请孩子完整病历通常需书面申请及身份证明，复制可能收费，多数申请在 28 天内处理；这是其病历访问流程，不是众安理赔时限，也不表示急诊离院小结一定要等 28 天。离院时先拿现有摘要、报告，并记录补取渠道。[来源 7]</p>
+<h2>5. 报案入口与出发前的确认话术</h2>
+<ul>
+<li><strong>优先使用截图中这张保单的“理赔服务 / 申请理赔”</strong>，或电子保单列明的救援联系方式。支付宝在线咨询能否完成正式报案，要索取确认。</li>
+<li>众安官网公布国内服务热线 <strong>952299 / 10109955</strong>，可在国内核对合同；<strong>不把国内短号加上 +86 就当作澳洲可用的救援热线</strong>。本单的境外电话和救援服务方尚未取得，不在本页猜填号码。[来源 8]</li>
+<li>出发前将真实救援号码、保单和证件存到手机离线区，并让另一位大人也知道位置；有网络时测试官方 App / 支付宝账号和短信验证能正常使用。</li>
+</ul>
+<p>可在本单官方客服会话中发送：</p>
+<blockquote>
+<p>我们将赴澳大利亚旅行，包含新州和维州。请按这张保单及特别约定逐项书面确认，并告知对应条款：</p>
+<p>① 每位成人和儿童是否已承保，澳大利亚是否在区域内，医疗保额、免赔、比例、等待期及认可医疗机构是什么？普通门急诊、GP 诊所和突发疾病是否都包含，还是仅限特定急性病？</p>
+<p>② 拨打 000 产生的地面救护车费用能否赔？现场急救但未送院、送医、转院分别归哪项责任，是否需预授权，有无独立限额？</p>
+<p>③ 病人如有出发前已出现的症状、就诊、用药或过敏史，相关急诊 / 住院怎样判断？本单是否含既往疾病急性发作保障？我们会另在正式私密渠道如实补充病史。</p>
+<p>④ 普通医疗费能否自行垫付后索赔？出险后何时必须报案，最迟何时正式申请和补件？是否可在境外线上交件、回国补资料？</p>
+<p>⑤ 住院直付 / 垫付或医疗转运怎样启动？指定救援方及澳洲可拨打的 24 小时号码是什么？哪些项目要事前书面批准？</p>
+<p>⑥ 请给出本单医疗及救护车理赔材料清单：病历、诊断、检查报告、费用明细、付款凭证、处方、旅行证明及儿童监护材料的要求；英文及电子原件是否接受，是否需翻译 / 寄原件，人民币结算的汇率口径是什么？</p>
+</blockquote>
+<p>保存答复、案件号和依据；模糊答复不能当作对具体既往疾病或费用的承保确认。</p>
+<h2>6. 现场可直接给医院看的英文</h2>
+<p><strong>向接诊 / 收费人员：</strong></p>
+<blockquote>
+<p>We have travel insurance issued in China and may need to pay upfront. Please provide an itemised invoice and proof of payment, the emergency department or hospital discharge summary, the clinical diagnosis, all available test reports, and copies of prescriptions. These are needed for our insurance claim.</p>
+</blockquote>
+<p><strong>补取资料：</strong></p>
+<blockquote>
+<p>Could you tell us how to obtain any outstanding test results and medical records after discharge? Please give us the medical records department's contact details. We are overseas visitors.</p>
+</blockquote>
+<p><strong>需要口译：</strong></p>
+<blockquote>
+<p>Could you arrange a Mandarin interpreter, please?</p>
+</blockquote>
+<p>上面是沟通用语，不是医生证明；医疗判断和处置听从当地医护人员。</p>
+<h2>7. 后续英文就医摘要：收到原始资料再做</h2>
+<p>后续在本对话收到家长提供的国内病历、处方和检查报告后，再整理独立英文医生交接摘要，标明原始记录来源与日期；目前不预填诊断或药量，也不假装已经读取群文件。</p>
+<p>需要的信息包括：家长确认的患儿基本信息与近期体重、症状时间线、诊断 / 待排诊断、重要病史和过敏反应、实际用药的通用名 / 浓度 / 每次用量 / 频次 / 最后用药时间、检查数值 / 单位 / 参考范围、医生建议及尚待取得的结果。看不清或来源缺失的项目留待确认，不猜。</p>
+<p>英文摘要由家长核对后，<strong>以私下保存的 HTML / PDF 交付，连同中文原件给医生看</strong>；不是医疗诊断书、适航证明或保险赔付证明。患儿姓名、病历、证件、个人保单及紧急联系人不加入公开攻略、公开 PDF 或公开页面导航。</p>
+<h2>核实来源与适用边界</h2>
+<p>以下均于 <strong>2026-09-25</strong> 读取原文。来源 1–3 为众安公开的不同附加条款，<strong>仅用于说明保障和流程为什么必须区分，尚未证实附加在本单上</strong>；不把其中的病种范围、天数或保额直接套用于本单。</p>
+<ol>
+<li><a href="https://static.zhongan.com/upload/online/material/1751355791034.pdf" target="_blank" rel="noopener noreferrer">众安《附加急性病医疗费用保险条款（互联网 2025 版）》</a>：第四条费用范围、第五至八条除外、第十三条索赔材料及释义；不是“所有突发疾病都保”的证明。</li>
+<li><a href="https://m.zhongan.com/channel/agreement/travel/lvyou/ag_medicalCareTransport.html" target="_blank" rel="noopener noreferrer">众安公开旅行紧急医疗运送和送返条款（2015 年备案版本）</a>：2.1 批准安排及特殊情形、2.2 除外、3 通知义务；<strong>历史参考，不当作本单现行条款</strong>。</li>
+<li><a href="https://static.zhongan.com/upload/core/term/7LD.pdf" target="_blank" rel="noopener noreferrer">众安《附加旅行既往疾病急性发作紧急救治保险条款（互联网）》</a>：第三条责任、第七条材料及释义；有单独责任不等于本单已购买。</li>
+<li><a href="https://www.healthdirect.gov.au/calling-triple-zero" target="_blank" rel="noopener noreferrer">Healthdirect：拨打 000、口译及健康咨询</a>。</li>
+<li><a href="https://www.health.vic.gov.au/primary-care/nurse-on-call" target="_blank" rel="noopener noreferrer">维州卫生部门：Nurse-on-Call</a>。</li>
+<li><a href="https://www.seslhd.health.nsw.gov.au/prince-of-wales-hospital/services-clinics/directory/emergency/emergency-department-costs" target="_blank" rel="noopener noreferrer">NSW Health：海外访客急诊及分项收费</a>；<a href="https://www.ambulance.vic.gov.au/pay-invoice" target="_blank" rel="noopener noreferrer">Ambulance Victoria：救护车账单需支付</a>。这是费用流程信息，不是转介到该医院的建议，也不是本单理赔保证。</li>
+<li><a href="https://www.schn.health.nsw.gov.au/visiting-and-staying/health-information-and-privacy/access-medical-records" target="_blank" rel="noopener noreferrer">悉尼儿童医院网络：申请孩子病历</a>。</li>
+<li><a href="https://www.zhongan.com/open/claim/putClaim.htm" target="_blank" rel="noopener noreferrer">众安官方理赔入口</a>及<a href="https://www.zhongan.com/open/userInfo/productCaluse.vm" target="_blank" rel="noopener noreferrer">官网联系方式页脚</a>；本单的专属境外救援电话仍以电子保单为准。</li>
+</ol></main>
+<footer>Built 2026-09-25 13:28 (v2.1.0)</footer>
+
+</body>
+</html>
