@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🇦🇺 2027 春节西澳自驾 2027.02.03 - 02.10</title>
+<meta name="description" content="2027 春节西澳自驾：路线、民宿和预算。">
+<meta property="og:title" content="2027 春节西澳">
+<meta property="og:description" content="珀斯出发，沙丘、尖峰石阵、玛格丽特河、Rottnest。">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --blue:#4f63d2;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#5f6b7a;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-padding-top:110px; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,var(--blue) 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:#9a3412!important; color:#fff!important; border-color:#9a3412!important; font-weight:700; }
+.nav-todo { background:#fef3c7!important; color:#92400e!important; border-color:#fcd34d!important; }
+.nav-supplement { background:#e0f2fe!important; color:#075985!important; border-color:#7dd3fc!important; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#075985; text-decoration:none; border-bottom:1px dotted currentColor; }
+.md a:hover { color:#034c75; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.md details.travel-details { margin:14px 0; padding:0 12px; border:1px solid #fcd34d; border-left:3px solid var(--orange); border-radius:6px; background:#fffbeb; }
+.md details.travel-details summary { padding:12px 0; color:#78350f; font-size:.92em; font-weight:700; cursor:pointer; overflow-wrap:anywhere; }
+.md details.travel-details summary::marker { color:var(--orange); }
+.md details.travel-details summary:focus-visible { outline:2px solid var(--orange); outline-offset:3px; }
+.md details.travel-details[open] { padding-bottom:8px; }
+.md details.travel-details[open] summary { border-bottom:1px solid #fde68a; }
+
+.route-map {
+  background:#f8fafc; border-radius:8px; padding:14px;
+  margin:0 0 18px; border:1px solid var(--border);
+}
+.route-map h5 { font-size:.92em; color:#475569; margin-bottom:4px; text-align:center; }
+.route-map-note { text-align:center; color:var(--text3); font-size:.76em; margin-bottom:8px; }
+.route-map svg { width:100%; height:auto; display:block; }
+.route-map img { width:100%; height:auto; display:block; border-radius:6px; }
+.route-map-split { display:flex; align-items:center; gap:10px; }
+.route-map-panel { flex:1 1 0; min-width:0; margin:0; }
+.route-map-panel img { aspect-ratio:8/5; object-fit:cover; }
+.route-map-panel figcaption { margin-top:5px; color:var(--text2); font-size:.72em; text-align:center; }
+.route-map-flight { flex:0 0 124px; display:flex; flex-direction:column; align-items:center; gap:3px; color:#475569; font-size:.72em; text-align:center; }
+.route-map-flight-icon { font-size:1.6em; color:var(--blue); }
+.route-stops { display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:10px; font-size:.76em; color:var(--text2); }
+.route-stops span { display:inline-flex; align-items:center; gap:4px; }
+.route-stops b { display:inline-flex; width:18px; height:18px; align-items:center; justify-content:center; border-radius:50%; background:var(--blue); color:#fff; font-size:.72em; }
+.route-stops .route-stop-optional { color:#64748b; opacity:.78; }
+.route-stops .route-stop-optional b { background:#f8fafc; color:#64748b; border:2px dashed #94a3b8; }
+.route-stop-extra { color:#64748b; font-weight:700; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+.todo-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.todo-header { background:linear-gradient(135deg,#fef3c7,#fdba74); padding:20px 24px; color:#78350f; font-size:1.2em; font-weight:700; }
+.todo-body { padding:20px 24px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px), (pointer:coarse) {
+  html { scroll-padding-top:76px; }
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav { flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; overscroll-behavior-x:contain; }
+  .day-nav a { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; min-height:44px; padding:6px 10px; font-size:.8em; white-space:nowrap; }
+  .md a[data-same-tab] { display:inline-flex; align-items:center; justify-content:center; min-width:60px; min-height:44px; margin:2px 4px 2px 0; padding:6px 5px; font-weight:600; }
+  .md table.itinerary-table, .md table.restaurant-table { position:relative; overflow:visible; font-size:.88em; }
+  .md .itinerary-table thead, .md .restaurant-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .md .itinerary-table tbody, .md .restaurant-table tbody { display:block; }
+  .md .itinerary-table tbody tr { display:grid; grid-template-columns:76px minmax(0,1fr); gap:2px 8px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .itinerary-table td { display:block; min-width:0; padding:3px 6px; border:0; overflow-wrap:anywhere; }
+  .md .itinerary-table td:first-child { color:#075985; font-weight:700; }
+  .md .itinerary-table td:last-child { grid-column:1 / -1; }
+  .md .itinerary-table td:last-child::before { content:attr(data-label) " · "; color:var(--text3); font-size:.85em; }
+  .md .itinerary-table td:empty { display:none; }
+  .md .restaurant-table tbody tr { display:block; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .restaurant-table td { display:block; min-width:0; padding:4px 6px; border:0; overflow-wrap:anywhere; }
+  .md .restaurant-table td:first-child { font-weight:700; color:var(--text); }
+  .md .restaurant-table td:not(:first-child)::before { content:attr(data-label) " · "; color:var(--text3); }
+  .md .restaurant-table a { display:inline-flex; align-items:center; min-height:44px; }
+  .route-map-split { flex-direction:column; align-items:stretch; }
+  .route-map-flight { flex-basis:auto; padding:2px 12px; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="trip-header">
+  <h1>🇦🇺 2027 春节西澳自驾</h1>
+  <div class="trip-meta">2027.02.03 - 02.10</div>
+  <div class="trip-meta">选项 A：两家 6 人 | 西澳 7 晚自驾 | 沙漠 + 海滩 + 溶洞 + quokka</div>
+</div>
+
+<nav class="day-nav">
+  <a href="#todo" class="nav-todo">ToDo</a>
+  <a href="#overview">概览</a>
+  <a href="trip.pdf" class="nav-pdf" target="_blank" rel="noopener noreferrer">PDF</a>
+</nav>
+
+<section class="overview" id="overview">
+  <h2>📋 行程概览</h2>
+  <div class="info-grid">
+    <div class="info-card"><h3>人数</h3><p>两家 6 人<br>4 大 2 小</p></div>
+<div class="info-card"><h3>第一优先</h3><p>查 A 家 482 是否有效<br>B 家办 600 签证</p></div>
+<div class="info-card"><h3>每家预算</h3><p>A 家约 5.2–6.0 万<br>B 家约 6.2–6.9 万</p></div>
+<div class="info-card"><h3>6 人合计</h3><p>约 11.4–12.9 万</p></div>
+  </div>
+  <div class="md">
+    <p>查询日期：2026-10-22。机票、民宿来自 Google Flights / Hotels（SerpAPI）快照。汇率 1 AUD = 4.65 元。金额写人民币，澳元原价放括号里。三版对比见 <a href="../" target="_blank" rel="noopener noreferrer">首页</a>。</p>
+<p>你记得的“沙漠、海滩、岩石都有”就是<strong>西澳</strong>：从珀斯开车能到 Pinnacles 尖峰石阵、Lancelin 白沙丘、海滩和溶洞。东澳以海滩和雨林为主，没有成片沙漠。</p>
+<h2>0. 先确认（最重要）</h2>
+<ul>
+<li><strong>妈妈和孩子的 482 副签 2027 年 2 月是否还有效</strong>：在 VEVO 查。失效的话要办 600 访客签证，A$250/人起（<a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600/tourist-stream-overseas" target="_blank" rel="noopener noreferrer">Home Affairs</a>）。中国护照不能办 ETA。</li>
+<li>2 月是西澳盛夏，珀斯平均最高约 31°C，常有 35–40°C。户外活动放在 10 点前和 16 点后。</li>
+<li>西澳学校 2/1 已开学，景点不挤（<a href="https://www.education.wa.edu.au/future-term-dates" target="_blank" rel="noopener noreferrer">WA Education</a>）。</li>
+<li>
+<p>孩子出行时 4 岁 8 个月，西澳法律要求用儿童座椅或增高座椅，租车时加订。</p>
+</li>
+<li>
+<p><strong>B 家</strong>（2 大 1 小，从上海出发）要办 600 签证，A$250/人起，3 人约 3,490 元，12 月前递交。</p>
+</li>
+<li>两家 6 人：租 <strong>8 座车</strong>（如 Kia Carnival），两个大人轮流开。民宿订<strong>三房整套</strong>。</li>
+</ul>
+<h2>1. 机票（往返，2/3 去 2/10 回）</h2>
+<table>
+<thead>
+<tr>
+<th>航段</th>
+<th>推荐</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>妈妈和孩子 PVG↔PER（1 大 1 小）</td>
+<td>泰航去（经曼谷）+ 国泰回（经香港），两张单程拼</td>
+<td>约 14,010 元（A$3,013）</td>
+</tr>
+<tr>
+<td>同上，往返一张票</td>
+<td>泰航 / 南航 / 国泰，都转 1 次，没有直飞</td>
+<td>约 14,430–14,800 元</td>
+</tr>
+<tr>
+<td>B 家 PVG↔PER（2 大 1 小）</td>
+<td>同上，转 1 次</td>
+<td>约 22,585 元</td>
+</tr>
+<tr>
+<td>爸爸 SYD↔PER</td>
+<td>Jetstar 直飞约 5 小时</td>
+<td>约 2,776 元（A$597），<strong>不含托运行李</strong>，另加约 A$80–120</td>
+</tr>
+</tbody>
+</table>
+<h2>2. 推荐路线：轻量北线 + 南线（约 1,100 km，单日开车不超过 3 小时）</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>行程</th>
+<th>车程（估）</th>
+<th>住</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2/3（三）</td>
+<td>到珀斯，机场取车</td>
+<td>30 分钟</td>
+<td>Fremantle</td>
+</tr>
+<tr>
+<td>2/4（四）</td>
+<td><strong>Rottnest 岛</strong>：看 quokka，The Basin 浅水湾游泳</td>
+<td>渡轮</td>
+<td>Fremantle</td>
+</tr>
+<tr>
+<td>2/5（五）</td>
+<td>Lancelin 白沙丘滑沙 → 傍晚 <strong>Pinnacles 尖峰石阵</strong></td>
+<td>约 250 km，3 小时</td>
+<td>Jurien Bay / Cervantes</td>
+</tr>
+<tr>
+<td>2/6（六）春节</td>
+<td>回程走 Yanchep 国家公园看考拉 → 南下</td>
+<td>约 450 km（拆成两段，中午在珀斯休息）</td>
+<td>Busselton</td>
+</tr>
+<tr>
+<td>2/7（日）</td>
+<td><strong>Busselton Jetty</strong> 小火车和水下观测站；Meelup 海滩</td>
+<td>50 km</td>
+<td>Busselton</td>
+</tr>
+<tr>
+<td>2/8（一）</td>
+<td>玛格丽特河：Mammoth / Lake Cave 溶洞（洞里凉快）、巧克力工厂、Hamelin Bay 看魟鱼</td>
+<td>约 120 km</td>
+<td>Busselton / Margaret River</td>
+</tr>
+<tr>
+<td>2/9（二）</td>
+<td>回珀斯，傍晚 Kings Park 或 Cottesloe 海滩</td>
+<td>约 230 km，2.5 小时</td>
+<td>珀斯</td>
+</tr>
+<tr>
+<td>2/10（三）</td>
+<td>还车，回程</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Rottnest 放在 2/4，是因为复核发现原稿把它和“玛格丽特河开回珀斯”排在同一天，排不开。</li>
+<li>2/6 车程最长。嫌累就去掉 Yanchep，或把南线缩成 Busselton 两晚。</li>
+<li><strong>不推荐 Kalbarri 和粉湖</strong>（单程约 570 km，峡谷 2 月常超 40°C）和 <strong>Wave Rock</strong>（往返 8 小时以上）。</li>
+</ul>
+<details class="travel-details">
+<summary>备选：纯北线（Kalbarri 峡谷 + 粉湖）</summary>
+<p>总车程约 1,500 km，有 3 天单日开车超过 4 小时，峡谷步道遇极端高温会关闭。对 4–5 岁孩子偏累，只在特别想看粉湖时考虑。</p>
+</details>
+<h2>3. 门票</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>价格</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国家公园车辆日票（Nambung、Yanchep 各一次）</td>
+<td>A$17/车/天</td>
+<td><a href="https://exploreparks.dbca.wa.gov.au/park-entry-fees" target="_blank" rel="noopener noreferrer">DBCA</a></td>
+</tr>
+<tr>
+<td>Rottnest Express，Fremantle 往返含上岛费</td>
+<td>成人 A$87.50，4–12 岁 A$45；3 人 A$220（约 1,023 元）</td>
+<td><a href="https://www.rottnestexpress.com.au/fares" target="_blank" rel="noopener noreferrer">Rottnest Express</a></td>
+</tr>
+<tr>
+<td>Busselton Jetty 小火车 + 观测站</td>
+<td>约 A$45 / A$24</td>
+<td>未核实</td>
+</tr>
+<tr>
+<td>玛格丽特河溶洞</td>
+<td>约 A$25–35/人</td>
+<td>未核实</td>
+</tr>
+</tbody>
+</table>
+<h2>4. 民宿（google_hotels 度假屋，2/4 一晚，2 大 1 小）</h2>
+<table>
+<thead>
+<tr>
+<th>地点</th>
+<th>最低 / 中位（每晚）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>珀斯 / Fremantle</td>
+<td>730 / 1,597 元（A$157 / 344）</td>
+</tr>
+<tr>
+<td>Jurien Bay</td>
+<td>804 / 925 元（A$173 / 199），比 Cervantes 便宜很多</td>
+</tr>
+<tr>
+<td>Cervantes</td>
+<td>2,265 元起（A$487），房源少</td>
+</tr>
+<tr>
+<td>Margaret River</td>
+<td>2,697 / 3,083 元（A$580 / 663），贵；改住 Busselton 更省（价格未查）</td>
+</tr>
+</tbody>
+</table>
+<h2>5. 两家预算（元，含购物）</h2>
+<p>AA 的部分：8 座车 7 天 A$1,100–1,500 + 油费停车，合计约 6,500–8,500；三房民宿 7 晚约 13,000–20,000（Jurien Bay 三房 A$228–590/晚）。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>A 家（妈妈和孩子 + 悉尼的爸爸）</th>
+<th>B 家（2 大 1 小）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国际机票</td>
+<td>14,500–16,500</td>
+<td>22,600–25,000</td>
+</tr>
+<tr>
+<td>爸爸 SYD↔PER（含托运）</td>
+<td>3,200–3,800</td>
+<td>—</td>
+</tr>
+<tr>
+<td>签证</td>
+<td>0（482 有效）</td>
+<td>3,490</td>
+</tr>
+<tr>
+<td>车 + 油（AA）</td>
+<td>3,250–4,250</td>
+<td>3,250–4,250</td>
+</tr>
+<tr>
+<td>民宿（AA）</td>
+<td>6,500–10,000</td>
+<td>6,500–10,000</td>
+</tr>
+<tr>
+<td>餐饮（每人每天 A$80）</td>
+<td>7,800</td>
+<td>7,800</td>
+</tr>
+<tr>
+<td>门票、Rottnest</td>
+<td>2,300</td>
+<td>2,300</td>
+</tr>
+<tr>
+<td>保险、eSIM</td>
+<td>600–1,000</td>
+<td>600–1,000</td>
+</tr>
+<tr>
+<td>购物（沿用上次 A$3,000）</td>
+<td>14,000</td>
+<td>14,000</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>约 5.2–6.0 万</strong></td>
+<td><strong>约 6.2–6.9 万</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>6 人合计约 11.4–12.9 万。</strong> AA 每家只省约 5–8%；B 家多出的签证费基本抵掉了这部分节省。</p>
+<details class="travel-details">
+<summary>参考：网上的“西澳经典全景 7 日游”跟团路线</summary>
+<table>
+<thead>
+<tr>
+<th>天</th>
+<th>跟团路线</th>
+<th>我们怎么处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D1</td>
+<td>珀斯</td>
+<td>一样</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>Rottnest 找 quokka</td>
+<td>一样（2/4）</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>玛格丽特河、Busselton 栈桥小火车</td>
+<td>南线保留，但住 Busselton 2 晚，不赶</td>
+</tr>
+<tr>
+<td>D4</td>
+<td>Lancelin 白沙丘、龙虾工厂、怪树，住 Geraldton</td>
+<td>白沙丘保留；Geraldton 太远，没去</td>
+</tr>
+<tr>
+<td>D5</td>
+<td>粉红湖、Kalbarri 自然之窗、天空步道</td>
+<td>单程约 570 km，2 月峡谷常超 40°C，孩子不建议</td>
+</tr>
+<tr>
+<td>D6</td>
+<td>尖峰石阵，回珀斯</td>
+<td>尖峰石阵保留（2/5 傍晚，凉快）</td>
+</tr>
+<tr>
+<td>D7</td>
+<td>York 小镇、Hyden 波浪岩</td>
+<td>往返 8 小时以上，没去</td>
+</tr>
+</tbody>
+</table>
+<p>跟团一周要开约 2,500 km，打卡最全，适合大人。带两个 4–5 岁孩子，我们的路线只开约 1,100 km，少了粉湖、自然之窗、波浪岩，换来每天车程不超过 3 小时。想看粉湖，可以把 2/5–2/6 换成上面的“纯北线”。</p>
+</details>
+<h2>6. 安全</h2>
+<ul>
+<li>游泳只去 The Basin、Meelup、Busselton 这类平静海湾，或有救生员的海滩（Cottesloe）。</li>
+<li>车上每天至少带 5 L 水；防晒、帽子、防蝇网罩。</li>
+<li>黄昏和夜里不开车，容易撞袋鼠；偏远路段没信号，先下载离线地图。</li>
+</ul>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="todo-section" id="todo">
+  <div class="todo-header">ToDo · 待办与跟进</div>
+  <div class="todo-body md">
+    <h2>第 1 步：查签证（这周）</h2>
+<ul>
+<li>[ ] 在 VEVO 查妈妈和孩子的 482 副签 2027 年 2 月是否有效。</li>
+<li>[ ] → <strong>回复我</strong>：有效 / 失效。失效就在 ImmiAccount 办 600 访客签证（A$250/人起，2026 年 12 月前递交）。</li>
+</ul>
+<h2>第 2 步：选方案（和北海道二选一）</h2>
+<ul>
+<li>[ ] 看 <a href="../" target="_blank" rel="noopener noreferrer">对比页</a>，<strong>回复我</strong>选哪一个。</li>
+</ul>
+<h2>第 3 步：订机票（选定后）</h2>
+<ul>
+<li>[ ] 妈妈和孩子 PVG→PER 2/3、PER→PVG 2/10（约 14,010 元）。看清托运行李额度。</li>
+<li>[ ] 爸爸 SYD↔PER（Jetstar 约 2,776 元），网上预购托运行李。</li>
+</ul>
+<h2>第 4 步：订租车和民宿</h2>
+<ul>
+<li>[ ] 珀斯机场取还车 SUV 7 天，加订儿童座椅，买减免免赔额。</li>
+<li>[ ] 民宿：Fremantle 2 晚、Jurien Bay 1 晚、Busselton 3 晚、珀斯 1 晚，选可免费取消的。</li>
+</ul>
+<h2>第 5 步：出发前</h2>
+<ul>
+<li>[ ] 网上订 Rottnest Express 渡轮（2/4）。</li>
+<li>[ ] 旅行保险、eSIM、防晒和防蝇网罩。</li>
+</ul>
+  </div>
+</section>
+
+<footer>
+  Built 2026-10-22 22:40 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
+</footer>
+
+
+<script>
+(() => {
+  let closedForPrint = null;
+  window.addEventListener("beforeprint", () => {
+    if (closedForPrint !== null) return;
+    closedForPrint = Array.from(document.querySelectorAll("details.travel-details:not([open])"));
+    closedForPrint.forEach(detail => { detail.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    if (closedForPrint === null) return;
+    closedForPrint.forEach(detail => { detail.open = false; });
+    closedForPrint = null;
+  });
+})();
+</script>
+
+
+</body>
+</html>

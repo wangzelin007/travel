@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🏄 2027 春节黄金海岸 2027.02.03 - 02.10</title>
+<meta name="description" content="2027 春节黄金海岸两家亲子游：行程和预算。">
+<meta property="og:title" content="2027 春节黄金海岸">
+<meta property="og:description" content="Sea World、Movie World、Currumbin、Lone Pine。">
+<meta property="og:type" content="article">
+<style>
+:root {
+  --blue:#4f63d2;--green:#43e97b;--red:#f5576c;--orange:#ea580c;
+  --purple:#a855f7;--gray:#64748b;--bg:#f5f7fa;--card:#fff;
+  --border:#e2e8f0;--text:#333;--text2:#666;--text3:#5f6b7a;--radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-padding-top:110px; }
+body {
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+  max-width:880px; margin:0 auto; padding:12px;
+}
+
+.trip-header {
+  background:linear-gradient(135deg,var(--blue) 0%,#764ba2 100%);
+  color:#fff; padding:32px 20px; border-radius:var(--radius);
+  margin-bottom:20px; text-align:center;
+}
+.trip-header h1 { font-size:1.8em; margin-bottom:8px; }
+.trip-header .trip-meta { font-size:.95em; margin-top:4px; }
+
+.day-nav {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  position:sticky; top:0; background:var(--bg); padding:8px 0;
+  z-index:100; margin-bottom:16px;
+}
+.day-nav a {
+  display:inline-block; padding:6px 12px; background:var(--card);
+  border:1px solid var(--border); border-radius:20px;
+  text-decoration:none; color:var(--text); font-size:.8em; font-weight:600;
+}
+.day-nav a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.nav-pdf { background:#9a3412!important; color:#fff!important; border-color:#9a3412!important; font-weight:700; }
+.nav-todo { background:#fef3c7!important; color:#92400e!important; border-color:#fcd34d!important; }
+.nav-supplement { background:#e0f2fe!important; color:#075985!important; border-color:#7dd3fc!important; }
+
+.version-switcher {
+  display:flex; flex-wrap:wrap; gap:6px; justify-content:center;
+  background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+  padding:8px 10px; margin-bottom:12px;
+}
+.version-switcher .vs-label { font-size:.78em; color:var(--text3); align-self:center; margin-right:4px; font-weight:700; letter-spacing:.5px; }
+.version-switcher a {
+  display:inline-block; padding:5px 12px; border-radius:16px;
+  font-size:.82em; font-weight:700; text-decoration:none;
+  background:#f5f7fa; color:var(--text); border:1px solid var(--border);
+}
+.version-switcher a:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
+.version-switcher a.active { background:var(--purple); color:#fff; border-color:var(--purple); cursor:default; }
+.version-switcher a.pdf-link { background:#fef3c7; color:#92400e; border-color:#fcd34d; }
+.version-switcher a.pdf-link:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+.overview { background:var(--card); border-radius:var(--radius); padding:20px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.overview h2 { font-size:1.2em; margin-bottom:12px; }
+.info-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin:12px 0; }
+.info-card { background:#f8f9fa; border-radius:8px; padding:12px; }
+.info-card h3 { font-size:.78em; color:var(--text3); margin-bottom:6px; text-transform:uppercase; letter-spacing:1px; }
+.info-card p { font-size:.92em; font-weight:600; line-height:1.55; }
+
+.day-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.day-header { padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.day-body { padding:20px 24px; }
+.day-1 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-2 .day-header { background:linear-gradient(135deg,#4facfe,#00f2fe); }
+.day-3 .day-header { background:linear-gradient(135deg,#43e97b,#38f9d7); }
+.day-4 .day-header { background:linear-gradient(135deg,#fa709a,#fee140); color:#333;}
+.day-5 .day-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); }
+.day-6 .day-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); color:#333; }
+.day-7 .day-header { background:linear-gradient(135deg,#667eea,#764ba2); color:#fff; }
+.day-8 .day-header { background:linear-gradient(135deg,#f093fb,#f5576c); }
+.day-9 .day-header { background:linear-gradient(135deg,#5ee7df,#b490ca); }
+.day-10 .day-header { background:linear-gradient(135deg,#ff6e7f,#bfe9ff); color:#333; }
+.day-11 .day-header { background:linear-gradient(135deg,#a8edea,#fed6e3); color:#333; }
+.day-12 .day-header { background:linear-gradient(135deg,#84fab0,#8fd3f4); color:#333; }
+.day-13 .day-header { background:linear-gradient(135deg,#fccb90,#d57eeb); }
+.day-14 .day-header { background:linear-gradient(135deg,#e0c3fc,#8ec5fc); color:#333; }
+
+.md h2 { font-size:1.05em; color:var(--text); margin:18px 0 10px; padding-bottom:6px; border-bottom:2px solid var(--blue); display:inline-block; font-weight:700; }
+.md h3 { font-size:.98em; color:#475569; margin:14px 0 8px; font-weight:700; }
+.md h4 { font-size:.92em; color:#475569; margin:10px 0 6px; font-weight:700; }
+.md p { margin:8px 0; color:var(--text2); font-size:.92em; }
+.md ul, .md ol { margin:8px 0 8px 22px; color:var(--text2); font-size:.92em; }
+.md li { margin-bottom:4px; }
+.md strong { color:var(--text); font-weight:700; }
+.md em { color:var(--text2); }
+.md code { background:#f5f7fa; padding:1px 6px; border-radius:3px; font-size:.88em; color:#d97706; }
+.md a { color:#075985; text-decoration:none; border-bottom:1px dotted currentColor; }
+.md a:hover { color:#034c75; }
+.md hr { border:none; border-top:1px solid var(--border); margin:18px 0; }
+.md img { max-width:100%; border-radius:8px; margin:12px 0; display:block; box-shadow:0 2px 8px rgba(0,0,0,.1); }
+.md blockquote { border-left:3px solid var(--green); background:#f0fdf4; padding:10px 14px; margin:12px 0; border-radius:0 8px 8px 0; color:#555; font-size:.9em; }
+.md blockquote p { margin:4px 0; color:#555; }
+
+.md details.travel-details { margin:14px 0; padding:0 12px; border:1px solid #fcd34d; border-left:3px solid var(--orange); border-radius:6px; background:#fffbeb; }
+.md details.travel-details summary { padding:12px 0; color:#78350f; font-size:.92em; font-weight:700; cursor:pointer; overflow-wrap:anywhere; }
+.md details.travel-details summary::marker { color:var(--orange); }
+.md details.travel-details summary:focus-visible { outline:2px solid var(--orange); outline-offset:3px; }
+.md details.travel-details[open] { padding-bottom:8px; }
+.md details.travel-details[open] summary { border-bottom:1px solid #fde68a; }
+
+.route-map {
+  background:#f8fafc; border-radius:8px; padding:14px;
+  margin:0 0 18px; border:1px solid var(--border);
+}
+.route-map h5 { font-size:.92em; color:#475569; margin-bottom:4px; text-align:center; }
+.route-map-note { text-align:center; color:var(--text3); font-size:.76em; margin-bottom:8px; }
+.route-map svg { width:100%; height:auto; display:block; }
+.route-map img { width:100%; height:auto; display:block; border-radius:6px; }
+.route-map-split { display:flex; align-items:center; gap:10px; }
+.route-map-panel { flex:1 1 0; min-width:0; margin:0; }
+.route-map-panel img { aspect-ratio:8/5; object-fit:cover; }
+.route-map-panel figcaption { margin-top:5px; color:var(--text2); font-size:.72em; text-align:center; }
+.route-map-flight { flex:0 0 124px; display:flex; flex-direction:column; align-items:center; gap:3px; color:#475569; font-size:.72em; text-align:center; }
+.route-map-flight-icon { font-size:1.6em; color:var(--blue); }
+.route-stops { display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:10px; font-size:.76em; color:var(--text2); }
+.route-stops span { display:inline-flex; align-items:center; gap:4px; }
+.route-stops b { display:inline-flex; width:18px; height:18px; align-items:center; justify-content:center; border-radius:50%; background:var(--blue); color:#fff; font-size:.72em; }
+.route-stops .route-stop-optional { color:#64748b; opacity:.78; }
+.route-stops .route-stop-optional b { background:#f8fafc; color:#64748b; border:2px dashed #94a3b8; }
+.route-stop-extra { color:#64748b; font-weight:700; }
+
+.md table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.85em; display:block; overflow-x:auto; }
+.md th { background:var(--blue); color:#fff; padding:7px 9px; text-align:left; font-weight:600; white-space:nowrap; }
+.md td { padding:7px 9px; border-bottom:1px solid var(--border); vertical-align:top; }
+.md tr:nth-child(even) { background:#f8f9fa; }
+
+.shopping-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.shopping-header { background:linear-gradient(135deg,#a18cd1,#fbc2eb); padding:20px 24px; color:#1f2937; font-size:1.2em; font-weight:700; }
+.shopping-body { padding:20px 24px; }
+.shopping-body table { font-size:.82em; }
+.shopping-body th { background:#fdf2f8 !important; color:#764ba2 !important; padding:8px 10px; border-bottom:2px solid var(--border); }
+.shopping-body td { padding:8px 10px; }
+
+.checklist-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.checklist-header { background:linear-gradient(135deg,#ffecd2,#fcb69f); padding:20px 24px; color:#333; font-size:1.2em; font-weight:700; }
+.checklist-body { padding:20px 24px; }
+.checklist-body ul { list-style:none; padding-left:0; margin-left:0; }
+.checklist-body li { padding:6px 0; border-bottom:1px solid #f5f5f5; font-size:.9em; }
+.checklist-body li::before { content:'☐ '; color:var(--text3); margin-right:6px; }
+
+.todo-section { background:var(--card); border-radius:var(--radius); margin-bottom:20px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.todo-header { background:linear-gradient(135deg,#fef3c7,#fdba74); padding:20px 24px; color:#78350f; font-size:1.2em; font-weight:700; }
+.todo-body { padding:20px 24px; }
+
+footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
+
+@media (max-width:600px), (pointer:coarse) {
+  html { scroll-padding-top:76px; }
+  body { padding:8px; }
+  .trip-header { padding:24px 16px; }
+  .trip-header h1 { font-size:1.4em; }
+  .info-grid { grid-template-columns:1fr; }
+  .day-body, .shopping-body, .checklist-body { padding:16px; }
+  .day-nav { flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto; overscroll-behavior-x:contain; }
+  .day-nav a { display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; min-height:44px; padding:6px 10px; font-size:.8em; white-space:nowrap; }
+  .md a[data-same-tab] { display:inline-flex; align-items:center; justify-content:center; min-width:60px; min-height:44px; margin:2px 4px 2px 0; padding:6px 5px; font-weight:600; }
+  .md table.itinerary-table, .md table.restaurant-table { position:relative; overflow:visible; font-size:.88em; }
+  .md .itinerary-table thead, .md .restaurant-table thead { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .md .itinerary-table tbody, .md .restaurant-table tbody { display:block; }
+  .md .itinerary-table tbody tr { display:grid; grid-template-columns:76px minmax(0,1fr); gap:2px 8px; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .itinerary-table td { display:block; min-width:0; padding:3px 6px; border:0; overflow-wrap:anywhere; }
+  .md .itinerary-table td:first-child { color:#075985; font-weight:700; }
+  .md .itinerary-table td:last-child { grid-column:1 / -1; }
+  .md .itinerary-table td:last-child::before { content:attr(data-label) " · "; color:var(--text3); font-size:.85em; }
+  .md .itinerary-table td:empty { display:none; }
+  .md .restaurant-table tbody tr { display:block; padding:10px 0; border-bottom:1px solid var(--border); }
+  .md .restaurant-table td { display:block; min-width:0; padding:4px 6px; border:0; overflow-wrap:anywhere; }
+  .md .restaurant-table td:first-child { font-weight:700; color:var(--text); }
+  .md .restaurant-table td:not(:first-child)::before { content:attr(data-label) " · "; color:var(--text3); }
+  .md .restaurant-table a { display:inline-flex; align-items:center; min-height:44px; }
+  .route-map-split { flex-direction:column; align-items:stretch; }
+  .route-map-flight { flex-basis:auto; padding:2px 12px; }
+}
+
+@media print {
+  body { background:#fff; max-width:100%; padding:0; }
+  .day-nav { display:none; }
+  .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
+  .trip-header { break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="trip-header">
+  <h1>🏄 2027 春节黄金海岸</h1>
+  <div class="trip-meta">2027.02.03 - 02.10</div>
+  <div class="trip-meta">选项 C：两家 6 人 | 主题乐园 + 海滩 + 考拉</div>
+</div>
+
+<nav class="day-nav">
+  <a href="#todo" class="nav-todo">ToDo</a>
+  <a href="#overview">概览</a>
+  <a href="trip.pdf" class="nav-pdf" target="_blank" rel="noopener noreferrer">PDF</a>
+</nav>
+
+<section class="overview" id="overview">
+  <h2>📋 行程概览</h2>
+  <div class="info-grid">
+    <div class="info-card"><h3>人数</h3><p>两家 6 人<br>4 大 2 小</p></div>
+<div class="info-card"><h3>住</h3><p>Broadbeach 三房公寓<br>两家 AA</p></div>
+<div class="info-card"><h3>每家预算</h3><p>A 家约 5.1–5.8 万<br>B 家约 6.1–7.0 万</p></div>
+<div class="info-card"><h3>6 人合计</h3><p>约 11.2–12.9 万</p></div>
+  </div>
+  <div class="md">
+    <p>查询日期：2026-10-22。机票和公寓来自 Google Flights / Hotels（SerpAPI）快照，单位人民币。1 AUD = 4.65 元。三版对比见 <a href="../" target="_blank" rel="noopener noreferrer">首页</a>。</p>
+<ul>
+<li><strong>A 家</strong>：爸爸从悉尼出发；妈妈和孩子从上海出发。</li>
+<li><strong>B 家</strong>：2 大 1 小，都从上海出发，要办澳洲 600 访客签证。</li>
+</ul>
+<h2>0. 先确认</h2>
+<ul>
+<li>A 家：在 VEVO 查妈妈和孩子 482 副签 2027 年 2 月是否有效。</li>
+<li>B 家：600 访客签证境外申请 <strong>A$250/人起</strong>，3 人约 3,490 元（<a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600/tourist-stream-overseas" target="_blank" rel="noopener noreferrer">Home Affairs</a>）。2026 年 12 月前递交。</li>
+<li>2 月是昆士兰雨季：平均最高约 29°C，湿热像上海夏天，午后常有雷暴（未核实）。只在红黄旗之间游泳，偶有蓝瓶水母。好处是主题乐园、商场多，下雨也有地方去。</li>
+</ul>
+<h2>1. 机票（往返 2/3–2/10，飞布里斯班 BNE，再开车约 1 小时）</h2>
+<table>
+<thead>
+<tr>
+<th>航段</th>
+<th>人数</th>
+<th>最低价</th>
+<th>推荐</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PVG↔BNE（A 家）</td>
+<td>1 大 1 小</td>
+<td>13,270（南航经广州，约 21 小时）</td>
+<td>国泰经香港 16,760，约 13 小时</td>
+</tr>
+<tr>
+<td>PVG↔BNE（B 家）</td>
+<td>2 大 1 小</td>
+<td>20,784（南航）</td>
+<td>国泰 26,034</td>
+</tr>
+<tr>
+<td>SYD↔BNE（A 家爸爸）</td>
+<td>1 大</td>
+<td>802（Jetstar）</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>飞黄金海岸机场 OOL 要转 2 次，贵很多，不推荐。</li>
+<li>东航 MU715 直飞这次没查到报价，订票前去东航官网再看一次。</li>
+</ul>
+<h2>2. 每日安排</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>行程</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2/3（三）</td>
+<td>到 BNE，接上悉尼来的爸爸，取 8 座车，开到 Broadbeach 入住</td>
+<td>约 1 小时</td>
+</tr>
+<tr>
+<td>2/4（四）</td>
+<td><strong>Sea World</strong>（多园通票第 1 天）：海豚、企鹅</td>
+<td></td>
+</tr>
+<tr>
+<td>2/5（五）</td>
+<td>上午 <strong>Currumbin 野生动物园</strong>（喂袋鼠、抱考拉拍照），下午海滩</td>
+<td></td>
+</tr>
+<tr>
+<td>2/6（六）春节</td>
+<td><strong>Movie World</strong>，中午回公寓休息；晚上公寓里两家一起做年夜饭</td>
+<td></td>
+</tr>
+<tr>
+<td>2/7（日）</td>
+<td><strong>Wet'n'Wild</strong> 水上乐园（下雨就改去 Pacific Fair 商场）</td>
+<td></td>
+</tr>
+<tr>
+<td>2/8（一）</td>
+<td>Tamborine 山：雨林步道、萤火虫洞，或 Springbrook 山</td>
+<td>山上凉快</td>
+</tr>
+<tr>
+<td>2/9（二）</td>
+<td>回布里斯班：<strong>Lone Pine 考拉园</strong> + South Bank 人工海滩，住机场附近</td>
+<td></td>
+</tr>
+<tr>
+<td>2/10（三）</td>
+<td>还车，回程</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>3. 门票（官网价约数，<strong>未核实</strong>，以官网为准）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>成人</th>
+<th>儿童 3+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Village Roadshow 多园通票（Sea World、Movie World、Wet'n'Wild）</td>
+<td>约 A$199</td>
+<td>约 A$189</td>
+</tr>
+<tr>
+<td>Currumbin</td>
+<td>约 A$64</td>
+<td>约 A$49</td>
+</tr>
+<tr>
+<td>Lone Pine</td>
+<td>约 A$59</td>
+<td>约 A$39</td>
+</tr>
+</tbody>
+</table>
+<p>3 岁以下免费。网上提前买常有折扣。</p>
+<h2>4. 住宿和车（两家 AA）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>价格</th>
+<th>每家</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Broadbeach / Surfers Paradise 三房海景公寓 7 晚（例：Amaya Coastal Luxe 17,355，评分 5.0；CASSA VUE 15,026）</td>
+<td>约 15,000–20,000</td>
+<td>7,500–10,000</td>
+</tr>
+<tr>
+<td>8 座车 7 天 + 2 个儿童座椅 + 油费停车（未核实）</td>
+<td>约 6,000–7,000</td>
+<td>3,000–3,500</td>
+</tr>
+</tbody>
+</table>
+<h2>5. 每家预算（元）</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>A 家</th>
+<th>B 家</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国际机票</td>
+<td>13,300–16,800</td>
+<td>20,800–26,000</td>
+</tr>
+<tr>
+<td>爸爸悉尼往返</td>
+<td>800</td>
+<td>—</td>
+</tr>
+<tr>
+<td>签证</td>
+<td>0（482 有效）</td>
+<td>3,490</td>
+</tr>
+<tr>
+<td>住宿（AA）</td>
+<td>7,500–10,000</td>
+<td>7,500–10,000</td>
+</tr>
+<tr>
+<td>车（AA）</td>
+<td>3,000–3,500</td>
+<td>3,000–3,500</td>
+</tr>
+<tr>
+<td>餐饮（每人每天 A$70，住公寓可做饭）</td>
+<td>7,800</td>
+<td>7,800</td>
+</tr>
+<tr>
+<td>门票</td>
+<td>4,200–4,500</td>
+<td>4,200–4,500</td>
+</tr>
+<tr>
+<td>保险、eSIM</td>
+<td>600–1,000</td>
+<td>600–1,000</td>
+</tr>
+<tr>
+<td>购物（沿用上次 A$3,000）</td>
+<td>14,000</td>
+<td>14,000</td>
+</tr>
+<tr>
+<td><strong>合计</strong></td>
+<td><strong>约 5.1–5.8 万</strong></td>
+<td><strong>约 6.1–7.0 万</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>6 人合计约 11.2–12.9 万。</strong> 两家 AA 只省在住宿和车，每家比单独出行少约 5–8%。</p>
+  </div>
+</section>
+
+
+
+
+
+
+
+<section class="todo-section" id="todo">
+  <div class="todo-header">ToDo · 待办与跟进</div>
+  <div class="todo-body md">
+    <ul>
+<li>[ ] A 家：VEVO 查妈妈和孩子 482 副签。</li>
+<li>[ ] B 家：确定去澳洲就在 ImmiAccount 办 600 签证（3 人约 A$750），12 月前递交。</li>
+<li>[ ] 东航官网查 MU715 浦东↔布里斯班 2/3、2/10 直飞价格。</li>
+<li>[ ] 签证下来后订机票、三房公寓（可免费取消）、8 座车 + 2 个儿童座椅。</li>
+<li>[ ] 网上买 Village Roadshow 多园通票。</li>
+</ul>
+  </div>
+</section>
+
+<footer>
+  Built 2026-10-22 22:40 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
+</footer>
+
+
+<script>
+(() => {
+  let closedForPrint = null;
+  window.addEventListener("beforeprint", () => {
+    if (closedForPrint !== null) return;
+    closedForPrint = Array.from(document.querySelectorAll("details.travel-details:not([open])"));
+    closedForPrint.forEach(detail => { detail.open = true; });
+  });
+  window.addEventListener("afterprint", () => {
+    if (closedForPrint === null) return;
+    closedForPrint.forEach(detail => { detail.open = false; });
+    closedForPrint = null;
+  });
+})();
+</script>
+
+
+</body>
+</html>
