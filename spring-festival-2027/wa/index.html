@@ -351,7 +351,8 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 .cmp-tabs button.on[data-r=north]{background:var(--n);color:#fff}
 .cmp-map{position:relative;margin-top:10px}
 .cmp-map img{width:100%;display:block;border-radius:12px;transition:opacity .35s}
-.cmp-map img.north{position:absolute;inset:0;opacity:0}
+.cmp-map img.north{position:absolute;inset:0;opacity:0;pointer-events:none}
+.cmp[data-r=north] .cmp-map img.north{pointer-events:auto}
 .cmp[data-r=north] .cmp-map img.north{opacity:1}
 .cmp-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
 .cmp-col{border-radius:14px;padding:12px;background:#f8fafc;border:2px solid transparent;transition:.25s}
@@ -2101,7 +2102,7 @@ document.querySelectorAll('.cmp').forEach(function(c){c.dataset.r='south';c.quer
 </section>
 
 <footer>
-  Built 2026-10-23 20:28 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
+  Built 2026-10-23 23:40 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
 </footer>
 
 
