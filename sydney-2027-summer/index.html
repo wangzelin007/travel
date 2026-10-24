@@ -185,7 +185,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 
 @media print {
   body { background:#fff; max-width:100%; padding:0; }
-  .day-nav { display:none; }
+  .day-nav { position:static; flex-wrap:wrap; box-shadow:none; }
   .day-section, .shopping-section, .checklist-section { break-inside:avoid; box-shadow:none; border:1px solid var(--border); }
   .trip-header { break-after:avoid; }
 }
@@ -773,7 +773,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
   <div class="day-header">D1 · 托育与插班（学校、邮件、电话）</div>
   <div class="day-body md">
     
-    <p>查询日期：<strong>2026-10-18</strong>。汇率按 <strong>1 AUD = 4.65 CNY</strong>（2026-10-16）计算，括号内是澳元原价。住处为 Epping 附近的 studio（月租 ¥15,000，两张床，最多睡 4 人），已选定但门牌未写入文档，所以下文的步行或公交时间都按 <strong>Epping 站</strong>估算。
+    <p>查询日期：<strong>2026-10-18</strong>。汇率按 <strong>1 AUD = 4.65 CNY</strong>（2026-10-16）计算，括号内是澳元原价。住处为 Epping 附近的 studio（月租 ¥15,000，两张床，最多睡 4 人），已选定但门牌未写入文档，7 月住处已定在 <strong>Dorset St, Epping</strong>，下表最后一列改为从住处步行（OSM 计算，2026-10-24），其余未重算的仍按 Epping 站估。
 标“未核实”的项目都写明了原因。日费来自第三方平台或机构官网，<strong>2027 年的价格必须向机构书面确认</strong>。</p>
 <h2>1. 结论速览</h2>
 <table class="itinerary-table">
@@ -890,7 +890,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tbody>
 </table>
 <ul>
-<li>家庭住址 Cambridge St 爸爸住处 属于哪所学校的片区：<strong>未核实</strong>，需要用 <a href="https://education.nsw.gov.au/school-finder" target="_blank" rel="noopener noreferrer">School Finder</a> 查询，或在邮件中询问 DE International。</li>
+<li>住处 Dorset St 到 Epping Public School 步行约 0.7 km / 9 分钟，到 Epping West Public School 约 2.7 km / 37 分钟；属于哪所学校的片区：<strong>未核实</strong>，需要用 <a href="https://education.nsw.gov.au/school-finder" target="_blank" rel="noopener noreferrer">School Finder</a> 查询，或在邮件中询问 DE International。</li>
 </ul>
 <h2>4. 托育中心（8 家）</h2>
 <p>日费以 2026 年第三方平台数据为主。NQS 评级来自 StartingBlocks、CareforKids 或机构官网；ACECQA 国家登记册是动态查询页面，本轮没能直接打开，所以标“ACECQA 待复核”。</p>
@@ -905,7 +905,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <th>日费</th>
 <th>NQS</th>
 <th>Casual</th>
-<th>到 Epping 站</th>
+<th>从住处步行</th>
 </tr>
 </thead>
 <tbody>
@@ -918,7 +918,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>~¥767（AUD 165）</td>
 <td>Meeting</td>
 <td>第三方显示有空位</td>
-<td>步行约 5 分钟（估）</td>
+<td><strong>0.8 km，约 11 分钟</strong></td>
 </tr>
 <tr>
 <td>2</td>
@@ -929,7 +929,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>~¥814（AUD 175）</td>
 <td>Meeting</td>
 <td>StartingBlocks 显示可接 casual</td>
-<td>步行 7–8 分钟</td>
+<td><strong>1.7 km，约 23 分钟</strong></td>
 </tr>
 <tr>
 <td>3</td>
@@ -951,7 +951,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>未核实（官网未公布）</td>
 <td>Exceeding</td>
 <td>未核实</td>
-<td>步行约 10–15 分钟（估）</td>
+<td><strong>2.3 km，约 31 分钟</strong></td>
 </tr>
 <tr>
 <td>5</td>
@@ -1139,7 +1139,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tr>
 <td>1</td>
 <td>Little Steps Epping</td>
-<td>与爸爸家同在 Cambridge St；离 Epping 站很近，爷爷奶奶接送方便（studio 门牌确定后再算步行时间）</td>
+<td>与爸爸家同在 Cambridge St；离 Epping 站很近，爷爷奶奶接送方便；从住处步行约 11 分钟（0.8 km）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -1259,6 +1259,66 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>孩子、爷爷、奶奶 3 人（妈妈 7/5 从旅行地直接回国，见 06 章）；床位最多 4 人</td>
 <td>爸爸住自己家：Cambridge St 爸爸住处, Epping</td>
 </tr>
+<tr>
+<td>地址</td>
+<td><strong>Dorset St, Epping</strong>（已定，门牌不公开）</td>
+<td>用户提供</td>
+</tr>
+</tbody>
+</table>
+<p><strong>从住处步行</strong>（OSM 步行路线计算，2026-10-24；未实地走过，坡道、过马路等灯另算）</p>
+<table>
+<thead>
+<tr>
+<th>去哪里</th>
+<th>距离</th>
+<th>步行</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Epping 站</strong>（Metro M1 / T9）</td>
+<td>1.2 km</td>
+<td>约 16 分钟</td>
+<td>去市区、Macquarie、Eastwood 都从这里上车</td>
+</tr>
+<tr>
+<td><strong>Little Steps</strong>（已发邮件）</td>
+<td>0.8 km</td>
+<td>约 11 分钟</td>
+<td>三家里最近，爷爷奶奶接送首选</td>
+</tr>
+<tr>
+<td><strong>Learn &amp; Laugh</strong>（已发邮件）</td>
+<td>1.7 km</td>
+<td>约 23 分钟</td>
+<td>孩子走要 30 分钟以上，雨天考虑公交</td>
+</tr>
+<tr>
+<td><strong>Kidz Prints</strong>（已发邮件）</td>
+<td>2.3 km</td>
+<td>约 31 分钟</td>
+<td>每天走路接送偏远，需要坐公交</td>
+</tr>
+<tr>
+<td><strong>Coles Epping</strong>（最近的超市）</td>
+<td>1.4 km</td>
+<td>约 19 分钟</td>
+<td>重物网上下单送货</td>
+</tr>
+<tr>
+<td>Epping Public School（备选 TRP）</td>
+<td>0.7 km</td>
+<td>约 9 分钟</td>
+<td>是否属于该校片区未核实</td>
+</tr>
+<tr>
+<td>Epping West Public School</td>
+<td>2.7 km</td>
+<td>约 37 分钟</td>
+<td>备选</td>
+</tr>
 </tbody>
 </table>
 <p><strong>床位分配建议</strong>
@@ -1374,7 +1434,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
   <div class="day-body md">
     
     <p>查询日期：2026-10-18。金额按 <strong>1 AUD = 4.65 CNY（2026-10-16 汇率）</strong> 换算成人民币，括号里是澳元原价。写“未核实”的项目，出发前需要再确认。</p>
-<p>住处：Epping 附近的 studio（首选）。爸爸住 Cambridge St 爸爸住处, Epping。</p>
+<p>住处：<strong>Dorset St, Epping</strong>。步行到 Coles Epping 约 1.4 km / 19 分钟，到 Epping 站约 1.2 km / 16 分钟（OSM 计算，2026-10-24）。爸爸住 Cambridge St 爸爸住处, Epping。</p>
 <h2>当天安排</h2>
 <table class="itinerary-table">
 <thead>
@@ -1387,7 +1447,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td data-label="时间">上午</td>
-<td data-label="行程">爷爷奶奶从 Epping 步行去 Coles Epping 买日常菜</td>
+<td data-label="行程">爷爷奶奶从住处步行约 19 分钟去 Coles Epping 买日常菜</td>
 <td data-label="备注">每天 7:00–22:00</td>
 </tr>
 <tr>
@@ -2396,7 +2456,7 @@ Yours sincerely,
   <div class="day-body md">
     
     <p><strong>汇率：1 AUD = 4.65 CNY（2026-10-16）</strong>。下文金额都写人民币，括号里是澳元原价。价格是 2026-10-18 查到的，2027 年可能调价，出发前一周要再核实一次。</p>
-<p><strong>出发点</strong>：Epping 附近的 studio（月租 ¥15,000，约 A$3,226），也就是首选住处。爸爸的住址是 [your address], Epping NSW 2121。全家 4 人：爸爸、5 岁孩子（2022 年 6 月出生）、爷爷奶奶（60 岁）。</p>
+<p><strong>出发点</strong>：Dorset St, Epping 的 studio（步行约 16 分钟到 Epping 站）（月租 ¥15,000，约 A$3,226），也就是首选住处。爸爸的住址是 [your address], Epping NSW 2121。全家 4 人：爸爸、5 岁孩子（2022 年 6 月出生）、爷爷奶奶（60 岁）。</p>
 <h2>0. 先确认的事实</h2>
 <table>
 <thead>
@@ -2946,7 +3006,7 @@ Yours sincerely,
 </section>
 
 <footer>
-  Built 2026-10-24 15:53 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
+  Built 2026-10-24 23:50 (v2.2.0) · <a href="https://github.com/wangzelin007/travel" target="_blank" rel="noopener noreferrer">github.com/wangzelin007/travel</a>
 </footer>
 
 
