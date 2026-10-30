@@ -216,6 +216,42 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <main class="supplementary-main md"><p>器材：<strong>Fujifilm X-T20 富士相机＋XF18-55mm F2.8-4 镜头</strong>。由 2026 澳洲行程的 10 个配置合并成 7 个常用场景，所有旅行通用，每个场景对应一个<strong>自定义设置</strong>（Q 菜单 → 编辑/保存自定义设置，C1–C7），出门按场景切换。</p>
 <p>X-T20 有 Classic Chrome、ACROS 黑白和颗粒效果，没有 Color Chrome 色彩效果、清晰度和 Eterna，这里都没用。</p>
 <p><strong>对焦与测光要点</strong>：静物用 S（单次）＋单点，半按对焦后重新构图；会动的人和孩子用 C（连续）＋区域，AF-C 自定义设置选 1（多用途）。人脸 / 眼部检测在“对焦设置 &gt; 人脸/眼部检测设置”里开；头发或眼镜挡住眼睛时相机会改对人脸。测光默认多重；强逆光人像改点测光，并打开“点测光与对焦区域联动”（需 AF 模式为单点），让测光跟着对焦框走。</p>
+<p><strong>ISO 自动档（先设一次，7 个场景共用）</strong>：拍摄设置 &gt; ISO 自动设置，分别设：</p>
+<table>
+<thead>
+<tr>
+<th>档位</th>
+<th>默认感光度</th>
+<th>最大感光度</th>
+<th>最低快门</th>
+<th>用在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自动1（白天）</td>
+<td>400</td>
+<td>3200</td>
+<td>1/250 秒</td>
+<td>晴天风光、晴天人像、阴天人像、黑白风光</td>
+</tr>
+<tr>
+<td>自动2（阴天 / 室内）</td>
+<td>400</td>
+<td>3200</td>
+<td>1/125 秒</td>
+<td>阴天风光、黑白建筑</td>
+</tr>
+<tr>
+<td>自动3（夜晚）</td>
+<td>800</td>
+<td>6400</td>
+<td>1/60 秒</td>
+<td>夜晚街景</td>
+</tr>
+</tbody>
+</table>
+<p>默认感光度都不低于 400，DR 200% 才能生效。晴天光线足，实际 ISO 通常停在 400 左右，不会因上限 3200 变高。</p>
 <p><strong>存入自定义设置</strong>：C1–C7 只保存画质类（ISO、DR、白平衡、胶片、高光、阴影、色彩、锐度、降噪）；对焦、测光、驱动、曝光补偿、光圈需切换场景时手动拨，表里一并列出。照片正常就别改；要改一次只改一项。</p>
 <table>
 <thead>
@@ -267,11 +303,11 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认200、最大1600、最低快门1/250秒</td>
+<td>自动1（白天）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
-<td>200%（ISO 至少400 才生效）</td>
+<td>200%</td>
 </tr>
 <tr>
 <td>白平衡 / 偏移</td>
@@ -423,7 +459,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认400、最大3200、最低快门1/125秒</td>
+<td>自动2（阴天 / 室内）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
@@ -579,11 +615,11 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认200、最大3200、最低快门1/250秒</td>
+<td>自动1（白天）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
-<td>200%（ISO 至少400 才生效）</td>
+<td>200%</td>
 </tr>
 <tr>
 <td>白平衡 / 偏移</td>
@@ -735,7 +771,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认400、最大3200、最低快门1/250秒</td>
+<td>自动1（白天）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
@@ -873,8 +909,8 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <td>想要更鲜一点的颜色时换。</td>
 </tr>
 <tr>
-<td>ISO 上限改 6400</td>
-<td>室内仍拍糊时提高。</td>
+<td>ISO 改自动3</td>
+<td>室内仍拍糊时换夜晚档，快门可更慢、ISO 可更高。</td>
 </tr>
 </tbody>
 </table>
@@ -891,7 +927,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认200、最大1600、最低快门1/250秒</td>
+<td>自动1（白天）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
@@ -1047,7 +1083,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认400、最大3200、最低快门1/125秒</td>
+<td>自动2（阴天 / 室内）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
@@ -1203,11 +1239,11 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 <tbody>
 <tr>
 <td>ISO 感光度</td>
-<td>自动2：默认800、最大6400、最低快门1/60秒</td>
+<td>自动3（夜晚）</td>
 </tr>
 <tr>
 <td>DR 动态范围</td>
-<td>200%（ISO 800 起生效）</td>
+<td>200%</td>
 </tr>
 <tr>
 <td>白平衡 / 偏移</td>
@@ -1337,8 +1373,8 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </thead>
 <tbody>
 <tr>
-<td>最低快门 1/60 改 1/125</td>
-<td>街上行人糊影太重时提高。</td>
+<td>ISO 改自动2</td>
+<td>街上行人糊影太重时换成最低快门 1/125 秒的档。</td>
 </tr>
 <tr>
 <td>曝光补偿 + / -</td>
@@ -1346,7 +1382,7 @@ footer { text-align:center; padding:24px; font-size:.82em; color:var(--text3); }
 </tr>
 </tbody>
 </table><div class="supplementary-actions"><button class="supplementary-button" type="button" onclick="saveCameraCard(this)">保存完整参数图</button></div><p class="export-note">图片会包含本场景的完整参数表和微调表。</p></section></main>
-<footer>Built 2026-10-31 08:49 (v2.2.0)</footer>
+<footer>Built 2026-10-31 09:05 (v2.2.0)</footer>
 
 <script>
 async function saveCameraCard(button) {
